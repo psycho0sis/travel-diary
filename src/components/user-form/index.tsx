@@ -4,7 +4,7 @@ import './styles.scss';
 import { useEffect, useRef } from 'react';
 
 export const UserForm = () => {
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = (values: any) => console.log(values);
 
   const handleFocus = (event: Event) => {
     const inputElement = event.target as HTMLInputElement;

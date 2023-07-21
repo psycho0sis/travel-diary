@@ -21,11 +21,14 @@
     "noEmit": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "baseUrl": "./src"
   },
-  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "vite.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/google-map-container/index.js",
+    "src/components/panoramas/panorama-voronovo/index.tsx"
+  ],
   "exclude": ["node_modules"]
 }
