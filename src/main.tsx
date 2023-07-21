@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { App } from './App';
+import { Home } from './pages/home';
+import { Virtual } from 'pages/virtual';
+import { Profile } from 'pages/profile';
 
-import './index.css';
+import './styles.scss';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Home />,
   },
   {
     path: '/adventures',
@@ -17,12 +19,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/virtual',
-    element: <div>Виртуальные экологические экскурсии</div>,
+    element: <Virtual />,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <RouterProvider router={router} />,
+  // </React.StrictMode>,
 );
