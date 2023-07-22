@@ -1,6 +1,6 @@
 {
   "name": "@awesomereactapp/source",
-  "homepage": "https://psycho0sis.github.io/travel-diary",
+  "homepage": "https://psycho0sis.github.io/travel-diary/",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "nx build",
     "test": "nx test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist/awesomereactapp"
   },
   "private": true,
   "dependencies": {
