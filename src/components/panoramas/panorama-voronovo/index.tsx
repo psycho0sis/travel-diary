@@ -1,9 +1,11 @@
 import { useRef } from 'react';
 import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
 
-import panorama1 from '../../../images/panorama1.png';
-import panorama2 from '../../../images/panorama2.png';
-import panorama3 from '../../../images/panorama3.png';
+import panorama1 from '../../../assets/panorama1.png';
+import panorama2 from '../../../assets/panorama2.png';
+import panorama3 from '../../../assets/panorama3.png';
+
+import './styles.scss';
 
 const panoramasInVoronovo = [panorama1, panorama2, panorama3];
 
@@ -23,13 +25,13 @@ export const PanoramaVoronovo = () => {
   return (
     <>
       {panoramasInVoronovo.map((panorama) => (
-        <div className='panoramas'>
+        <div className="panoramas">
           <ReactPhotoSphereViewer
             ref={photoSphereRef}
-            container='div'
+            container="div"
             src={panorama}
-            width='640'
-            height='240'
+            width="640"
+            height="240"
             defaultZoomLvl={10}
             onClick={handleClick}
           ></ReactPhotoSphereViewer>
