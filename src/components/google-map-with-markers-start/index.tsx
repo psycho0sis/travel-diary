@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, InfoWindow,MarkerF, useLoadScript } from '@react-google-maps/api';
 
 import './styles.scss';
 

@@ -1,31 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Profile } from 'pages/profile';
+import { Virtual } from 'pages/virtual';
 
-import { Home } from "./pages/home";
-import { Virtual } from "pages/virtual";
-import { Profile } from "pages/profile";
+import { Home } from './pages/home';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/adventures",
+    path: '/adventures',
     element: <div>Путешествия</div>,
   },
   {
-    path: "/virtual",
+    path: '/virtual',
     element: <Virtual />,
   },
   {
-    path: "/profile",
+    path: '/profile',
     element: <Profile />,
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
   <RouterProvider router={router} />
   // </React.StrictMode>,
