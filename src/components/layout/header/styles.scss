@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 36px;
 
   &__logo {
     width: 200px;
@@ -14,7 +15,7 @@
     gap: 20px;
 
     & a {
-      font-family: 'Roboto Slab';
+      font-family: 'Roboto';
       font-weight: 600;
       font-size: 18px;
       color: #000f07;
@@ -27,7 +28,7 @@
 }
 
 .active {
-  background-color: rgb(120, 216, 150);
+  background-color: #e6d5a9;
   padding: 10px;
   border-radius: 4px;
 }

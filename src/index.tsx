@@ -1,32 +1,52 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Profile } from 'pages/profile';
+import { ErrorPage } from 'pages/error';
+import { Home } from 'pages/home';
+import { Login } from 'pages/login';
+import { User } from 'pages/user';
 import { Virtual } from 'pages/virtual';
 
-import { Home } from './pages/home';
+import { Layout } from 'components/layout/layout';
+import { VirtualExcursionVoronovo } from 'components/virtual-excursions/voronovo';
+
+import './index.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/adventures',
-    element: <div>Путешествия</div>,
-  },
-  {
-    path: '/virtual',
-    element: <Virtual />,
-  },
-  {
-    path: '/profile',
-    element: <Profile />,
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/adventures',
+        element: <div>Путешествия</div>,
+      },
+      {
+        path: '/virtual',
+        element: <Virtual />,
+      },
+      {
+        path: '/virtual/voronovo',
+        element: <VirtualExcursionVoronovo />,
+      },
+      {
+        path: '/virtual/palaces',
+        element: <VirtualExcursionVoronovo />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/user',
+        element: <User />,
+      },
+    ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  <RouterProvider router={router} />
-  // </React.StrictMode>,
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />);

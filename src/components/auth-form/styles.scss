@@ -1,5 +1,5 @@
 .form {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,29 +10,51 @@
   border-radius: 4px;
   box-shadow: 8px 4px 44px -4px rgba(88, 98, 105, 0.07);
 
-  & input {
+  &__label {
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+  }
+
+  &__input {
     width: 100%;
     font-size: 18px;
-    max-width: 415px;
+    max-width: 470px;
     display: block;
     background: #ffffff;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     padding: 15px 14px;
-    margin: 10px auto 20px;
+    margin: 10px auto 4px;
 
     &:focus {
       border: 1px solid #bcbcbc;
       outline: none;
       box-shadow: 0 0 5px #b1b1b1;
     }
+
+    &--error {
+      border-bottom: 2px solid #d10303;
+    }
   }
 
-  & button {
+  &__error-text {
+    color: #d10303;
+  }
+
+  &__button {
+    cursor: pointer;
     padding: 15px 45px;
     font-size: 18px;
     border-radius: 4px;
     color: #ffffff;
     background-color: rgb(62, 116, 79);
+    margin-top: 20px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(0.98);
+    }
   }
 }

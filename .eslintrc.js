@@ -57,7 +57,7 @@ module.exports = {
       },
     ],
     'eol-last': 0,
-    'max-len': ['warn', { code: 100 }],
+    'max-len': ['warn', { code: 300 }],
     'no-console': 'off',
     'react/react-in-jsx-scope': 'off',
     'spaced-comment': 'error',

@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { GoogleMap, InfoWindow,MarkerF, useLoadScript } from '@react-google-maps/api';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { GoogleMap, InfoWindow, MarkerF, useLoadScript } from '@react-google-maps/api';
 
 import './styles.scss';
 
@@ -35,10 +35,10 @@ const markers: IMarker[] = [
   },
   {
     id: 3,
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG/2560px-%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG',
+    img: 'https://belarusgid.com/wp-content/uploads/2015/05/IMG_0845.jpg',
     name: 'Мирский замок',
     description:
-      'Восстановленная крепость XVI века площадью 27 гектаров с музеем, рестораном и магазином сувениров.',
+      'Восстановленная крепость XVI века площадью 27 гектаров с музеем,рестораном и магазином сувениров.',
     position: { lat: 53.451307878203274, lng: 26.47293262728402 },
   },
   {
@@ -52,6 +52,14 @@ const markers: IMarker[] = [
 export const Map = ({ googleMapsApiKey }: MapProps) => {
   const center = useMemo(() => ({ lat: 54.15320407797462, lng: 25.319435879481013 }), []);
   const [selectedMarker, setSelectedMarker] = useState<Coordinates | null>(null);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      console.log(ref.current);
+    }
+  }, []);
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleMapsApiKey,
   });
@@ -60,7 +68,7 @@ export const Map = ({ googleMapsApiKey }: MapProps) => {
 
   return (
     <GoogleMap center={center} zoom={7} mapContainerClassName='map-container'>
-      {markers.map(({ id, description, name, position }) => (
+      {markers.map(({ id, img, description, name, position }) => (
         <MarkerF
           key={id}
           position={position}
@@ -70,14 +78,16 @@ export const Map = ({ googleMapsApiKey }: MapProps) => {
         >
           {selectedMarker === position && (
             <InfoWindow
+              ref={ref}
               onCloseClick={() => {
                 setSelectedMarker(null);
               }}
               position={position}
               zIndex={9999}
+              options={{ minWidth: 600 }}
             >
               <div>
-                {/* {img && <img src={img} alt='' />} */}
+                {img && <img src={img} alt='' />}
                 <h4>{name}</h4>
                 <p>{description}</p>
               </div>

@@ -1,12 +1,9 @@
-import { Container } from 'components/layout/container';
-import { Header } from 'components/layout/header';
-import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { Title } from 'components/ui/title';
+import { VirtualExcursions } from 'components/virtual-excursions';
 
 export const Virtual = () => (
-  <Container>
-    <Header />
-    <Title>Виртуальная экскурсия по братским могилам г.п. Вороново</Title>
-    <PanoramaVoronovo />
-  </Container>
+  <>
+    <Title>Виртуальные экскурсии</Title>
+    <VirtualExcursions />
+  </>
 );
