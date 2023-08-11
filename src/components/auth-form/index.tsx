@@ -42,6 +42,7 @@ export const AuthForm = () => {
 
     try {
       const loginResponse = await signInUser(email, password);
+
       startSession(loginResponse.user);
       navigate('/user');
     } catch (error: unknown) {
@@ -65,18 +66,12 @@ export const AuthForm = () => {
   const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.placeholder = '';
 
-    if (!event.target.value && event.target.type === 'email') {
-      setEmailError(true);
-    } else if (!event.target.value && event.target.type === 'password') {
-      setPasswordError(true);
-    }
-
     return;
   };
 
   return (
     <>
-      <Title>Войдите в свой аккаунт</Title>
+      <Title fontSize={28}>Войдите в свой аккаунт</Title>
       {error && <p>{error}</p>}
       <form onSubmit={onSubmit} className='form'>
         <label className='form__label'>Email</label>

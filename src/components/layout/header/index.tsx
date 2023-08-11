@@ -26,6 +26,12 @@ export const Header = () => (
       >
         Личный кабинет
       </NavLink>
+      <NavLink
+        to='/user'
+        className={({ isActive, isPending }) => (isPending ? 'pending' : isActive ? 'active' : '')}
+      >
+        Ученик
+      </NavLink>
     </nav>
   </div>
 );

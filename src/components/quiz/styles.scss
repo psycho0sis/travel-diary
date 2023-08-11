@@ -1,0 +1,23 @@
+.quiz {
+  margin-bottom: 36px;
+
+  &__question {
+    margin-bottom: 24px;
+  }
+
+  &__variants {
+    display: flex;
+    gap: 0 12px;
+    margin-bottom: 12px;
+    // flex-direction: column;
+  }
+
+  &__label {
+    cursor: pointer;
+  }
+
+  &__input {
+    cursor: pointer;
+    width: 20px;
+  }
+}

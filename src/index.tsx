@@ -7,6 +7,7 @@ import { User } from 'pages/user';
 import { Virtual } from 'pages/virtual';
 
 import { Layout } from 'components/layout/layout';
+import { VirtualExcursionsPalaces } from 'components/virtual-excursions/palaces';
 import { VirtualExcursionVoronovo } from 'components/virtual-excursions/voronovo';
 
 import './index.css';
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/virtual/palaces',
-        element: <VirtualExcursionVoronovo />,
+        element: <VirtualExcursionsPalaces />,
       },
       {
         path: '/login',
