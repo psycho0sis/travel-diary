@@ -7,6 +7,7 @@
   &__logo {
     width: 200px;
     height: 100px;
+    cursor: pointer;
   }
 
   &__navigation {
@@ -17,34 +18,119 @@
     & a {
       font-family: 'Roboto';
       font-weight: 600;
-      font-size: 18px;
-      color: #000f07;
+      font-size: calc(14px + 4 * (100vw / 1280));
+      color: var(--primary-color);
       text-align: center;
     }
   }
 }
 
+.menu-button {
+  display: none;
+}
+
+.overlay {
+  opacity: 0;
+}
+
 .active {
-  background-color: #e6d5a9;
+  background-color: #e1a509;
   padding: 10px;
   border-radius: 4px;
 }
 
 @media screen and (max-width: 1078px) {
-  .header__navigation {
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 16px;
-    height: 100vh;
-    z-index: 2;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #f5e8cc;
-    display: none;
+  .header {
+    &__navigation {
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 16px;
+      height: 100vh;
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgb(245, 232, 204);
+      display: none;
+    }
+
+    & a {
+      text-align: end;
+    }
+
+    & a:first-child {
+      margin-top: 80px;
+    }
+  }
+
+  .overlay.active {
+    opacity: 1;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .open {
     display: flex;
+  }
+
+  .menu-button {
+    cursor: pointer;
+    display: block;
+    margin: 10px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .menu-button:hover .menu-button-line:nth-child(1) {
+    animation: slide 1s infinite;
+  }
+  .menu-button:hover .menu-button-line:nth-child(2) {
+    animation: slide 2s infinite;
+  }
+  .menu-button:hover .menu-button-line:nth-child(3) {
+    animation: slide 1.4s infinite;
+  }
+
+  .menu-button-line {
+    height: 5px;
+    width: 45px;
+    margin-bottom: 5px;
+    background-color: #666761;
+    transition: 0.3s;
+    transition-timing-function: linear;
+  }
+
+  .menu-button.close .menu-button-line:nth-child(1) {
+    background-color: #666761;
+    transform: rotate(45deg) translate(4px, 6px);
+    transition: 1.2s;
+    animation: none;
+  }
+  .menu-button.close .menu-button-line:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-button.close .menu-button-line:nth-child(3) {
+    background-color: #666761;
+    transform: rotate(-45deg) translate(7px, -11px);
+    transition: 1.2s;
+    animation: none;
+  }
+
+  @keyframes slide {
+    0% {
+      width: 45x;
+    }
+
+    50% {
+      width: 25px;
+    }
+    100% {
+      width: 45px;
+    }
   }
 }

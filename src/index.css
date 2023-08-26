@@ -13,6 +13,7 @@ body {
 body {
   margin: 0;
   font-family: 'Roboto';
+  color: var(--primary-color);
 }
 
 #root {
@@ -29,4 +30,8 @@ body {
   body {
     background-image: url('./assets/polina-kuzovkova-a86L1wcDqRU-unsplash.jpg');
   }
+}
+
+:root {
+  --primary-color: #414339;
 }

@@ -1,8 +1,9 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
-import { IReview, useLoadReviews } from 'hooks/use-load-reviews';
+import { useLoadReviews } from 'hooks/use-load-reviews';
 import { useLoadUserData } from 'hooks/use-load-user-data';
+import { v4 as uuidv4 } from 'uuid';
 
 import { db } from '../../firebase';
 import { getSession, isLoggedIn } from '../../session';
@@ -44,7 +45,7 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
     try {
       isNotLogged &&
         (await addDoc(collection(db, 'reviews'), {
-          id: 0,
+          id: uuidv4(),
           excursion: 'Вороново-Лида',
           review: review,
           email: email,
@@ -74,6 +75,7 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
           className='reviews__textarea'
           onChange={(e) => setReview(e.target.value)}
           placeholder='Присоединиться к обсуждению'
+          value={review}
         />
         {!isNotLogged && (
           <span>только авторизированные пользователи могут оставлять комментарии</span>

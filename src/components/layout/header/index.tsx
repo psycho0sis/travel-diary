@@ -1,7 +1,9 @@
-import { useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
+
+import { isLoggedIn } from '../../../session';
 
 import './styles.scss';
 
@@ -35,27 +37,68 @@ const navigation = [
 
 export const Header = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const [filteredNavigation, setFilteredNavigation] = useState(navigation);
 
-  const toggleMenu = () => setIsBurgerMenuOpen((prev) => !prev);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      setFilteredNavigation((prev) => prev.filter((item) => item.title !== 'Личный кабинет'));
+    } else {
+      setFilteredNavigation((prev) => prev.filter((item) => item.title !== 'Ученик'));
+    }
+  }, []);
+
+  const toggleMenu = (e: React.MouseEvent<Element, MouseEvent>) => {
+    const overlay = document.querySelector('.overlay');
+
+    setIsBurgerMenuOpen((prev) => !prev);
+    if (!isBurgerMenuOpen) {
+      (e.currentTarget as HTMLElement).classList.add('close');
+      overlay?.classList.add('active');
+      setIsBurgerMenuOpen(true);
+    } else {
+      (e.currentTarget as HTMLElement).classList.remove('close');
+      overlay?.classList.remove('active');
+      setIsBurgerMenuOpen(false);
+    }
+  };
+
+  const closeModal = () => {
+    const menuBtn = document.querySelector('.menu-button');
+    const overlay = document.querySelector('.overlay');
+
+    menuBtn?.classList.remove('close');
+    overlay?.classList.remove('active');
+    setIsBurgerMenuOpen(false);
+  };
 
   return (
-    <div className='header' ref={ref}>
-      <img className='header__logo' src={logo} />
-      {<button onClick={toggleMenu}>Show menu</button>}
-      <nav className={isBurgerMenuOpen ? 'header__navigation open' : 'header__navigation'}>
-        {navigation.map(({ id, route, title }) => (
-          <NavLink
-            key={id}
-            to={route}
-            className={({ isActive, isPending }) =>
-              isPending ? 'pending' : isActive ? 'active' : ''
-            }
-          >
-            {title}
-          </NavLink>
-        ))}
-      </nav>
-    </div>
+    <>
+      <div className='overlay' onClick={closeModal} />
+      <div className='header'>
+        <img className='header__logo' src={logo} onClick={() => navigate('/')} />
+
+        <div className='menu-button' onClick={toggleMenu}>
+          <div className='menu-button-line'></div>
+          <div className='menu-button-line'></div>
+          <div className='menu-button-line'></div>
+        </div>
+
+        <nav className={isBurgerMenuOpen ? 'header__navigation open' : 'header__navigation'}>
+          {filteredNavigation.map(({ id, route, title }) => (
+            <NavLink
+              key={id}
+              to={route}
+              className={({ isActive, isPending }) =>
+                isPending ? 'pending' : isActive ? 'active' : ''
+              }
+            >
+              {title}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    </>
   );
 };

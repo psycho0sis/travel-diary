@@ -32,10 +32,6 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/adventures',
-        element: <div>Путешествия</div>,
-      },
-      {
         path: '/virtual',
         element: <Virtual />,
       },

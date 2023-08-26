@@ -29,6 +29,7 @@
 
   &__data-subtitle {
     font-weight: 500;
+    color: var(--primary-color);
   }
 
   &__data-group {
@@ -54,7 +55,7 @@
     font-size: 16px;
     border: none;
     text-decoration: none;
-    color: #000;
+    color: var(--primary-color);
     border-radius: 8px;
     padding: 10px 60px;
     background-color: #e6d5a9;
