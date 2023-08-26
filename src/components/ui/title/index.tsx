@@ -5,11 +5,12 @@ import './styles.scss';
 interface IProps {
   children: ReactNode;
   fontSize?: number;
+  margin?: string;
 }
 
-export const Title: FC<IProps> = ({ children, fontSize }) => {
+export const Title: FC<IProps> = ({ children, fontSize, margin }) => {
   return (
-    <h3 className='title' style={{ fontSize: fontSize && fontSize }}>
+    <h3 className='title' style={{ fontSize: fontSize && fontSize, margin: margin }}>
       {children}
     </h3>
   );

@@ -3,9 +3,9 @@ import { IMarker } from './types';
 export const markers: IMarker[] = [
   {
     id: 2,
-    name: 'Несвижский замок',
+    name: 'Лидский замок',
     description: '',
-    position: { lat: 53.22275736291677, lng: 26.692354063683595 },
+    position: { lat: 53.887386255232414, lng: 25.302766370384226 },
   },
   {
     id: 3,

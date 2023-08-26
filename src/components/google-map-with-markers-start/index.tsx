@@ -1,13 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GoogleMap, InfoWindow, MarkerF, useLoadScript } from '@react-google-maps/api';
 
-import { markers } from './config';
 import { ICoordinates, IMapProps } from './types';
 
 import './styles.scss';
 
-export const Map = ({ googleMapsApiKey }: IMapProps) => {
-  const center = useMemo(() => ({ lat: 54.15320407797462, lng: 25.319435879481013 }), []);
+export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) => {
   const [selectedMarker, setSelectedMarker] = useState<ICoordinates | null>(null);
   const ref = useRef(null);
 
@@ -24,7 +22,7 @@ export const Map = ({ googleMapsApiKey }: IMapProps) => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <GoogleMap center={center} zoom={7} mapContainerClassName='map-container'>
+    <GoogleMap center={center} zoom={zoom} mapContainerClassName='map-container'>
       {markers.map(({ id, img, description, name, position }) => (
         <MarkerF
           key={id}
@@ -41,7 +39,7 @@ export const Map = ({ googleMapsApiKey }: IMapProps) => {
               }}
               position={position}
               zIndex={9999}
-              options={{ minWidth: 600 }}
+              options={{ maxWidth: 300 }}
             >
               <div>
                 {img && <img src={img} alt='' />}

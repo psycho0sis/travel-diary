@@ -1,48 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useLoadUserData } from 'hooks/use-load-user-data';
 
 import { Title } from 'components/ui/title';
 
-import { db } from '../../firebase';
 import { endSession, getSession, isLoggedIn } from '../../session';
 
 import './styles.scss';
 
-interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  surname: string;
-  photo: string;
-}
-
-const getDataFromDB = async (email: string) => {
-  if (email) {
-    const q = query(collection(db, 'children'), where('email', '==', email));
-
-    const querySnapshot = await getDocs(q);
-
-    return querySnapshot.docs[0].data();
-  }
-};
-
 export const User = () => {
-  const [email, setEmail] = useState('');
-  const [user, setUser] = useState<IUser>({} as IUser);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [email, setEmail, user, loading] = useLoadUserData();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getDataFromDB(email);
-
-      setUser((prev) => ({ ...prev, ...data }));
-      setLoading(false);
-    };
-
-    getData();
-  }, [email]);
 
   useEffect(() => {
     if (!isLoggedIn()) {
@@ -85,6 +53,9 @@ export const User = () => {
             </div>
           </div>
           <div className='user__excursions'>Посещенные экскурсии:</div>
+          {user.excursions?.map((excursion) => (
+            <p key={excursion.id}>{excursion.excursion}</p>
+          ))}
         </>
       )}
       <p className='user__logout'>Выйти из аккаунта: </p>

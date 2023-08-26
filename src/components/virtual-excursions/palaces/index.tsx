@@ -1,33 +1,21 @@
 import { Link } from 'react-router-dom';
 
 import { GoogleMaps } from 'components/google-map';
-import { Quiz } from 'components/quiz';
-import { palacesQuizData } from 'components/quiz/config';
+import { markers } from 'components/google-map-with-markers-start/config';
 import { Title } from 'components/ui/title';
 
-export const VirtualExcursionsPalaces = () => {
-  return (
-    <>
-      <Link to='/virtual/'>Назад</Link>
-      <Title>Экскурсия по замкам Гродненской области</Title>
-      <GoogleMaps />
-      <Title fontSize={24}>История Мирского замка</Title>
-      <Quiz palacesQuizData={palacesQuizData} />
-      <div>
-        Мирский замковый комплекс (Мирский замок) — выдающийся пример оборонного зодчества XVI века.
-        Он расположен в поселке Мир в Гродненской области Беларуси. Самые ранние сооружения
-        выполнены в готическом стиле и относятся к XVI столетию. Этот белорусский замок был заложен
-        в начале XVI века князем Илиничем. Николай РадзивиллВ 1568 году замок перешел во владение
-        Николая Радзивилла, который достроил его в стиле ренессанса. Вдоль восточной и северной стен
-        замка был возведен трехэтажный дворец. Вокруг построены земляные валы с бастионами на углах
-        и рвом с водой. В северной части разбит сад в итальянском стиле. Искусственное озеро было
-        создано на юге. Во время Наполеоновских войн замок серьезно пострадал и стоял в запустении
-        более столетия. Все еще находясь в руках богатой семьи Радзивиллов, он был восстановлен в
-        начале XIX века и продан Николаю Святополк-Мирскому в 1895 году. Его сын начал
-        восстановление замка, которое проходило под руководством архитектора Теодора Бурше. После
-        войны в замке жили те местные жители, дома которых были разрушены во время войны. Потом
-        здесь располагался военный гарнизон.
-      </div>
-    </>
-  );
-};
+import { palaces } from '../config';
+import { VirtualExcursions } from '..';
+
+import '../styles.scss';
+
+export const VirtualExcursionsPalaces = () => (
+  <>
+    <Link className='excursion__back-btn' to='/virtual/'>
+      Назад к списку экскурсий
+    </Link>
+    <Title>Экскурсии по замкам Гродненской области</Title>
+    <GoogleMaps center={{ lat: 54.15320407797462, lng: 25.319435879481013 }} markers={markers} />
+    <VirtualExcursions excursions={palaces} />
+  </>
+);

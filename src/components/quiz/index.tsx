@@ -12,10 +12,10 @@ interface IQuizItem {
 }
 
 interface IQuiz {
-  palacesQuizData: IQuizItem[];
+  data: IQuizItem[];
 }
 
-export const Quiz: FC<IQuiz> = ({ palacesQuizData }) => {
+export const Quiz: FC<IQuiz> = ({ data }) => {
   const [count, setCount] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
 
@@ -26,9 +26,11 @@ export const Quiz: FC<IQuiz> = ({ palacesQuizData }) => {
   const changeAnswersArray = (answer: string) =>
     !answers.includes(answer) && setAnswers([...answers, answer]);
 
+  const isQuizFinished = answers.length === data.length;
+
   return (
     <div className='quiz'>
-      {palacesQuizData.map((item) => (
+      {data.map((item) => (
         <Item
           key={item.id}
           countCorrectAnswers={countCorrectAnswers}
@@ -36,8 +38,14 @@ export const Quiz: FC<IQuiz> = ({ palacesQuizData }) => {
           {...item}
         />
       ))}
-      <p>Правильных ответов: </p>
-      {count}
+
+      {isQuizFinished && (
+        <div className='quiz__congratulations-wrapper'>
+          <p className='quiz__congratulations'>Поздравляем!</p>
+          <p className='quiz__correct-answers'>Правильных ответов: </p>
+          <p className='quiz__correct-answers-number'>{count}</p>
+        </div>
+      )}
     </div>
   );
 };

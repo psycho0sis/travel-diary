@@ -24,7 +24,7 @@ export const Item: FC<IItem> = ({
   };
 
   useEffect(() => {
-    changeAnswersArray(selectedAnswer);
+    selectedAnswer && changeAnswersArray(selectedAnswer);
     selectedAnswer === correctAnswer && countCorrectAnswers(selectedAnswer);
   }, [selectedAnswer]);
 
