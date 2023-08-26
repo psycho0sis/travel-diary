@@ -38,12 +38,6 @@ export const MirPalace = () => {
         Мирский замок
       </Title>
 
-      <div className='excursion__link-wrapper'>
-        <Link className='item__link' to='/virtual/palaces/mir/quiz'>
-          Пройти викторину
-        </Link>
-      </div>
-
       <div className='excursion__content'>
         <p className='excursion__text'>
           Мирский замковый комплекс (Мирский замок) — выдающийся пример оборонного зодчества XVI

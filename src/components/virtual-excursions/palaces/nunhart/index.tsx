@@ -32,12 +32,6 @@ export const NunhartPalace = () => {
         Дом-крепость Нонхартов
       </Title>
 
-      <div className='excursion__link-wrapper'>
-        <Link className='item__link' to='/virtual/palaces/mir/quiz'>
-          Пройти викторину
-        </Link>
-      </div>
-
       <div className='excursion__content'>
         <p className='excursion__text'>
           Деревня Гайтюнишки расположена в Гродненской области рядом с поселком с забавным названием

@@ -12,12 +12,12 @@ export const VirtualExcursionVoronovo = () => {
       <Link className='excursion__back-btn' to='/virtual/'>
         Назад к списку экскурсий
       </Link>
-      <Title>Братская могила мирных граждан г.п. Вороново</Title>
+      <Title>Братские могилы мирных граждан г.п. Вороново</Title>
       <div className='excursion__map-wrapper'>
         <VoronovoRoute />
       </div>
       <div className='excursion__link-wrapper'>
-        <Link className='item__link' to='/virtual/palaces/mir/quiz'>
+        <Link className='item__link' to='/virtual/voronovo/quiz'>
           Пройти викторину
         </Link>
       </div>

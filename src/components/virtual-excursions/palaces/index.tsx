@@ -16,6 +16,11 @@ export const VirtualExcursionsPalaces = () => (
     </Link>
     <Title>Экскурсии по замкам Гродненской области</Title>
     <GoogleMaps center={{ lat: 54.15320407797462, lng: 25.319435879481013 }} markers={markers} />
+    <div className='excursion__link-wrapper'>
+      <Link className='item__link' to='/virtual/palaces/quiz'>
+        Пройти викторину
+      </Link>
+    </div>
     <VirtualExcursions excursions={palaces} />
   </>
 );

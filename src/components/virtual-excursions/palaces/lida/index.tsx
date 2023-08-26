@@ -31,12 +31,6 @@ export const LidaPalace = () => {
         Лидский замок
       </Title>
 
-      <div className='excursion__link-wrapper'>
-        <Link className='item__link' to='/virtual/palaces/mir/quiz'>
-          Пройти викторину
-        </Link>
-      </div>
-
       <div className='excursion__content'>
         <p className='excursion__text'>
           Лидский замок – это выдающийся памятник оборонительного искусства 14-15 веков. По-другому

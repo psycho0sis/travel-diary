@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
 
+import { Title } from 'components/ui/title';
+
 import { Item } from './item';
 
 import './styles.scss';
@@ -30,6 +32,7 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
 
   return (
     <div className='quiz'>
+      <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
       {data.map((item) => (
         <Item
           key={item.id}

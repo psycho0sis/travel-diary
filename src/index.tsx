@@ -68,11 +68,11 @@ const router = createBrowserRouter([
         element: <NunhartPalace />,
       },
       {
-        path: '/virtual/palaces/mir/quiz',
+        path: '/virtual/palaces/quiz',
         element: <Quiz data={palacesQuizData} />,
       },
       {
-        path: '/virtual/palaces/voronovo/quiz',
+        path: '/virtual/voronovo/quiz',
         element: <Quiz data={gravesQuizData} />,
       },
       {
