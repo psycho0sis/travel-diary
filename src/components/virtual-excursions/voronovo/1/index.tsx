@@ -18,7 +18,7 @@ export const FirstGrave = () => {
         <PanoramaVoronovo panorama={panorama} />
       </div>
       <Title fontSize={36} margin='25x 0'>
-        Братская могила (№ 1824)
+        Братская могила
       </Title>
 
       <div className='excursion__content'>

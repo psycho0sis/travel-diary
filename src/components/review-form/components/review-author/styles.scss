@@ -1,0 +1,31 @@
+.reviewAuthor {
+  display: flex;
+  gap: 0 8px;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+  background-color: rgba(239, 249, 249, 0.6);
+  box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+
+  &__avatar {
+    & img {
+      width: 56px;
+      height: 56px;
+      max-width: 56px;
+      border-radius: 100%;
+      border: 1px solid #cccccc;
+      padding: 2px;
+      background-color: #ffffff;
+      vertical-align: middle;
+      text-align: center;
+      box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+    }
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+}

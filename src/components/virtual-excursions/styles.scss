@@ -93,7 +93,7 @@
     max-width: max-content;
     text-decoration: none;
     transition: all 0.3s ease;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 
     &::before {
       content: '←';
@@ -152,9 +152,19 @@
     color: red;
   }
 
+  &__museum-photos {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 24px;
+    justify-content: center;
+  }
+
   &__photo {
     width: 100%;
-    max-width: 400px;
+    max-width: 250px;
+    object-fit: cover;
 
     &--leftimg {
       float: left;
@@ -168,19 +178,14 @@
       box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
     }
   }
+}
 
-  &__museum-photos {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 24px;
-    justify-content: center;
+@media screen and (max-width: 768px) {
+  .excursions {
+    padding: 24px 24px 48px 24px;
+  }
 
-    & img {
-      max-width: 250px;
-      width: 100%;
-      box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
-    }
+  .item__link {
+    margin: 15px auto 0;
   }
 }

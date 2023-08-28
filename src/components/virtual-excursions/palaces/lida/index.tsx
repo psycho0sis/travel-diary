@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import image1 from 'assets/лидский-замок1.jpg';
+import image2 from 'assets/лидский-замок2.jpg';
+import image3 from 'assets/лидский-замок3.jpg';
+import image4 from 'assets/лидский-замок4.jpg';
 import { VoronovoLidaRoute } from 'components/custom-google-maps/voronovo-lida';
 import { GoogleMaps } from 'components/google-map';
 import { ReviewForm } from 'components/review-form';
@@ -88,10 +92,26 @@ export const LidaPalace = () => {
         </p>
         <p className='excursion__text'>Всем рекомендуем посетить это чудесное место!</p>
         <div className='excursion__museum-photos'>
-          {/* <img className='excursion__photo' src={} />
-            <img className='excursion__photo' src={} />
-            <img className='excursion__photo' src={} />
-            <img className='excursion__photo' src={} /> */}
+          <img
+            className='excursion__photo'
+            src='https://www.hata.by/images/uploaded/articles/articles-91422-3b9fd94e194bdb91ba4a_ch_.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://www.hata.by/images/uploaded/articles/articles-95452-3415f9b1cb0db9868483_ch_.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://pics.livejournal.com/mitrander/pic/0003yrg4/s640x480'
+          />
+          <img
+            className='excursion__photo'
+            src='https://www.hata.by/images/uploaded/articles/articles-69384-8891c40747db16cbe19f_ch_.jpg'
+          />
+          <img className='excursion__photo' src={image1} />
+          <img className='excursion__photo' src={image2} />
+          <img className='excursion__photo' src={image3} />
+          <img className='excursion__photo' src={image4} />
         </div>
         <ReviewForm excursion='Вороново-Лида' />
       </div>

@@ -3,16 +3,11 @@ import { collection, DocumentData, getDocs, query, where } from 'firebase/firest
 
 import { db } from '../firebase';
 
-export interface IReview {
-  id: number;
-  excursion: string;
-  email: string;
-  review: string;
-}
+import { IReview } from './types';
 
 type IUseReviews = (excursion: string) => [IReview[], boolean];
 
-const getReviewsFromDB = async (excursion: string) => {
+export const getReviewsFromDB = async (excursion: string) => {
   const reviews: DocumentData[] = [];
   const q = query(collection(db, 'reviews'), where('excursion', '==', excursion));
 

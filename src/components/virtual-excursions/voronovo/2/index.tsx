@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import image1 from 'assets/grave2-image1.jpg';
 import image2 from 'assets/grave2-image2.jpg';
 import image3 from 'assets/grave2-image3.jpg';
+import image4 from 'assets/grave2-image4.jpeg';
+import image5 from 'assets/grave2-image5.jpeg';
 import panorama from 'assets/panorama1.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { Title } from 'components/ui/title';
@@ -19,7 +21,7 @@ export const SecondGrave = () => {
         <PanoramaVoronovo panorama={panorama} />
       </div>
       <Title fontSize={36} margin='25x 0'>
-        Могила жертв фашизма (№ 6064)
+        Могила жертв фашизма
       </Title>
 
       <div className='excursion__content'>
@@ -35,6 +37,8 @@ export const SecondGrave = () => {
           <img className='excursion__photo' src={image1} />
           <img className='excursion__photo' src={image2} />
           <img className='excursion__photo' src={image3} />
+          <img className='excursion__photo' src={image4} />
+          <img className='excursion__photo' src={image5} />
         </div>
       </div>
     </div>

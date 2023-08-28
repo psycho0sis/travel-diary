@@ -5,7 +5,7 @@ import { db } from '../firebase';
 
 import { IUser } from './types';
 
-type IUseLoadData = () => [string, React.Dispatch<React.SetStateAction<string>>, IUser, boolean];
+type IUseLoadData = (email: string) => IUser;
 
 export const getUserDataFromDB = async (email: string) => {
   if (email) {
@@ -17,21 +17,18 @@ export const getUserDataFromDB = async (email: string) => {
   }
 };
 
-export const useLoadUserData: IUseLoadData = () => {
-  const [email, setEmail] = useState('');
-  const [user, setUser] = useState<IUser>({} as IUser);
-  const [loading, setLoading] = useState<boolean>(true);
+export const useLoadReviewAuthor: IUseLoadData = (email: string) => {
+  const [reviewAuthor, setUReviewAuthor] = useState<IUser>({} as IUser);
 
   useEffect(() => {
     const getData = async () => {
       const data = await getUserDataFromDB(email);
 
-      setUser((prev) => ({ ...prev, ...data }));
-      setLoading(false);
+      setUReviewAuthor((prev) => ({ ...prev, ...data }));
     };
 
     getData();
-  }, [email]);
+  }, []);
 
-  return [email, setEmail, user, loading];
+  return reviewAuthor;
 };

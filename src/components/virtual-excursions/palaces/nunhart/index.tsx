@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import image from 'assets/mini-honhart.jpg';
 import { VoronovoNunhartRoute } from 'components/custom-google-maps/voronovo-nunhart';
 import { GoogleMaps } from 'components/google-map';
+import { ReviewForm } from 'components/review-form';
 import { Title } from 'components/ui/title';
 
 export const markers = [
@@ -89,6 +90,22 @@ export const NunhartPalace = () => {
         <div className='excursion__museum-photos'>
           <img
             className='excursion__photo'
+            src='https://openborder.brsu.by/wp-content/uploads/2023/03/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_2023-03-09_215853442.png'
+          />
+          <img
+            className='excursion__photo'
+            src='https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/5e0f0a128ad7314f9c2ecb147e11b682-orig.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/29aa3f0af212c1283d49a1fb2df01ff0-orig.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://avatars.mds.yandex.net/get-altay/3569559/2a00000181a37e498b617adff5de4b92be5a/XXXL'
+          />
+          <img
+            className='excursion__photo'
             src='https://npr.by/wp-content/uploads/2023/01/1-8.png'
           />
           <img
@@ -97,14 +114,15 @@ export const NunhartPalace = () => {
           />
           <img
             className='excursion__photo'
-            src='https://scontent-fra5-1.xx.fbcdn.net/v/t39.30808-6/312327798_491459066378723_2920985186426050993_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeHIF2tDaD1-eJmeST0hK8KhU01QD_9lNB5TTVAP_2U0HtfL_m6a4DVKbRELbvQ7pzmDb9coXSyW6_5gUsON_wEO&_nc_ohc=Er5F__F_pywAX9FilQn&_nc_ht=scontent-fra5-1.xx&oh=00_AfDUfsIMcrcykteZZ7bgfsaA8YoRKrn2LTwEmkLlEMntUA&oe=64E54DCD'
+            src='https://avatars.mds.yandex.net/get-altay/4961567/2a00000181a37e83278a9272c6897fedf180/XXXL'
           />
           <img
             className='excursion__photo'
-            src='https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/312352790_491458993045397_1592397905117354842_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGl2yjLjpj3qCfinrHvaCUYLyyBUYD3Du4vLIFRgPcO7uK6nxIZnCjbnCiWPcwjlwLWaE6zsZqVKnt5ev17zKO3&_nc_ohc=togtb3hbrkMAX8SoNmv&_nc_ht=scontent-fra3-1.xx&oh=00_AfCx4sy4QPgrkPxNoMnwaxhntP8SJE6rcFotK7hMOK7xoQ&oe=64E57516'
+            src='https://avatars.mds.yandex.net/get-altay/4454943/2a00000181a37e7530539deb86ae4a0a78ff/XXXL'
           />
         </div>
       </div>
+      <ReviewForm excursion='Вороново-Гайтюнишки' />
     </div>
   );
 };

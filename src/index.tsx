@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from 'pages/error';
 import { Home } from 'pages/home';
@@ -18,6 +19,8 @@ import { VirtualExcursionVoronovo } from 'components/virtual-excursions/voronovo
 import { FirstGrave } from 'components/virtual-excursions/voronovo/1';
 import { SecondGrave } from 'components/virtual-excursions/voronovo/2';
 import { ThirdGrave } from 'components/virtual-excursions/voronovo/3';
+
+import { store } from './store';
 
 import './index.css';
 
@@ -91,4 +94,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);

@@ -1,6 +1,13 @@
 .reviews {
   display: flex;
-  gap: 0 24px;
+  flex-direction: column;
+  gap: 24 0;
+  margin-top: 36px;
+
+  &__wrapper {
+    display: flex;
+    gap: 0 24px;
+  }
 
   &__avatar {
     & img {
@@ -52,5 +59,18 @@
     &:hover {
       transform: scale(0.98);
     }
+  }
+
+  &__messages {
+    max-width: 800px;
+    width: 100%;
+    margin: 24px auto;
+    padding: 16px;
+  }
+
+  &__amount {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
   }
 }

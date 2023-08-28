@@ -6,6 +6,7 @@ import museumPhoto3 from 'assets/museum3.jpg';
 import museumPhoto4 from 'assets/museum4.jpg';
 import { VoronovoMirRoute } from 'components/custom-google-maps/voronovo-mir';
 import { GoogleMaps } from 'components/google-map';
+import { ReviewForm } from 'components/review-form';
 import { Title } from 'components/ui/title';
 
 export const markers = [
@@ -107,11 +108,28 @@ export const MirPalace = () => {
         </p>
         <p className='excursion__text'>Всем рекомендуем посетить это чудесное место!</p>
         <div className='excursion__museum-photos'>
+          <img
+            className='excursion__photo'
+            src='https://belarustourist.by/upload/resize_cache/iblock/11a/848_502_2/11a42f4d6275349769aba7568addee5b.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://scontent-fra5-1.xx.fbcdn.net/v/t1.6435-9/96215124_2931737100257431_329035417321996288_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGU5bUZHJ8KBue6eRHdNYQzgswmgfoID4iCzCaB-ggPiPFTJVA-QJtSfx-U58L0CkIfqhMO8195MI583_-PAtaH&_nc_ohc=OQ2IbUEGlRcAX-c4P9K&_nc_ht=scontent-fra5-1.xx&oh=00_AfCgIAkKLN8ZEndG4KWkrZTE8DphMRHJ9xnGUcTx-tSfIw&oe=65129405'
+          />
+          <img
+            className='excursion__photo'
+            src='https://my-travel-diary.by/wp-content/uploads/2020/09/imgonline-com-ua-Resize-8BoE2ZsrMN-min.jpg'
+          />
+          <img
+            className='excursion__photo'
+            src='https://static.bntu.by/bntu/new/news/image_10773_8516389fa3cea4718d4caa8c7be68d73.jpg%7CresizeToWidth=1400'
+          />
           <img className='excursion__photo' src={museumPhoto1} />
           <img className='excursion__photo' src={museumPhoto2} />
           <img className='excursion__photo' src={museumPhoto3} />
           <img className='excursion__photo' src={museumPhoto4} />
         </div>
+        <ReviewForm excursion='Вороново-Мир' />
       </div>
     </>
   );
