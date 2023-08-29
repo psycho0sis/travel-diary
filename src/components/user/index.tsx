@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 
+import { Sortable } from 'components/table';
 import { Title } from 'components/ui/title';
 
 import { endSession, getSession, isLoggedIn } from '../../session';
@@ -53,9 +54,7 @@ export const User = () => {
             </div>
           </div>
           <div className='user__excursions'>Посещенные экскурсии:</div>
-          {user.excursions?.map((excursion) => (
-            <p key={excursion.id}>{excursion.excursion}</p>
-          ))}
+          {user.excursions?.length && <Sortable excursions={user.excursions} />}
         </>
       )}
       <p className='user__logout'>Выйти из аккаунта: </p>

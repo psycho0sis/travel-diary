@@ -1,4 +1,4 @@
-interface IExcursion {
+export interface IExcursion {
   id: number;
   title: string;
   description: string;

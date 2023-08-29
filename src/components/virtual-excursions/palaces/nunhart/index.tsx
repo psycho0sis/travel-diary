@@ -121,8 +121,8 @@ export const NunhartPalace = () => {
             src='https://avatars.mds.yandex.net/get-altay/4454943/2a00000181a37e7530539deb86ae4a0a78ff/XXXL'
           />
         </div>
+        <ReviewForm excursion='Вороново-Гайтюнишки' />
       </div>
-      <ReviewForm excursion='Вороново-Гайтюнишки' />
     </div>
   );
 };

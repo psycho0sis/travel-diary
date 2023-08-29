@@ -12,6 +12,9 @@
   box-shadow: 8px 4px 44px -4px rgba(88, 98, 105, 0.07);
 
   &__label {
+    font-size: 18px;
+    font-weight: 600;
+
     &:not(:first-of-type) {
       margin-top: 20px;
     }

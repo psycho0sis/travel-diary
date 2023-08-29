@@ -20,7 +20,7 @@
 
   &__content {
     padding: 16px;
-    margin-bottom: 36px;
+    margin: 36px 0;
     border-radius: 10px;
     background-color: rgba(239, 249, 249, 0.6);
     box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
@@ -28,5 +28,12 @@
     & p {
       margin-bottom: 24px;
     }
+  }
+
+  &__text::first-letter {
+    margin-left: 12px;
+    font-size: 36px;
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
   }
 }

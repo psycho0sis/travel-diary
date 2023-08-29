@@ -7,7 +7,7 @@ import { isLoggedIn } from '../../../session';
 
 import './styles.scss';
 
-const navigation = [
+export const navigation = [
   {
     id: 0,
     route: '/',

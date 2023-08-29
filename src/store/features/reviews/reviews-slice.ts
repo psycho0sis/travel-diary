@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IReview } from 'hooks/use-load-reviews';
-import { Status } from 'store/types';
+import type { IReview } from 'hooks/types';
+import type { Status } from 'store/types';
 
 import { fetchReviews } from './reviews-action';
 
