@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import image1 from 'assets/лидский-замок1.jpg';
-import image2 from 'assets/лидский-замок2.jpg';
-import image3 from 'assets/лидский-замок3.jpg';
-import image4 from 'assets/лидский-замок4.jpg';
+import image1 from 'assets/lida1.jpg';
+import image2 from 'assets/lida2.jpg';
+import image3 from 'assets/lida3.jpg';
+import image4 from 'assets/lida4.jpg';
 import { VoronovoLidaRoute } from 'components/custom-google-maps/voronovo-lida';
 import { GoogleMaps } from 'components/google-map';
 import { ReviewForm } from 'components/review-form';
