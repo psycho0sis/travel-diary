@@ -25,11 +25,16 @@ export const navigation = [
   },
   {
     id: 3,
+    route: '/teachers',
+    title: 'Учителя',
+  },
+  {
+    id: 4,
     route: '/login',
     title: 'Личный кабинет',
   },
   {
-    id: 4,
+    id: 5,
     route: '/user',
     title: 'Ученик',
   },

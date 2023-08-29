@@ -17,6 +17,9 @@ body {
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-image: url('./assets/polina-kuzovkova-a86L1wcDqRU-unsplash.jpg');
   background-repeat: no-repeat;
   background-size: cover;

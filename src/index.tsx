@@ -5,6 +5,7 @@ import { ErrorPage } from 'pages/error';
 import { Home } from 'pages/home';
 import { Login } from 'pages/login';
 import { Students } from 'pages/students';
+import { Teachers } from 'pages/teachers';
 import { User } from 'pages/user';
 import { Virtual } from 'pages/virtual';
 
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: '/students',
         element: <Students />,
+      },
+      {
+        path: '/teachers',
+        element: <Teachers />,
       },
       {
         path: '/user',
