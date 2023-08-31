@@ -44,7 +44,7 @@ export const AuthForm = () => {
       const loginResponse = await signInUser(email, password);
 
       startSession(loginResponse.user);
-      navigate('/user');
+      navigate(-1);
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message);

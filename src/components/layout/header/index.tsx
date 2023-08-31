@@ -16,7 +16,7 @@ export const navigation = [
   {
     id: 1,
     route: '/virtual',
-    title: 'Виртуальные экологические экскурсии',
+    title: 'Виртуальные экскурсии',
   },
   {
     id: 2,

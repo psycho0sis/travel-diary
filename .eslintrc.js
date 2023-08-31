@@ -45,9 +45,8 @@ module.exports = {
     camelcase: 'error',
     quotes: ['error', 'single'],
     prefer: 0,
-    'comma-dangle': 0,
     '@typescript-eslint/comma-dangle': [
-      'error',
+      'warn',
       {
         arrays: 'always-multiline',
         objects: 'always-multiline',
@@ -64,5 +63,6 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'comma-dangle': [0],
   },
 };
