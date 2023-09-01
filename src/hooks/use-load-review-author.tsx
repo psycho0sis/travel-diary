@@ -5,30 +5,44 @@ import { db } from '../firebase';
 
 import { IUser } from './types';
 
-type IUseLoadData = (email: string) => IUser;
+type IUseLoadData = (email: string) => [IUser, boolean, boolean];
 
 export const getUserDataFromDB = async (email: string) => {
-  if (email) {
+  try {
     const q = query(collection(db, 'children'), where('email', '==', email));
 
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs[0].data();
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+
+    throw error;
   }
 };
 
 export const useLoadReviewAuthor: IUseLoadData = (email: string) => {
   const [reviewAuthor, setUReviewAuthor] = useState<IUser>({} as IUser);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getUserDataFromDB(email);
+      try {
+        const data = await getUserDataFromDB(email);
 
-      setUReviewAuthor((prev) => ({ ...prev, ...data }));
+        setUReviewAuthor((prev) => ({ ...prev, ...data }));
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
 
     getData();
   }, []);
 
-  return reviewAuthor;
+  return [reviewAuthor, loading, error];
 };

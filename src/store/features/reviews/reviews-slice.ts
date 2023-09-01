@@ -26,8 +26,6 @@ export const reviewsSlice = createSlice({
       .addCase(fetchReviews.fulfilled, (state, action) => {
         state.status = 'finishing';
         state.asyncReviews = action.payload;
-
-        console.log(state);
       })
       .addCase(fetchReviews.rejected, (state) => {
         state.status = 'error';

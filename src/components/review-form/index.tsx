@@ -71,6 +71,12 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
     }
   };
 
+  const onFocus = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+    event.target.placeholder = '';
+
+    return;
+  };
+
   return (
     <div className='reviews'>
       <div className='reviews__wrapper'>
@@ -88,7 +94,8 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
           <textarea
             className='reviews__textarea'
             onChange={(e) => setReview(e.target.value)}
-            placeholder='Присоединиться к обсуждению'
+            onFocus={onFocus}
+            placeholder='Присоединиться к обсуждению...'
             value={review}
           />
           {!isNotLogged && (

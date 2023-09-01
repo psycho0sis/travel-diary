@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from 'pages/error';
+import { Excursions } from 'pages/excursions';
 import { Home } from 'pages/home';
 import { Login } from 'pages/login';
 import { Students } from 'pages/students';
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: '/user',
         element: <User />,
+      },
+      {
+        path: '/students/:id',
+        element: <Excursions />,
       },
     ],
   },

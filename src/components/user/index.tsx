@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createMarkers } from 'helpers/create-markers';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 
+import { GoogleMaps } from 'components/google-map';
+import { IMarker } from 'components/google-map-with-markers-start/types';
 import { Sortable } from 'components/table';
 import { Title } from 'components/ui/title';
 
@@ -10,7 +13,8 @@ import { endSession, getSession, isLoggedIn } from '../../session';
 import './styles.scss';
 
 export const User = () => {
-  const [email, setEmail, user, loading] = useLoadUserData();
+  const [currentMarkers, setMarkers] = useState<IMarker[]>([]);
+  const [email, setEmail, user, loading, error, isTeacher] = useLoadUserData();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,8 +33,18 @@ export const User = () => {
     navigate('/login');
   };
 
+  useEffect(() => {
+    if (user.excursions?.length) {
+      const markers = createMarkers(user.excursions);
+
+      setMarkers(markers);
+    }
+  }, [user]);
+
   return (
     <div className='user'>
+      {/* {error && <div>Oops...</div>} */}
+      {isTeacher && <div>Учитель</div>}
       {loading ? (
         <h2>Загрузка</h2>
       ) : (
@@ -54,13 +68,19 @@ export const User = () => {
             </div>
           </div>
           <div className='user__excursions'>Посещенные экскурсии:</div>
-          {user.excursions?.length && <Sortable excursions={user.excursions} />}
+          <GoogleMaps
+            center={{ lat: 54.15320407797462, lng: 25.319435879481013 }}
+            markers={currentMarkers}
+          />
+          <div className='user__excursions-table'>
+            {user.excursions?.length && <Sortable excursions={user.excursions} />}
+          </div>
+          <p className='user__logout'>Выйти из аккаунта: </p>
+          <button className='user__logout-btn' onClick={onLogout}>
+            Выйти
+          </button>
         </>
       )}
-      <p className='user__logout'>Выйти из аккаунта: </p>
-      <button className='user__logout-btn' onClick={onLogout}>
-        Выйти
-      </button>
     </div>
   );
 };
