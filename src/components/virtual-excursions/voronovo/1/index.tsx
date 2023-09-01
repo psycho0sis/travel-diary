@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import image1 from 'assets/grave1-image1.jpg';
 import image2 from 'assets/grave1-image2.jpg';
-import panorama from 'assets/panorama1.png';
+import panorama from 'assets/panorama3.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { Title } from 'components/ui/title';
 

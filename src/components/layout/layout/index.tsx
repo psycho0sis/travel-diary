@@ -7,8 +7,8 @@ import { Header } from 'components/layout/header';
 export const Layout = () => {
   return (
     <>
+      <Header />
       <Container>
-        <Header />
         <Outlet />
       </Container>
       <Footer />

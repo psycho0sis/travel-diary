@@ -5,43 +5,6 @@
     flex-wrap: wrap;
     gap: 20px;
   }
-
-  &__item {
-    display: flex;
-    gap: 16px;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 24px;
-    border: 1px solid #000;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgba(239, 249, 249, 0.6);
-    box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
-  }
-
-  &__photo {
-    max-width: 185px;
-  }
-
-  &__data-subtitle {
-    font-weight: 500;
-    color: var(--primary-color);
-  }
-
-  &__data-group {
-    margin-bottom: 12px;
-  }
-
-  &__data-item {
-    font-size: 24px;
-    color: #3f3f3f;
-  }
-
-  &__excursions-btn {
-    display: block;
-    color: #000;
-    margin-top: 12px;
-  }
 }
 
 @media screen and (max-width: 768px) {

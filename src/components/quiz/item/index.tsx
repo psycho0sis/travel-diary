@@ -1,7 +1,9 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
+import Form from 'react-bootstrap/esm/Form';
 
 interface IItem {
   id: string;
+  disabled: boolean;
   question: string;
   answers: string[];
   correctAnswer: string;
@@ -11,6 +13,7 @@ interface IItem {
 
 export const Item: FC<IItem> = ({
   id,
+  disabled,
   question,
   answers,
   countCorrectAnswers,
@@ -34,16 +37,15 @@ export const Item: FC<IItem> = ({
 
       {answers.map((answer) => (
         <div className='quiz__variants' key={answer}>
-          <input
-            className='quiz__input'
+          <Form.Check
+            disabled={disabled}
             type='radio'
+            id='default-radio'
+            label={answer}
             checked={selectedAnswer === answer}
             onChange={handleChange}
             value={answer}
           />
-          <label className='quiz__label' htmlFor={answer}>
-            {answer}
-          </label>
         </div>
       ))}
     </div>

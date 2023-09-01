@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 import { Title } from 'components/ui/title';
 
@@ -18,8 +19,9 @@ interface IQuiz {
 }
 
 export const Quiz: FC<IQuiz> = ({ data }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
   const [answers, setAnswers] = useState<string[]>([]);
+  const [isResult, setIsResult] = useState<boolean>(false);
 
   const countCorrectAnswers = (answer: string) => {
     !answers.includes(answer) && setCount((prev) => prev + 1);
@@ -28,21 +30,26 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
   const changeAnswersArray = (answer: string) =>
     !answers.includes(answer) && setAnswers([...answers, answer]);
 
-  const isQuizFinished = answers.length === data.length;
+  useEffect(() => {
+    if (answers.length === data.length) setIsResult(true);
+  }, [answers]);
 
   return (
     <div className='quiz'>
       <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
-      {data.map((item) => (
-        <Item
-          key={item.id}
-          countCorrectAnswers={countCorrectAnswers}
-          changeAnswersArray={changeAnswersArray}
-          {...item}
-        />
-      ))}
+      <Form>
+        {data.map((item) => (
+          <Item
+            disabled={isResult}
+            key={item.id}
+            countCorrectAnswers={countCorrectAnswers}
+            changeAnswersArray={changeAnswersArray}
+            {...item}
+          />
+        ))}
+      </Form>
 
-      {isQuizFinished && (
+      {isResult && (
         <div className='quiz__congratulations-wrapper'>
           <p className='quiz__congratulations'>Поздравляем!</p>
           <p className='quiz__correct-answers'>Правильных ответов: </p>

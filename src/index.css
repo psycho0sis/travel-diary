@@ -19,6 +19,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
+  gap: 40px 0;
   justify-content: space-between;
   background-image: url('./assets/polina-kuzovkova-a86L1wcDqRU-unsplash.jpg');
   background-repeat: no-repeat;

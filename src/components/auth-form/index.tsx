@@ -1,67 +1,23 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useAuth } from 'hooks/use-auth';
 
 import { Title } from 'components/ui/title';
-
-import { signInUser } from '../../firebase';
-import { isLoggedIn, startSession } from '../../session';
 
 import './styles.scss';
 
 export const AuthForm = () => {
-  const navigate = useNavigate();
-
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [error, setError] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    if (isLoggedIn()) {
-      navigate('/user');
-    }
-  }, [navigate]);
-
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
-    if (!email) {
-      setEmailError(true);
-
-      return;
-    }
-
-    if (!password) {
-      setPasswordError(true);
-      return;
-    }
-
-    setEmailError(false);
-    setPasswordError(false);
-
-    try {
-      const loginResponse = await signInUser(email, password);
-
-      startSession(loginResponse.user);
-      navigate(-1);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(error.message);
-        setError(true);
-      }
-    }
-  };
-
-  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (!event.target.value && event.target.type === 'email') {
-      setEmailError(true);
-    } else if (!event.target.value && event.target.type === 'password') {
-      setPasswordError(true);
-    }
-
-    return;
-  };
+  const [
+    emailError,
+    passwordError,
+    email,
+    password,
+    onSubmit,
+    onBlur,
+    setEmail,
+    setEmailError,
+    setPassword,
+    setPasswordError,
+  ] = useAuth();
 
   const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.placeholder = '';
@@ -72,8 +28,7 @@ export const AuthForm = () => {
   return (
     <>
       <Title fontSize={28}>Войдите в свой аккаунт</Title>
-      {error && <p>{error}</p>}
-      <form onSubmit={onSubmit} className='form'>
+      <form className='form'>
         <label className='form__label'>Email</label>
         <input
           autoComplete='email'
@@ -104,12 +59,11 @@ export const AuthForm = () => {
           className={passwordError ? 'form__input form__input--error' : 'form__input'}
         />
         {passwordError && <span className='form__error-text'>Введите значение</span>}
-        <button
-          type='submit'
-          className={emailError || emailError ? 'form__button form__button--error' : 'form__button'}
-        >
-          Войти
-        </button>
+        <div className='d-grid mt-3'>
+          <Button variant={'dark'} size='lg' onClick={onSubmit}>
+            Войти
+          </Button>
+        </div>
       </form>
     </>
   );

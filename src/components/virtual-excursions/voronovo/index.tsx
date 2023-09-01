@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import { VoronovoRoute } from 'components/custom-google-maps/voronovo';
@@ -16,10 +17,10 @@ export const VirtualExcursionVoronovo = () => {
       <div className='excursion__map-wrapper'>
         <VoronovoRoute />
       </div>
-      <div className='excursion__link-wrapper'>
-        <Link className='item__link' to='/virtual/voronovo/quiz'>
+      <div className='d-flex justify-content-center'>
+        <Button className='mt-3' variant='warning' href='/virtual/palaces/quiz'>
           Пройти викторину
-        </Link>
+        </Button>
       </div>
       <VirtualExcursions excursions={graves} />
     </>

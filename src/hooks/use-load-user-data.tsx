@@ -42,19 +42,21 @@ export const useLoadUserData: IUseLoadData = () => {
       setIsTeacher(true);
     }
 
-    const getData = async () => {
-      try {
-        const data = await getUserDataFromDB(email);
+    if (email) {
+      const getData = async () => {
+        try {
+          const data = await getUserDataFromDB(email);
 
-        setUser((prev) => ({ ...prev, ...data }));
-      } catch (error) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
+          setUser((prev) => ({ ...prev, ...data }));
+        } catch (error) {
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-    getData();
+      getData();
+    }
   }, [email]);
 
   return [email, setEmail, user, loading, error, isTeacher];

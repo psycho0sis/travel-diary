@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 import { IVirtualExcursions } from './types';
 
@@ -20,9 +20,10 @@ export const VirtualExcursions: FC<IVirtualExcursions> = ({ excursions }) => {
               <img src={img} alt={title} />
             </div>
           </div>
-          <Link className='item__link' to={`/virtual/${route}`}>
+
+          <Button className='mt-3 ' variant='dark' href={`/virtual/${route}`}>
             Далее
-          </Link>
+          </Button>
         </div>
       ))}
     </div>

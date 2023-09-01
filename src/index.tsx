@@ -24,6 +24,7 @@ import { ThirdGrave } from 'components/virtual-excursions/voronovo/3';
 
 import { store } from './store';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 const router = createBrowserRouter([

@@ -21,6 +21,7 @@
   &__image {
     width: 250px;
     height: 250px;
+    object-fit: cover;
     border-radius: 50%;
     box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
   }
@@ -41,8 +42,7 @@
     color: #3f3f3f;
   }
 
-  &__excursions,
-  &__logout {
+  &__excursions {
     margin: 24px 0;
     font-size: 24px;
     font-weight: 500;
@@ -51,23 +51,5 @@
 
   &__excursions-table {
     margin-top: 24px;
-  }
-
-  &__logout-btn {
-    cursor: pointer;
-    font-size: 16px;
-    border: none;
-    text-decoration: none;
-    color: var(--primary-color);
-    border-radius: 8px;
-    padding: 10px 60px;
-    background-color: #e1a509;
-    box-shadow: 8px 4px 44px -4px rgba(88, 98, 105, 0.07);
-    transition: all 0.3s ease;
-    margin-top: 8px;
-
-    &:hover {
-      transform: scale(0.98);
-    }
   }
 }

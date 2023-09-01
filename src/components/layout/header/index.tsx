@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
 
@@ -43,6 +44,7 @@ export const navigation = [
 export const Header = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const [filteredNavigation, setFilteredNavigation] = useState(navigation);
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
@@ -80,29 +82,31 @@ export const Header = () => {
 
   return (
     <>
-      <div className='overlay' onClick={closeModal} />
+      <div className='overlay' onClick={toggleMenu} />
       <div className='header'>
-        <img className='header__logo' src={logo} onClick={() => navigate('/')} />
+        <div className='header__content'>
+          <img className='header__logo' src={logo} onClick={() => navigate('/')} />
 
-        <div className='menu-button' onClick={toggleMenu}>
-          <div className='menu-button-line'></div>
-          <div className='menu-button-line'></div>
-          <div className='menu-button-line'></div>
+          <div className='menu-button' onClick={toggleMenu}>
+            <div className='menu-button-line'></div>
+            <div className='menu-button-line'></div>
+            <div className='menu-button-line'></div>
+          </div>
+
+          <nav className={isBurgerMenuOpen ? 'header__navigation open' : 'header__navigation'}>
+            {filteredNavigation.map(({ id, route, title }) => (
+              <Button
+                key={id}
+                variant={pathname === route ? 'warning' : 'link'}
+                size='sm'
+                href={route}
+                className='text-dark'
+              >
+                {title}
+              </Button>
+            ))}
+          </nav>
         </div>
-
-        <nav className={isBurgerMenuOpen ? 'header__navigation open' : 'header__navigation'}>
-          {filteredNavigation.map(({ id, route, title }) => (
-            <NavLink
-              key={id}
-              to={route}
-              className={({ isActive, isPending }) =>
-                isPending ? 'pending' : isActive ? 'active' : ''
-              }
-            >
-              {title}
-            </NavLink>
-          ))}
-        </nav>
       </div>
     </>
   );

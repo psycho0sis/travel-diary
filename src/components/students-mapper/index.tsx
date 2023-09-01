@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
 
 import { Title } from 'components/ui/title';
@@ -37,17 +38,19 @@ export const StudentsMapper = () => {
       <Title>10 "Б" класс</Title>
       <div className='students__items'>
         {students?.map(({ email, name, surname, photo }) => (
-          <div key={email} className='students__item'>
-            <img loading='lazy' className='students__photo' src={photo} />
-            <div className='students__data-group'>
-              <p className='students__data-item'>
-                {name} {surname}
-              </p>
-              <Link className='students__excursions-btn' to={`/students/${name}-${surname}`}>
-                Перейти к пройденным экскурсиям
-              </Link>
-            </div>
-          </div>
+          <Fragment key={email}>
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant='top' src={photo} />
+              <Card.Body>
+                <Card.Title>
+                  {name} {surname}
+                </Card.Title>
+                <Button variant='dark' href={`/students/${name}-${surname}`}>
+                  Перейти к пройденным экскурсиям
+                </Button>
+              </Card.Body>
+            </Card>
+          </Fragment>
         ))}
       </div>
     </div>

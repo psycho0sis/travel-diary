@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { createMarkers } from 'helpers/create-markers';
 import { useLoadUserData } from 'hooks/use-load-user-data';
@@ -14,7 +16,6 @@ import './styles.scss';
 
 export const User = () => {
   const [currentMarkers, setMarkers] = useState<IMarker[]>([]);
-  const [email, setEmail, user, loading, error, isTeacher] = useLoadUserData();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +34,8 @@ export const User = () => {
     navigate('/login');
   };
 
+  const [email, setEmail, user, loading, error, isTeacher] = useLoadUserData();
+
   useEffect(() => {
     if (user.excursions?.length) {
       const markers = createMarkers(user.excursions);
@@ -41,9 +44,16 @@ export const User = () => {
     }
   }, [user]);
 
+  if (error) {
+    return (
+      <Alert variant='warning'>
+        Извините, что-то пошло не так и мы не можем загрузить данные пользователя
+      </Alert>
+    );
+  }
+
   return (
     <div className='user'>
-      {/* {error && <div>Oops...</div>} */}
       {isTeacher && <div>Учитель</div>}
       {loading ? (
         <h2>Загрузка</h2>
@@ -75,10 +85,9 @@ export const User = () => {
           <div className='user__excursions-table'>
             {user.excursions?.length && <Sortable excursions={user.excursions} />}
           </div>
-          <p className='user__logout'>Выйти из аккаунта: </p>
-          <button className='user__logout-btn' onClick={onLogout}>
-            Выйти
-          </button>
+          <Button as='a' variant='dark' onClick={onLogout}>
+            Выйти из аккаунта
+          </Button>
         </>
       )}
     </div>
