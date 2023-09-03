@@ -1,15 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/esm/Form';
 
-interface IItem {
-  id: string;
-  disabled: boolean;
-  question: string;
-  answers: string[];
-  correctAnswer: string;
-  countCorrectAnswers: (answer: string) => void;
-  changeAnswersArray: (answer: string) => void;
-}
+import { IItem } from '../types';
 
 export const Item: FC<IItem> = ({
   id,

@@ -1,4 +1,5 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
@@ -8,8 +9,10 @@ import { selectAsyncReviews, selectAsyncStatus } from 'store/features/reviews/re
 import { useAppDispatch } from 'store/hooks';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Loader } from 'components/ui/loader';
+
 import { db } from '../../firebase';
-import { getSession, isLoggedIn } from '../../session';
+import { getSession } from '../../session';
 
 import { ReviewAuthor } from './components/review-author';
 import { checkRightForm } from './config';
@@ -22,7 +25,7 @@ export interface IReviewForm {
 
 export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
   const [review, setReview] = useState('');
-  const [isNotLogged, setIsNotLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [email, setEmail, user] = useLoadUserData();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,15 +39,19 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
     dispatch(fetchReviews(excursion));
   }, []);
 
+  useEffect(() => {
+    if (!email) {
+      setIsLogged(false);
+    } else {
+      setIsLogged(true);
+    }
+  }, [email]);
+
   const asyncReviews = useSelector(selectAsyncReviews);
   const status = useSelector(selectAsyncStatus);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
-    if (!isLoggedIn()) {
-      setIsNotLogged(false);
-    }
 
     if (!review) {
       setReview('');
@@ -53,17 +60,17 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
     }
 
     try {
-      isNotLogged &&
-        (await addDoc(collection(db, 'reviews'), {
+      if (isLogged) {
+        await addDoc(collection(db, 'reviews'), {
           id: uuidv4(),
           excursion: excursion,
           review: review,
           email: email,
-        }));
+        });
 
-      setReview('');
-
-      dispatch(fetchReviews(excursion));
+        setReview('');
+        dispatch(fetchReviews(excursion));
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message);
@@ -98,8 +105,10 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
             placeholder='Присоединиться к обсуждению...'
             value={review}
           />
-          {!isNotLogged && (
-            <span>только авторизированные пользователи могут оставлять комментарии</span>
+          {!isLogged && (
+            <Alert className='mt-3' variant='danger'>
+              Только авторизированные пользователи могут оставлять комментарии
+            </Alert>
           )}
           <button className='reviews__button' type='submit' value={review}>
             Отправить
@@ -110,7 +119,9 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
         <p className='reviews__amount'>
           Всего {asyncReviews?.length || 0} {checkRightForm(asyncReviews?.length)}
         </p>
-        {status !== 'loading' && asyncReviews?.map((review) => <ReviewAuthor {...review} />)}
+        {status !== 'loading' &&
+          asyncReviews?.map((review) => <ReviewAuthor key={review.id} {...review} />)}
+        {status === 'loading' && <Loader />}
       </div>
     </div>
   );

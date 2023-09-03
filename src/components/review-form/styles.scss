@@ -6,11 +6,13 @@
 
   &__wrapper {
     display: flex;
+    justify-content: center;
     gap: 0 24px;
   }
 
   &__avatar {
     & img {
+      display: block;
       width: 56px;
       height: 56px;
       max-width: 56px;
@@ -18,9 +20,8 @@
       border: 1px solid #cccccc;
       padding: 2px;
       background-color: #ffffff;
-      vertical-align: middle;
       text-align: center;
-      box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+      box-shadow: var(--box-shadow);
     }
   }
 
@@ -38,11 +39,11 @@
     font-size: 16px;
     color: var(--primary-color);
     border-radius: 4px;
-    box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+    box-shadow: var(--box-shadow);
 
     &:focus {
       outline: none;
-      box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+      box-shadow: var(--box-shadow);
     }
   }
   &__button {

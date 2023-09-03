@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+}
+
 html,
 body {
   height: 100%;
@@ -38,4 +42,5 @@ body {
 
 :root {
   --primary-color: #414339;
+  --box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
 }

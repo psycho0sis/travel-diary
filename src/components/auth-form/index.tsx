@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from 'hooks/use-auth';
 
@@ -7,6 +8,7 @@ import './styles.scss';
 
 export const AuthForm = () => {
   const [
+    error,
     emailError,
     passwordError,
     email,
@@ -64,6 +66,12 @@ export const AuthForm = () => {
             Войти
           </Button>
         </div>
+
+        {error && (
+          <Alert className='mt-3' variant='danger'>
+            Извините, что-то пошло не так/ Возможно такого пользователя не существует.
+          </Alert>
+        )}
       </form>
     </>
   );

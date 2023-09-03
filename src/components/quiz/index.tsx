@@ -4,19 +4,9 @@ import Form from 'react-bootstrap/Form';
 import { Title } from 'components/ui/title';
 
 import { Item } from './item';
+import { IQuiz } from './types';
 
 import './styles.scss';
-
-interface IQuizItem {
-  id: string;
-  question: string;
-  correctAnswer: string;
-  answers: string[];
-}
-
-interface IQuiz {
-  data: IQuizItem[];
-}
 
 export const Quiz: FC<IQuiz> = ({ data }) => {
   const [count, setCount] = useState<number>(0);

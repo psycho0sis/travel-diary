@@ -46,20 +46,4 @@
   &__error-text {
     color: #d10303;
   }
-
-  &__button {
-    cursor: pointer;
-    padding: 15px 45px;
-    font-size: 18px;
-    border-radius: 4px;
-    color: #ffffff;
-    background-color: rgb(62, 116, 79);
-    margin-top: 20px;
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: scale(0.98);
-    }
-  }
 }

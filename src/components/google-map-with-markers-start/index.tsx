@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { GoogleMap, InfoWindow, MarkerF, useLoadScript } from '@react-google-maps/api';
 
+import { Loader } from 'components/ui/loader';
+
 import { ICoordinates, IMapProps } from './types';
 
 import './styles.scss';
@@ -19,7 +21,12 @@ export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) 
     googleMapsApiKey: googleMapsApiKey,
   });
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
 
   return (
     <GoogleMap center={center} zoom={zoom} mapContainerClassName='map-container'>

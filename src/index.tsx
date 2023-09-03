@@ -6,13 +6,16 @@ import { Excursions } from 'pages/excursions';
 import { Home } from 'pages/home';
 import { Login } from 'pages/login';
 import { Students } from 'pages/students';
-import { Teachers } from 'pages/teachers';
 import { User } from 'pages/user';
 import { Virtual } from 'pages/virtual';
 
 import { Layout } from 'components/layout/layout';
 import { Quiz } from 'components/quiz';
 import { gravesQuizData, palacesQuizData } from 'components/quiz/config';
+import { VirtualExcursionGrodno } from 'components/virtual-excursions/grodno';
+import { AvgustovskiyKanal } from 'components/virtual-excursions/grodno/avgustovsckiy-kanal';
+import { ParkBolteniki } from 'components/virtual-excursions/grodno/park-bolteniki';
+import { ParkZhilibera } from 'components/virtual-excursions/grodno/park-zhilibera';
 import { VirtualExcursionsPalaces } from 'components/virtual-excursions/palaces';
 import { LidaPalace } from 'components/virtual-excursions/palaces/lida';
 import { MirPalace } from 'components/virtual-excursions/palaces/mir';
@@ -44,6 +47,22 @@ const router = createBrowserRouter([
       {
         path: '/virtual/voronovo',
         element: <VirtualExcursionVoronovo />,
+      },
+      {
+        path: '/virtual/grodno',
+        element: <VirtualExcursionGrodno />,
+      },
+      {
+        path: '/virtual/grodno/park-zhilibera',
+        element: <ParkZhilibera />,
+      },
+      {
+        path: '/virtual/grodno/park-bolteniki',
+        element: <ParkBolteniki />,
+      },
+      {
+        path: '/virtual/grodno/avgustovskiy-kanal',
+        element: <AvgustovskiyKanal />,
       },
       {
         path: '/virtual/voronovo/first-grave',
@@ -88,10 +107,6 @@ const router = createBrowserRouter([
       {
         path: '/students',
         element: <Students />,
-      },
-      {
-        path: '/teachers',
-        element: <Teachers />,
       },
       {
         path: '/user',

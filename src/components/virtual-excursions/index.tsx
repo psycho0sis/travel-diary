@@ -8,11 +8,10 @@ import './styles.scss';
 export const VirtualExcursions: FC<IVirtualExcursions> = ({ excursions }) => {
   return (
     <div className='excursions'>
-      {excursions.map(({ id, description, title, img, date, route }) => (
+      {excursions.map(({ id, description, title, img, route }) => (
         <div key={id} className='excursions__wrapper'>
           <div className='item__header'>
             <h3 className='item__title'>{title}</h3>
-            <p className='item__date'>{date}</p>
           </div>
           <div className='item__content'>
             <p className='item__description'>{description}</p>

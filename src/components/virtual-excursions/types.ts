@@ -3,7 +3,6 @@ export interface IExcursion {
   title: string;
   description: string;
   route: string;
-  date: string;
   img: string;
 }
 

@@ -55,18 +55,7 @@ export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   },
 ];
 
-// типы сортировки
-const sortTypes: Record<string, SortByFn<any>> = {
-  // перезаписывает встроенный тип `string`
-  string: (rowA, rowB, columnId, desc) => {
-    const [a, b] = [rowA.values[columnId], rowB.values[columnId]] as [string, string];
-
-    return a.localeCompare(b, 'en');
-  },
-};
-
-export const Sortable = ({ excursions }: { excursions: any }) => {
-  // создаем экземпляр таблицы
+export const Sortable = ({ excursions }: { excursions: IExcursion[] }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
     { columns, data: excursions },
     useSortBy

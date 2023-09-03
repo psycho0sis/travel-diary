@@ -12,7 +12,7 @@ export const ReviewAuthor: FC<IReviewAuthor> = ({ id, email, review }) => {
 
   return (
     <div className='reviewAuthor' key={id}>
-      <div className='reviewAuthor__avatar'>
+      <div className='reviews__avatar'>
         <img src={reviewAuthor.photo} alt='Avatar' />
       </div>
       <div>

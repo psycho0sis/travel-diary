@@ -1,37 +1,23 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { collection, DocumentData, getDocs } from 'firebase/firestore';
+import { userLoadAllStudents } from 'hooks/use-load-all-students';
 
 import { Title } from 'components/ui/title';
 
-import { db } from '../../firebase';
-
 import './styles.scss';
 
-const getStudentsDataFromDB = async () => {
-  const students: DocumentData[] = [];
-  const querySnapshot = await getDocs(collection(db, 'children'));
-
-  querySnapshot.forEach((doc) => {
-    students.push(doc.data());
-  });
-
-  return students.filter((student) => student.role !== 'teacher');
-};
-
 export const StudentsMapper = () => {
-  const [students, setPhotos] = useState<DocumentData[]>([]);
+  const [students, error] = userLoadAllStudents();
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getStudentsDataFromDB();
-
-      setPhotos(data);
-    };
-
-    getData();
-  }, []);
+  if (error) {
+    return (
+      <Alert variant='warning'>
+        Извините, что-то пошло не так и мы не можем загрузить данные пользователей
+      </Alert>
+    );
+  }
 
   return (
     <div className='students'>

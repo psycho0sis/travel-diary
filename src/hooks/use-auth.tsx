@@ -7,6 +7,7 @@ import { isLoggedIn, startSession } from '../session';
 type IUseAuth = () => [
   boolean,
   boolean,
+  boolean,
   string,
   string,
   (event: FormEvent) => Promise<void>,
@@ -75,6 +76,7 @@ export const useAuth: IUseAuth = () => {
   };
 
   return [
+    error,
     emailError,
     passwordError,
     email,

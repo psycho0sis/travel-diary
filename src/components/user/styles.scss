@@ -1,19 +1,17 @@
 .user {
   padding: 30px;
-  margin-bottom: 36px;
   border: 1px solid rgba(149, 156, 156, 0.6);
   border-radius: 10px;
   background-color: rgba(239, 249, 249, 0.6);
-  box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+  box-shadow: var(--box-shadow);
 
   &__header {
     display: flex;
-    gap: 0 60px;
+    gap: 10px 60px;
     flex-wrap: wrap;
   }
 
   &__data {
-    height: 165px;
     display: flex;
     flex-direction: column;
   }
@@ -23,7 +21,7 @@
     height: 250px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+    box-shadow: var(--box-shadow);
   }
 
   &__data-subtitle {
@@ -43,7 +41,7 @@
   }
 
   &__excursions {
-    margin: 24px 0;
+    margin: 12px 0;
     font-size: 24px;
     font-weight: 500;
     color: #3f3f3f;
@@ -51,5 +49,13 @@
 
   &__excursions-table {
     margin-top: 24px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .user {
+    &__header {
+      justify-content: center;
+    }
   }
 }

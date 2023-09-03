@@ -4,6 +4,7 @@ import image1 from 'assets/grave1-image1.jpg';
 import image2 from 'assets/grave1-image2.jpg';
 import panorama from 'assets/panorama3.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
+import { ReviewForm } from 'components/review-form';
 import { Title } from 'components/ui/title';
 
 export const FirstGrave = () => {
@@ -34,6 +35,7 @@ export const FirstGrave = () => {
           <img className='excursion__photo' src={image1} />
           <img className='excursion__photo' src={image2} />
         </div>
+        <ReviewForm excursion='Братские могилы' />
       </div>
     </div>
   );

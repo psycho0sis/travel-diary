@@ -2,6 +2,9 @@ import grave1 from '../../assets/image1.jpg';
 import grave2 from '../../assets/image2.jpg';
 import grave3 from '../../assets/image3.jpg';
 
+import { AvgustovskiyKanal } from './grodno/avgustovsckiy-kanal';
+import { ParkBolteniki } from './grodno/park-bolteniki';
+import { ParkZhilibera } from './grodno/park-zhilibera';
 import { MirPalace } from './palaces/mir';
 import { FirstGrave } from './voronovo/1';
 import { SecondGrave } from './voronovo/2';
@@ -47,7 +50,6 @@ export const graves = [
     title: 'Братская могила (№ 1824)',
     description:
       'В центре поселка похоронены 192 воина и партизана, которые погибли в годы Великой Отечественной войны..',
-    date: '5 сентября 2021г.',
     route: 'voronovo/first-grave',
     img: grave1,
   },
@@ -57,7 +59,6 @@ export const graves = [
     title: 'Могила жертв фашизма (№ 6064)',
     description:
       'На юго-западной окраине г.п.Вороново, слева от дороги Вороново-Лида, захоронены 1834 жителя, расстрелянные немецко-фашистскими захватчиками...',
-    date: '28 мая 2021г.',
     route: 'voronovo/second-grave',
     img: grave2,
   },
@@ -67,29 +68,63 @@ export const graves = [
     title: 'Братская могина мирных граждан',
     description:
       'Здесь похоронены 800 мирных граждан, расстрелянных фашистскими захватчиками 14 ноября 1941 года...',
-    date: '12 апреля 2021г.',
     route: 'voronovo/third-grave',
     img: grave3,
+  },
+];
+
+export const grodno = [
+  {
+    id: 0,
+    component: <AvgustovskiyKanal />,
+    title: 'Августовский канал',
+    description:
+      'Августовский канал — один из крупнейших европейских каналов появился в XIX веке, и на тот момент представлял торжество передовых технологий...',
+    route: 'grodno/avgustovskiy-kanal',
+    img: 'https://traveling.by/files/tours/2020/07/4207e0563645e0a81982bb6ef20c5c12-thumb-600x390-crop.jpg',
+  },
+  {
+    id: 1,
+    component: <ParkZhilibera />,
+    title: 'Парк Жилибера',
+    description:
+      'Городской парк имени Жана Эммануэля Жилибера в Гродно расположен в самом центе города...',
+    route: 'grodno/park-zhilibera',
+    img: 'http://nemnovotour.by/wp-content/uploads/2018/09/82899227.jpg',
+  },
+  {
+    id: 2,
+    component: <ParkBolteniki />,
+    title: 'Парк Больтеники',
+    description:
+      'Парк Больтеники находится на южной стороне деревни Больтеники, заложен в во второй половине XVIII - начале XIX вв. при усадьбе Путткамеров. Парк имеет площадь около 10 га...',
+    route: 'grodno/park-bolteniki',
+    img: 'https://ekskursii.by/images/obj2/17548/12_clear_resize1.jpg',
   },
 ];
 
 export const excursions = [
   {
     id: 0,
-    title: 'Экскурсия по братским могилам поселка Вороново',
-    description:
-      'Братские могилы, мемориалы, памятные знаки, установленные в честь героев Великой Отечественной войны, в поселении Вороновское являются неотъемлемым объединяющим элементом жизни. Напоминают, как важна и желанна для русского народа мирная жизнь...',
-    date: '28 мая 2021г.',
-    route: 'voronovo',
-    img: grave1,
-  },
-  {
-    id: 1,
     title: 'Экскурсии по замкам Гродненской области',
     description:
       'Самыми известными замками Беларуси являются Мирский и Несвижский. Наиболее древние каменные замки можно увидеть в Лиде, Крево, Коссово, Любче, Ружанах, Новогрудке и Гродно...',
-    date: '28 мая 2021г.',
     route: 'palaces',
     img: 'https://belarusgid.com/wp-content/uploads/2015/05/IMG_0845.jpg',
+  },
+  {
+    id: 1,
+    title: 'Экскурсии по Гродненской области',
+    description: 'Удивительная экскурсия по природным объектам Гродненской области...',
+    route: 'grodno',
+    img: 'https://traveling.by/files/tours/2020/07/59451194b491aaaa7a63ce0ee4de3289-thumb-600x390-crop.jpg',
+  },
+  {
+    id: 2,
+    title: 'Экскурсия по братским могилам поселка Вороново',
+    description:
+      'Братские могилы, мемориалы, памятные знаки, установленные в честь героев Великой Отечественной войны, в поселении Вороновское являются неотъемлемым объединяющим элементом жизни. Напоминают, как важна и желанна для русского народа мирная жизнь...',
+    route: 'voronovo',
+    img: grave1,
   },
 ];
