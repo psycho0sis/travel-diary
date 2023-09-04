@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import image1 from 'assets/grave2-image1.jpg';
-import image2 from 'assets/grave2-image2.jpg';
-import image3 from 'assets/grave2-image3.jpg';
-import image4 from 'assets/grave2-image4.jpeg';
-import image5 from 'assets/grave2-image5.jpeg';
 import panorama from 'assets/panorama1.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { ReviewForm } from 'components/review-form';
@@ -35,11 +30,26 @@ export const SecondGrave = () => {
           <img className='excursion__photo excursion__photo--leftimg' src='' />
         </p>
         <div className='excursion__museum-photos'>
-          <img className='excursion__photo' src={image1} />
-          <img className='excursion__photo' src={image2} />
-          <img className='excursion__photo' src={image3} />
-          <img className='excursion__photo' src={image4} />
-          <img className='excursion__photo' src={image5} />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/20230702_124619.jpg?alt=media&token=5ea55515-0965-4df1-a1b7-bd9dc88e5eaf'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image2.jpg?alt=media&token=09cab37c-9ee6-42bc-a400-679e5f7b2dff'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image3.jpg?alt=media&token=9991d5b2-5b16-4811-85da-f119ec6de8e4'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image4.jpeg?alt=media&token=a0572fc0-1c58-49ae-845b-396e53ce57a0'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image5.jpeg?alt=media&token=16b08db7-6484-4395-9b16-a5d88dbcab51'
+          />
         </div>
         <ReviewForm excursion='Братские могилы' />
       </div>

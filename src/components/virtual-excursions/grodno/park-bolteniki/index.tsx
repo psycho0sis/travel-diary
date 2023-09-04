@@ -18,8 +18,8 @@ export const ParkBolteniki = () => {
   return (
     <div className='excursion'>
       <div className='excursion__back-btn-wrapper'>
-        <Link className='excursion__back-btn' to='/virtual/palaces'>
-          Назад к списку экскурсий по замкам
+        <Link className='excursion__back-btn' to='/virtual/grodno'>
+          Назад к списку экскурсий по Гродненской области
         </Link>
       </div>
       <div className='excursion__map-wrapper'>

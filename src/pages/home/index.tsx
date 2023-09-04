@@ -6,16 +6,16 @@ import './styles.scss';
 
 export const Home = () => (
   <div>
-    <div className='mainPage__title-wrapper'>
+    <div className='main-page__title-wrapper'>
       <Title>Дневник путешественника</Title>
     </div>
-    <img className='mainPage__img' src={map} />
-    <div className='mainPage__content'>
+    <img className='main-page__img' src={map} />
+    <div className='main-page__content'>
       <Title fontSize={22}> Руководители проекта</Title>
       <TeachersMapper />
 
       <Title fontSize={22}>Цель дневника путешествия</Title>
-      <p className='mainPage__text'>
+      <p className='main-page__text'>
         Традиция делать дневниковые записи в путешествиях является достаточно древней. Сейчас, когда
         практически каждый человек может приобрести себе билет на самолет или поезд и легко поменять
         локацию, путешествия не выглядят чем-то особенным и уникальным. Именно поэтому
@@ -27,14 +27,14 @@ export const Home = () => (
         художественного характера.
       </p>
       <Title fontSize={22}>Современные дневники путешествий</Title>
-      <p className='mainPage__text'>
+      <p className='main-page__text'>
         Конечно, для современного человека есть гораздо больше возможностей. Он может
         фотографировать, делать видеосъемку и многое другое. Тем не менее, люди зачастую
         возвращаются к классическому варианту, то есть к дневникам. Тут есть возможность достаточно
         длительно описывать, почему дневник лучше, чем просто набор фотографий, но лучше просто
         единожды попробовать и понять самостоятельно, чем много читать об этом.
       </p>
-      <p className='mainPage__text'>
+      <p className='main-page__text'>
         Предлагаем посмотреть наш дневник путешественника и пережить все волнующие моменты вместе с
         нами!
       </p>

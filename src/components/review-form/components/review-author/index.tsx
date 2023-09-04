@@ -11,12 +11,19 @@ export const ReviewAuthor: FC<IReviewAuthor> = ({ id, email, review }) => {
   const [reviewAuthor] = useLoadReviewAuthor(email);
 
   return (
-    <div className='reviewAuthor' key={id}>
+    <div className='review-author' key={id}>
       <div className='reviews__avatar'>
-        <img src={reviewAuthor.photo} alt='Avatar' />
+        <img
+          src={
+            reviewAuthor.photo
+              ? reviewAuthor.photo
+              : 'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=56'
+          }
+          alt='Avatar'
+        />
       </div>
       <div>
-        <p className='reviewAuthor__name'>
+        <p className='review-author__name'>
           {reviewAuthor.name} {reviewAuthor.surname}
         </p>
         {review}

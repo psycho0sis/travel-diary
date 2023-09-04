@@ -1,11 +1,8 @@
-import { FC, FormEvent, useEffect, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { useLoadStudentsExcursionsData } from 'hooks/use-load-students-excursions-data';
-import { useLoadUserData } from 'hooks/use-load-user-data';
-import { getSession } from 'session';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Title } from 'components/ui/title';
@@ -21,14 +18,7 @@ interface IExcursionForm {
 export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, surname }) => {
   const [date, setDate] = useState<string>('');
   const [route, setRoute] = useState<string>('');
-  const [email, setEmail] = useLoadUserData();
   const [user] = useLoadStudentsExcursionsData(name, surname);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const session = getSession();
-    session && setEmail(session.email as string);
-  }, [navigate]);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -47,7 +37,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
 
     try {
       if (route && date) {
-        const student = doc(db, 'children', email);
+        const student = doc(db, 'children', user.email);
 
         await updateDoc(student, {
           excursions: arrayUnion({

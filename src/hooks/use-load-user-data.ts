@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
 import { db } from '../firebase';
+import { getSession, isLoggedIn } from '../session';
 
 import { IUser } from './types';
 
-type IUseLoadData = () => [
-  string,
-  React.Dispatch<React.SetStateAction<string>>,
-  IUser,
-  boolean,
-  boolean,
-  boolean
-];
+type IUseLoadData = () => [IUser, boolean, boolean, boolean];
 
 export const getUserDataFromDB = async (email: string) => {
   try {
@@ -36,6 +31,17 @@ export const useLoadUserData: IUseLoadData = () => {
   const [isTeacher, setIsTeacher] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === '/user' && !isLoggedIn()) {
+      navigate('/login');
+    }
+
+    const session = getSession();
+    session && setEmail(session.email as string);
+  }, [navigate]);
 
   useEffect(() => {
     if (email === 'kosko_galina@mail.ru') {
@@ -59,5 +65,5 @@ export const useLoadUserData: IUseLoadData = () => {
     }
   }, [email]);
 
-  return [email, setEmail, user, loading, error, isTeacher];
+  return [user, loading, error, isTeacher];
 };

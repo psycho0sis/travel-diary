@@ -6,10 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { createMarkers } from 'helpers/create-markers';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 import { fetchExcursions } from 'store/features/excursions/excursions-action';
-import {
-  selectAsyncExcursions,
-  selectAsyncStatus
-} from 'store/features/excursions/excursions-selectors';
+import { selectAsyncExcursions } from 'store/features/excursions/excursions-selectors';
 import { useAppDispatch } from 'store/hooks';
 
 import { GoogleMaps } from 'components/google-map';
@@ -17,7 +14,7 @@ import { IMarker } from 'components/google-map-with-markers-start/types';
 import { Sortable } from 'components/table';
 import { Loader } from 'components/ui/loader';
 
-import { endSession, getSession, isLoggedIn } from '../../session';
+import { endSession } from '../../session';
 
 import { ExcursionForm } from './excursion-form';
 import { UserData } from './user-data';
@@ -29,21 +26,12 @@ export const User = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn()) {
-      navigate('/login');
-    }
-
-    const session = getSession();
-    session && setEmail(session.email as string);
-  }, [navigate]);
+  const [user, loading, error, isTeacher] = useLoadUserData();
 
   const onLogout = () => {
     endSession();
     navigate('/login');
   };
-
-  const [email, setEmail, user, loading, error, isTeacher] = useLoadUserData();
 
   useEffect(() => {
     const { name, surname } = user;
@@ -55,7 +43,6 @@ export const User = () => {
     dispatch(fetchExcursions({ name, surname }));
 
   const asyncExcursions = useSelector(selectAsyncExcursions);
-  const status = useSelector(selectAsyncStatus);
 
   useEffect(() => {
     if (asyncExcursions?.length) {

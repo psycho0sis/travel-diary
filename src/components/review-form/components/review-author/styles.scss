@@ -1,11 +1,11 @@
-.reviewAuthor {
+.review-author {
   display: flex;
   align-items: center;
   gap: 0 8px;
   border-radius: 8px;
   padding: 8px;
   margin-bottom: 12px;
-  background-color: rgba(239, 249, 249, 0.6);
+  background-color: rgb(239 249 249 / 60%);
   box-shadow: var(--box-shadow);
 
   &__name {

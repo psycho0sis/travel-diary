@@ -1,5 +1,5 @@
 .footer {
-  background: rgba(56, 56, 51, 0.6);
+  background: rgb(56 56 51 / 60%);
   width: 100%;
   text-align: left;
   font: bold 16px sans-serif;
@@ -59,7 +59,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .footer {
     padding-bottom: 40px;
 

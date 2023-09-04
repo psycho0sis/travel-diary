@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import image1 from 'assets/grave1-image1.jpg';
-import image2 from 'assets/grave1-image2.jpg';
 import panorama from 'assets/panorama3.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { ReviewForm } from 'components/review-form';
@@ -32,8 +30,22 @@ export const FirstGrave = () => {
           хозяйства, ГУО «Вороновская средняя школа».
         </p>
         <div className='excursion__museum-photos'>
-          <img className='excursion__photo' src={image1} />
-          <img className='excursion__photo' src={image2} />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave1-image1.jpg?alt=media&token=c71e9a89-faa3-44f1-93a4-d51aa962a25e'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave1-image2.jpg?alt=media&token=34aeb85d-4407-4b0a-8c78-abcac7bfda67'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-09-04_23-24-56.jpg?alt=media&token=739ec376-0a99-4dcd-aa3a-86fb51df6a65'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-09-04_23-24-59.jpg?alt=media&token=c2595773-f01a-4261-9433-3dac703b24e6'
+          />
         </div>
         <ReviewForm excursion='Братские могилы' />
       </div>

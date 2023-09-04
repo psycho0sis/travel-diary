@@ -1,4 +1,4 @@
-.mainPage {
+.main-page {
   &__title-wrapper {
     margin: 0 auto 36px;
     width: fit-content;
@@ -21,8 +21,8 @@
   &__content {
     padding: 16px;
     border-radius: 10px;
-    background-color: rgba(239, 249, 249, 0.6);
-    box-shadow: 10px 6px 22px 0px rgba(150, 150, 150, 0.62);
+    background-color: rgb(239 249 249 / 60%);
+    box-shadow: 10px 6px 22px 0 rgb(150 150 150 / 62%);
 
     & p {
       margin-bottom: 24px;

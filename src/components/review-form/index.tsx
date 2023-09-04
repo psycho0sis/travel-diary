@@ -1,7 +1,6 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 import { fetchReviews } from 'store/features/reviews/reviews-action';
@@ -12,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { Loader } from 'components/ui/loader';
 
 import { db } from '../../firebase';
-import { getSession } from '../../session';
 
 import { ReviewAuthor } from './components/review-author';
 import { checkRightForm } from './config';
@@ -26,26 +24,20 @@ export interface IReviewForm {
 export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
   const [review, setReview] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  const [email, setEmail, user] = useLoadUserData();
+  const [user] = useLoadUserData();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const session = getSession();
-    session && setEmail(session.email as string);
-  }, [navigate]);
 
   useEffect(() => {
     dispatch(fetchReviews(excursion));
   }, []);
 
   useEffect(() => {
-    if (!email) {
+    if (!user) {
       setIsLogged(false);
     } else {
       setIsLogged(true);
     }
-  }, [email]);
+  }, [user]);
 
   const asyncReviews = useSelector(selectAsyncReviews);
   const status = useSelector(selectAsyncStatus);
@@ -65,7 +57,7 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
           id: uuidv4(),
           excursion: excursion,
           review: review,
-          email: email,
+          email: user.email,
         });
 
         setReview('');
