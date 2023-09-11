@@ -8,7 +8,7 @@ import './styles.scss';
 type IReviewAuthor = IReview;
 
 export const ReviewAuthor: FC<IReviewAuthor> = ({ id, email, review }) => {
-  const [reviewAuthor] = useLoadReviewAuthor(email);
+  const { reviewAuthor } = useLoadReviewAuthor(email);
 
   return (
     <div className='review-author' key={id}>

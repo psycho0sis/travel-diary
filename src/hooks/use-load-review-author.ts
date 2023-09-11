@@ -5,8 +5,6 @@ import { db } from '../firebase';
 
 import { IUser } from './types';
 
-type IUseLoadData = (email: string) => [IUser, boolean, boolean];
-
 export const getUserDataFromDB = async (email: string) => {
   try {
     const q = query(collection(db, 'children'), where('email', '==', email));
@@ -23,7 +21,7 @@ export const getUserDataFromDB = async (email: string) => {
   }
 };
 
-export const useLoadReviewAuthor: IUseLoadData = (email: string) => {
+export const useLoadReviewAuthor = (email: string) => {
   const [reviewAuthor, setUReviewAuthor] = useState<IUser>({} as IUser);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -44,5 +42,5 @@ export const useLoadReviewAuthor: IUseLoadData = (email: string) => {
     getData();
   }, []);
 
-  return [reviewAuthor, loading, error];
+  return { reviewAuthor, loading, error };
 };

@@ -11,6 +11,7 @@ export interface IUser {
   surname: string;
   photo: string;
   excursions?: IExcursion[];
+  role: 'student' | 'teacher';
 }
 
 export interface IReview {

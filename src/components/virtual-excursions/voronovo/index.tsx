@@ -18,7 +18,7 @@ export const VirtualExcursionVoronovo = () => {
         <VoronovoRoute />
       </div>
       <div className='d-flex justify-content-center'>
-        <Button className='mt-3' variant='warning' href='/virtual/palaces/quiz'>
+        <Button className='mt-3' variant='warning' href='/virtual/voronovo/quiz'>
           Пройти викторину
         </Button>
       </div>

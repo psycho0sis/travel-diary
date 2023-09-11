@@ -3,9 +3,7 @@ import { collection, DocumentData, getDocs } from 'firebase/firestore';
 
 import { db } from '../firebase';
 
-type IUserLoadAllStudent = () => [DocumentData[], boolean];
-
-const getStudentsDataFromDB = async () => {
+export const getStudentsDataFromDB = async () => {
   const students: DocumentData[] = [];
 
   try {
@@ -15,7 +13,7 @@ const getStudentsDataFromDB = async () => {
       students.push(doc.data());
     });
 
-    return students.filter((student) => student.role !== 'teacher');
+    return students;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -25,8 +23,9 @@ const getStudentsDataFromDB = async () => {
   }
 };
 
-export const userLoadAllStudents: IUserLoadAllStudent = () => {
+export const useLoadAllStudents = () => {
   const [students, setPhotos] = useState<DocumentData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -37,11 +36,13 @@ export const userLoadAllStudents: IUserLoadAllStudent = () => {
         setPhotos(data);
       } catch (error) {
         setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
     getData();
   }, []);
 
-  return [students, error];
+  return { students, loading, error };
 };

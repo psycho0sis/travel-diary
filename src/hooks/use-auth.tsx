@@ -4,21 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../firebase';
 import { isLoggedIn, startSession } from '../session';
 
-type IUseAuth = () => [
-  boolean,
-  boolean,
-  boolean,
-  string,
-  string,
-  (event: FormEvent) => Promise<void>,
-  (event: React.FocusEvent<HTMLInputElement>) => void,
-  React.Dispatch<React.SetStateAction<string>>,
-  React.Dispatch<React.SetStateAction<boolean>>,
-  React.Dispatch<React.SetStateAction<string>>,
-  React.Dispatch<React.SetStateAction<boolean>>
-];
-
-export const useAuth: IUseAuth = () => {
+export const useAuth = () => {
   const navigate = useNavigate();
 
   const [emailError, setEmailError] = useState(false);
@@ -55,7 +41,7 @@ export const useAuth: IUseAuth = () => {
       const loginResponse = await signInUser(email, password);
 
       startSession(loginResponse.user);
-      navigate(-1);
+      navigate('/user');
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message);
@@ -75,7 +61,7 @@ export const useAuth: IUseAuth = () => {
     return;
   };
 
-  return [
+  return {
     error,
     emailError,
     passwordError,
@@ -87,5 +73,5 @@ export const useAuth: IUseAuth = () => {
     setEmailError,
     setPassword,
     setPasswordError,
-  ];
+  };
 };

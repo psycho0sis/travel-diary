@@ -1,5 +1,6 @@
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import { onFocus } from 'helpers/form-helpers';
 import { useAuth } from 'hooks/use-auth';
 
 import { Title } from 'components/ui/title';
@@ -7,7 +8,7 @@ import { Title } from 'components/ui/title';
 import './styles.scss';
 
 export const AuthForm = () => {
-  const [
+  const {
     error,
     emailError,
     passwordError,
@@ -19,13 +20,7 @@ export const AuthForm = () => {
     setEmailError,
     setPassword,
     setPasswordError,
-  ] = useAuth();
-
-  const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    event.target.placeholder = '';
-
-    return;
-  };
+  } = useAuth();
 
   return (
     <>
