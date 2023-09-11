@@ -7,20 +7,23 @@ export const Item: FC<IItem> = ({
   id,
   disabled,
   question,
+  questions,
   answers,
-  countCorrectAnswers,
-  changeAnswersArray,
+  setQuestions,
   correctAnswer,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
     setSelectedAnswer(event.target.value);
-  };
 
   useEffect(() => {
-    selectedAnswer && changeAnswersArray(selectedAnswer);
-    selectedAnswer === correctAnswer && countCorrectAnswers(selectedAnswer);
+    if (selectedAnswer) {
+      setQuestions({
+        ...questions,
+        [id]: { selectedAnswer: selectedAnswer, correctAnswer: selectedAnswer === correctAnswer },
+      });
+    }
   }, [selectedAnswer]);
 
   return (

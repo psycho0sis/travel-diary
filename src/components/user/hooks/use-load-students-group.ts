@@ -5,7 +5,7 @@ import { fetchStudents } from 'store/features/students/students-action';
 import { selectAsyncStatus, selectAsyncStudents } from 'store/features/students/students-selectors';
 import { useAppDispatch } from 'store/hooks';
 
-export const useLoadStudents = (student?: string) => {
+export const useLoadStudents = () => {
   const [students, setStudents] = useState<IUser[]>([]);
   const asyncStudents = useSelector(selectAsyncStudents);
   const asyncStatus = useSelector(selectAsyncStatus);

@@ -1,43 +1,57 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 
 import { Title } from 'components/ui/title';
 
 import { Item } from './item';
-import { IQuiz } from './types';
+import { IQuiz, TQuestions } from './types';
 
 import './styles.scss';
 
 export const Quiz: FC<IQuiz> = ({ data }) => {
   const [count, setCount] = useState<number>(0);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<TQuestions>({});
   const [isResult, setIsResult] = useState<boolean>(false);
+  const [isDisebled, setIsDisebled] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const countCorrectAnswers = (answer: string) => {
-    !answers.includes(answer) && setCount((prev) => prev + 1);
+  const handleClick = () => {
+    if (Object.values(questions).length === data.length) {
+      const amountOfCorrectAnswers = Object.values(questions).filter(
+        (item) => item.correctAnswer
+      ).length;
+
+      setCount(amountOfCorrectAnswers);
+      setIsResult(true);
+      setIsDisebled(true);
+    }
   };
-
-  const changeAnswersArray = (answer: string) =>
-    !answers.includes(answer) && setAnswers([...answers, answer]);
-
-  useEffect(() => {
-    if (answers.length === data.length) setIsResult(true);
-  }, [answers]);
 
   return (
     <div className='quiz'>
+      <div className='excursion__back-btn-wrapper'>
+        <div className='excursion__back-btn' onClick={() => navigate(-1)}>
+          Назад
+        </div>
+      </div>
       <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
       <Form>
         {data.map((item) => (
           <Item
             disabled={isResult}
             key={item.id}
-            countCorrectAnswers={countCorrectAnswers}
-            changeAnswersArray={changeAnswersArray}
+            setQuestions={setQuestions}
+            questions={questions}
             {...item}
           />
         ))}
       </Form>
+
+      <Button disabled={isDisebled} variant='dark' onClick={handleClick}>
+        Показать результаты
+      </Button>
 
       {isResult && (
         <div className='quiz__congratulations-wrapper'>
