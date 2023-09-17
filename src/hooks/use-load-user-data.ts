@@ -1,36 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { getUserDataFromDB } from 'api/get-user-data-from-db';
 
-import { db } from '../firebase';
 import { getSession, isLoggedIn } from '../session';
 
 import { IUser } from './types';
 
-type IUseLoadData = () => [IUser, boolean, boolean, boolean];
-
-export const getUserDataFromDB = async (email: string) => {
-  try {
-    const q = query(collection(db, 'children'), where('email', '==', email));
-
-    const querySnapshot = await getDocs(q);
-
-    return querySnapshot.docs[0].data();
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-
-    throw error;
-  }
-};
-
-export const useLoadUserData: IUseLoadData = () => {
+export const useLoadUserData = () => {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<IUser>({} as IUser);
   const [isTeacher, setIsTeacher] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -65,5 +47,5 @@ export const useLoadUserData: IUseLoadData = () => {
     }
   }, [email]);
 
-  return [user, loading, error, isTeacher];
+  return { user, loading, error, isTeacher };
 };

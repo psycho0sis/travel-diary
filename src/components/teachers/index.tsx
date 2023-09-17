@@ -1,10 +1,11 @@
 import Alert from 'react-bootstrap/esm/Alert';
-import { userLoadTeachers } from 'hooks/use-load-teachers';
+import { getTeachersFromDB } from 'api/get-teachers-from-db';
+import { userUniversalLoader } from 'hooks/use-universal-loader';
 
 import './styles.scss';
 
 export const TeachersMapper = () => {
-  const [teachers, error] = userLoadTeachers();
+  const { data: teachers, error } = userUniversalLoader(getTeachersFromDB);
 
   if (error) {
     return (

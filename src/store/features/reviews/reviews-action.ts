@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getReviewsFromDB } from 'api/get-reviews-from-db';
 import type { IReview } from 'hooks/types';
-import { getReviewsFromDB } from 'hooks/use-load-reviews';
 
 import { IAsyncReviewsSlice } from './reviews-slice';
 
@@ -18,7 +18,7 @@ export const fetchReviews = createAsyncThunk<
     return data;
   },
   {
-    condition: (arg, { getState }) => {
+    condition: (_, { getState }) => {
       const { status } = getState().asyncReviews;
 
       if (status === 'loading') return false;

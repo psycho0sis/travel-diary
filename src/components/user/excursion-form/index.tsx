@@ -2,9 +2,10 @@ import { FC, FormEvent, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { onFocus } from 'helpers/form-helpers';
-import { useLoadStudentsExcursionsData } from 'hooks/use-load-students-excursions-data';
+import { userUniversalLoader } from 'hooks/use-universal-loader';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Title } from 'components/ui/title';
@@ -21,7 +22,11 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
   const [date, setDate] = useState<string>('');
   const [route, setRoute] = useState<string>('');
   const [isRouteAdded, setIsRouteAdded] = useState<boolean>(false);
-  const [user] = useLoadStudentsExcursionsData(name, surname);
+  const { data: students, error, loading } = userUniversalLoader(getStudentsDataFromDB);
+
+  const currentUser = students.find(
+    (student) => student.name === name && student.surname === surname
+  );
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -40,7 +45,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
 
     try {
       if (route && date) {
-        const student = doc(db, 'children', user.email);
+        const student = doc(db, 'children', currentUser!.email);
 
         await updateDoc(student, {
           excursions: arrayUnion({
@@ -54,7 +59,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
 
         setDate('');
         setRoute('');
-        addMarkerToTheMap(user.name, user.surname);
+        addMarkerToTheMap(currentUser!.name, currentUser!.surname);
       }
     } catch (error: unknown) {
       if (error instanceof Error) {

@@ -24,7 +24,7 @@ export const User = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [user, loading, error, isTeacher] = useLoadUserData();
+  const { user, loading, error, isTeacher } = useLoadUserData();
   const { currentMarkers, asyncExcursions } = useLoadMarkers(user);
 
   const onLogout = () => {

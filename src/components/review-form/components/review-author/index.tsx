@@ -1,14 +1,13 @@
 import { FC } from 'react';
-import { useLoadReviewAuthor } from 'hooks/use-load-review-author';
+import { getReviewAuthorFromDB } from 'api/get-review-author-from-db';
+import { userUniversalLoader } from 'hooks/use-universal-loader';
 
 import { IReview } from '../../../../hooks/types';
 
 import './styles.scss';
 
-type IReviewAuthor = IReview;
-
-export const ReviewAuthor: FC<IReviewAuthor> = ({ id, email, review }) => {
-  const { reviewAuthor } = useLoadReviewAuthor(email);
+export const ReviewAuthor: FC<IReview> = ({ id, email, review }) => {
+  const { data: reviewAuthor } = userUniversalLoader(() => getReviewAuthorFromDB(email));
 
   return (
     <div className='review-author' key={id}>

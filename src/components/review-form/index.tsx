@@ -24,7 +24,7 @@ export interface IReviewForm {
 export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
   const [review, setReview] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  const [user] = useLoadUserData();
+  const { user } = useLoadUserData();
   const dispatch = useAppDispatch();
 
   useEffect(() => {

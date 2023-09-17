@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getStudentsExcursionsDataFromDB } from 'api/get-students-excursions-data-from-db';
 import type { IExcursion } from 'hooks/types';
-import { getStudentsExcursionsDataFromDB } from 'hooks/use-load-students-excursions-data';
 
 import { IAsyncExcursionsSlice } from './excursions-slice';
 
@@ -18,7 +18,7 @@ export const fetchExcursions = createAsyncThunk<
     return data;
   },
   {
-    condition: (arg, { getState }) => {
+    condition: (_, { getState }) => {
       const { status } = getState().asyncExcursions;
 
       if (status === 'loading') return false;

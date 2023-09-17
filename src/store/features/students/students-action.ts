@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
 import type { IUser } from 'hooks/types';
-import { getStudentsDataFromDB } from 'hooks/use-load-all-students';
 
 import { IAsyncStudentsSlice } from './students-slice';
 
@@ -18,7 +18,7 @@ export const fetchStudents = createAsyncThunk<
     return data;
   },
   {
-    condition: (arg, { getState }) => {
+    condition: (_, { getState }) => {
       const { status } = getState().asyncStudents;
 
       if (status === 'loading') return false;
