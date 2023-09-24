@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from 'react';
+import { type FocusEvent,FormEvent, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,7 +18,7 @@ import { useLoadStudents } from '../hooks/use-load-students-group';
 
 import { StudentsMapper } from './students-mapper.tsx';
 
-export const TeacherBlock: FC<any> = () => {
+export const TeacherBlock = () => {
   const [student, setStudent] = useState<IUser>({
     name: '',
     surname: '',
@@ -27,12 +27,12 @@ export const TeacherBlock: FC<any> = () => {
     password: '',
     photo: '',
   });
-  const [isStudentAdded, setIsStudentAdded] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [isStudentAdded, setIsStudentAdded] = useState(false);
+  const [error, setError] = useState(false);
   const { students, asyncStatus: status } = useLoadStudents();
   const dispatch = useAppDispatch();
 
-  const handleChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleChange = (event: FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setIsStudentAdded(false);

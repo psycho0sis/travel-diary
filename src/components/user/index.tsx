@@ -8,8 +8,9 @@ import { fetchExcursions } from 'store/features/excursions/excursions-action';
 import { useAppDispatch } from 'store/hooks';
 
 import { GoogleMaps } from 'components/google-map';
-import { Sortable } from 'components/table';
+import { StudentExcursionsTable } from 'components/student-info/student-excursions';
 import { Loader } from 'components/ui/loader';
+import { Title } from 'components/ui/title';
 
 import { endSession } from '../../session';
 
@@ -25,7 +26,7 @@ export const User = () => {
   const navigate = useNavigate();
 
   const { user, loading, error, isTeacher } = useLoadUserData();
-  const { currentMarkers, asyncExcursions } = useLoadMarkers(user);
+  const { currentMarkers } = useLoadMarkers(user);
 
   const onLogout = () => {
     endSession();
@@ -68,14 +69,12 @@ export const User = () => {
               </Tab>
             )}
             <Tab eventKey='excursions' title='Посещенные экскурсии'>
-              <div className='user__excursions'>Посещенные экскурсии:</div>
+              <Title fontSize={22}>Посещенные объекты:</Title>
               <GoogleMaps
                 center={{ lat: 54.15320407797462, lng: 25.319435879481013 }}
                 markers={currentMarkers}
               />
-              <div className='user__excursions-table'>
-                {asyncExcursions?.length && <Sortable excursions={asyncExcursions} />}
-              </div>
+              <StudentExcursionsTable name={user.name} surname={user.surname} />
               <ExcursionForm
                 addMarkerToTheMap={addMarkerToTheMap}
                 name={user.name}

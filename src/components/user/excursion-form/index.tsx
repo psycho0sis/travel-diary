@@ -19,9 +19,9 @@ interface IExcursionForm {
 }
 
 export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, surname }) => {
-  const [date, setDate] = useState<string>('');
-  const [route, setRoute] = useState<string>('');
-  const [isRouteAdded, setIsRouteAdded] = useState<boolean>(false);
+  const [date, setDate] = useState('');
+  const [route, setRoute] = useState('');
+  const [isRouteAdded, setIsRouteAdded] = useState(false);
   const { data: students, error, loading } = userUniversalLoader(getStudentsDataFromDB);
 
   const currentUser = students.find(
@@ -33,13 +33,11 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
 
     if (!route) {
       setRoute('');
-
       return;
     }
 
     if (!date) {
       setDate('');
-
       return;
     }
 
@@ -75,7 +73,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
       </div>
       <Form onSubmit={onSubmit}>
         <Form.Group className='mb-3' controlId='formBasicEmail'>
-          <Form.Label>Маршрут</Form.Label>
+          <Form.Label>Маршрут: </Form.Label>
           <Form.Control
             onChange={(e) => {
               setRoute(e.target.value);

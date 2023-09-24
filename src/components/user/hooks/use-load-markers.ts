@@ -29,5 +29,5 @@ export const useLoadMarkers = (user: IUser) => {
     }
   }, [asyncExcursions]);
 
-  return { currentMarkers, asyncExcursions };
+  return { currentMarkers };
 };

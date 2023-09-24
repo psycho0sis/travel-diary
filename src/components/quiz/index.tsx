@@ -11,21 +11,21 @@ import { IQuiz, TQuestions } from './types';
 import './styles.scss';
 
 export const Quiz: FC<IQuiz> = ({ data }) => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState(0);
   const [questions, setQuestions] = useState<TQuestions>({});
-  const [isResult, setIsResult] = useState<boolean>(false);
-  const [isDisebled, setIsDisebled] = useState<boolean>(false);
+  const [isResult, setIsResult] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (Object.values(questions).length === data.length) {
       const amountOfCorrectAnswers = Object.values(questions).filter(
-        (item) => item.correctAnswer
+        ({ correctAnswer }) => correctAnswer
       ).length;
 
       setCount(amountOfCorrectAnswers);
       setIsResult(true);
-      setIsDisebled(true);
+      setIsDisabled(true);
     }
   };
 
@@ -49,7 +49,7 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
         ))}
       </Form>
 
-      <Button disabled={isDisebled} variant='dark' onClick={handleClick}>
+      <Button disabled={isDisabled} variant='dark' onClick={handleClick}>
         Показать результаты
       </Button>
 

@@ -22,6 +22,14 @@ export const AuthForm = () => {
     setPasswordError,
   } = useAuth();
 
+  if (error) {
+    return (
+      <Alert className='mt-3' variant='danger'>
+        Извините, что-то пошло не так/ Возможно такого пользователя не существует.
+      </Alert>
+    );
+  }
+
   return (
     <>
       <Title fontSize={28}>Войдите в свой аккаунт</Title>
@@ -61,12 +69,6 @@ export const AuthForm = () => {
             Войти
           </Button>
         </div>
-
-        {error && (
-          <Alert className='mt-3' variant='danger'>
-            Извините, что-то пошло не так/ Возможно такого пользователя не существует.
-          </Alert>
-        )}
       </form>
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { StudentsExcursions } from 'components/students-excursions';
+import { StudentInfo } from 'components/student-info';
 import { Title } from 'components/ui/title';
 
 export const Excursions = () => {
@@ -26,7 +26,7 @@ export const Excursions = () => {
         </div>
       </div>
       <Title>Экскурсии, в которых участвовал ученик</Title>
-      <StudentsExcursions name={name} surname={surname} />
+      <StudentInfo name={name} surname={surname} />
     </>
   );
 };

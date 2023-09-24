@@ -8,8 +8,8 @@ export function userUniversalLoader<T>(callback: () => Promise<T>): {
 
 export function userUniversalLoader<T>(callback: () => Promise<T[]>) {
   const [data, setData] = useState<T[]>([]);
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {

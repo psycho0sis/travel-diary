@@ -1,47 +1,12 @@
-/* eslint-disable */
-
+import type { FC } from 'react';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
-import {
-  Column,
-  SortByFn,
-  UseFiltersColumnOptions,
-  UseGlobalFiltersColumnOptions,
-  UseGroupByColumnOptions,
-  useSortBy,
-  UseSortByColumnOptions,
-  useTable,
-} from 'react-table';
+import { Column, useSortBy, useTable } from 'react-table';
+import type { IExcursion } from 'hooks/types';
 
-import { IExcursion } from 'hooks/types';
+import { ISortableTable } from './types';
 
 import './styles.scss';
 
-declare module 'react-table' {
-  export interface ColumnInterface<D extends object = {}>
-    extends UseFiltersColumnOptions<D>,
-      UseGlobalFiltersColumnOptions<D>,
-      UseGroupByColumnOptions<D>,
-      UseResizeColumnsColumnOptions<D>,
-      UseSortByColumnOptions<D> {}
-
-  export interface ColumnInstance<D extends object = {}>
-    extends UseFiltersColumnProps<D>,
-      UseGroupByColumnProps<D>,
-      UseResizeColumnsColumnProps<D>,
-      UseSortByColumnProps<D> {}
-
-  export interface Cell<D extends object = {}, V = any>
-    extends UseGroupByCellProps<D>,
-      UseRowStateCellProps<D> {}
-
-  export interface Row<D extends object = {}>
-    extends UseExpandedRowProps<D>,
-      UseGroupByRowProps<D>,
-      UseRowSelectRowProps<D>,
-      UseRowStateRowProps<D> {}
-}
-
-// определения колонок
 export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   {
     Header: 'Дата',
@@ -55,55 +20,53 @@ export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   },
 ];
 
-export const Sortable = ({ excursions }: { excursions: IExcursion[] }) => {
+export const SortableTable: FC<ISortableTable> = ({ excursions }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
     { columns, data: excursions },
     useSortBy
   );
 
   return (
-    <>
-      <div className='table-wrapper'>
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((hG) => (
-              <tr {...hG.getHeaderGroupProps()}>
-                {hG.headers.map((col) => (
-                  <th {...col.getHeaderProps(col.getSortByToggleProps())}>
-                    {col.render('Header')}{' '}
-                    {col.canSort && (
-                      <span>
-                        {col.isSorted ? (
-                          col.isSortedDesc ? (
-                            <BiSortUp />
-                          ) : (
-                            <BiSortDown />
-                          )
+    <div className='table__wrapper'>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((col) => (
+                <th {...col.getHeaderProps(col.getSortByToggleProps())}>
+                  {col.render('Header')}{' '}
+                  {col.canSort && (
+                    <span>
+                      {col.isSorted ? (
+                        col.isSortedDesc ? (
+                          <BiSortUp />
                         ) : (
-                          <BiSortAlt2 />
-                        )}
-                      </span>
-                    )}
-                  </th>
+                          <BiSortDown />
+                        )
+                      ) : (
+                        <BiSortAlt2 />
+                      )}
+                    </span>
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 ))}
               </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };

@@ -9,9 +9,9 @@ import { IUser } from './types';
 export const useLoadUserData = () => {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<IUser>({} as IUser);
-  const [isTeacher, setIsTeacher] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+  const [isTeacher, setIsTeacher] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
