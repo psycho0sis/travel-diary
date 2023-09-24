@@ -1,7 +1,3 @@
-import grave1 from '../../assets/image1.jpg';
-import grave2 from '../../assets/image2.jpg';
-import grave3 from '../../assets/image3.jpg';
-
 import { AvgustovskiyKanal } from './grodno/avgustovsckiy-kanal';
 import { ParkBolteniki } from './grodno/park-bolteniki';
 import { ParkZhilibera } from './grodno/park-zhilibera';
@@ -51,7 +47,7 @@ export const graves = [
     description:
       'В центре поселка похоронены 192 воина и партизана, которые погибли в годы Великой Отечественной войны..',
     route: 'voronovo/first-grave',
-    img: grave1,
+    img: 'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-10.jpg?alt=media&token=3e5bffb6-a5a4-4be3-9977-eb617c43ba31',
   },
   {
     id: 1,
@@ -60,7 +56,7 @@ export const graves = [
     description:
       'На юго-западной окраине г.п.Вороново, слева от дороги Вороново-Лида, захоронены 1834 жителя, расстрелянные немецко-фашистскими захватчиками...',
     route: 'voronovo/second-grave',
-    img: grave2,
+    img: 'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/image2.jpg?alt=media&token=15723345-ad46-4c1a-b25a-34a21522fa86',
   },
   {
     id: 2,
@@ -69,7 +65,7 @@ export const graves = [
     description:
       'Здесь похоронены 800 мирных граждан, расстрелянных фашистскими захватчиками 14 ноября 1941 года...',
     route: 'voronovo/third-grave',
-    img: grave3,
+    img: 'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/image3.jpg?alt=media&token=1aa3e1b6-ee7c-411f-9f47-c04139739806',
   },
 ];
 
@@ -125,6 +121,6 @@ export const excursions = [
     description:
       'Братские могилы, мемориалы, памятные знаки, установленные в честь героев Великой Отечественной войны, в городском поселке Вороново неотъемлемым объединяющим элементом жизни. Напоминают, как важна и желанна для русского народа мирная жизнь...',
     route: 'voronovo',
-    img: grave1,
+    img: 'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-10.jpg?alt=media&token=3e5bffb6-a5a4-4be3-9977-eb617c43ba31',
   },
 ];
