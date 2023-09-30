@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  gap: 10px 60px;
+  flex-wrap: wrap;
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+}
+
+.userImage {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+}
+
+.userDataSubtitle {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.userDataGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 0 12px;
+  margin-bottom: 12px;
+}
+
+.userDataItem {
+  color: #3f3f3f;
+}
+
+.userExcursions {
+  margin: 24px 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: #3f3f3f;
+  text-align: center;
+}
+
+@media only screen and (width <= 1068px) {
+  .header {
+    justify-content: center;
+  }
+}

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import type { IExcursion } from 'hooks/types';
 import type { Status } from 'store/types';
 

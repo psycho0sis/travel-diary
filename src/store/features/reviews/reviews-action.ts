@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { getReviewsFromDB } from 'api/get-reviews-from-db';
 import type { IReview } from 'hooks/types';
 

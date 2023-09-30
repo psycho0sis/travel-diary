@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { getStudentsExcursionsDataFromDB } from 'api/get-students-excursions-data-from-db';
 import type { IExcursion } from 'hooks/types';
 

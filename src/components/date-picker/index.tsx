@@ -1,7 +1,7 @@
 import type { ChangeEvent, FC } from 'react';
 import Form from 'react-bootstrap/Form';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 interface IDatePicker {
   labelText: string;
@@ -10,7 +10,7 @@ interface IDatePicker {
 }
 
 export const DatePicker: FC<IDatePicker> = ({ labelText, onChange, value }) => (
-  <div className='datePicker'>
+  <div className={styles.datePicker}>
     <Form.Group controlId='formDate' className='mb-3'>
       <Form.Label>{labelText}</Form.Label>
       <Form.Control onChange={onChange} type='date' value={value} />

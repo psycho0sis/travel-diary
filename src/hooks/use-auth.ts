@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { type FocusEvent, type FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { signInUser } from '../firebase';
@@ -51,7 +51,7 @@ export const useAuth = () => {
     }
   };
 
-  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlur = (event: FocusEvent<HTMLInputElement>) => {
     if (!event.target.value && event.target.type === 'email') {
       setEmailError(true);
     } else if (!event.target.value && event.target.type === 'password') {
@@ -59,6 +59,16 @@ export const useAuth = () => {
     }
 
     return;
+  };
+
+  const handleChangeEmail = (event: FocusEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    setEmailError(false);
+  };
+
+  const handleChangeError = (event: FocusEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setPasswordError(false);
   };
 
   return {
@@ -69,9 +79,7 @@ export const useAuth = () => {
     password,
     onSubmit,
     onBlur,
-    setEmail,
-    setEmailError,
-    setPassword,
-    setPasswordError,
+    handleChangeEmail,
+    handleChangeError,
   };
 };

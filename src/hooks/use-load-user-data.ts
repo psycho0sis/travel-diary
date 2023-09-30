@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { getUserDataFromDB } from 'api/get-user-data-from-db';
 
 import { getSession, isLoggedIn } from '../session';

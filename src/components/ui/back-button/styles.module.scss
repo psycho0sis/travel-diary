@@ -1,0 +1,26 @@
+.backBtnWrapper {
+  margin-bottom: 36px;
+}
+
+.backBtn {
+  cursor: pointer;
+  display: block;
+  color: #000;
+  position: relative;
+  padding-left: 18px;
+  max-width: max-content;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+
+  &::before {
+    content: '←';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    border-bottom: 1px solid #000;
+  }
+}

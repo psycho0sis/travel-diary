@@ -2,13 +2,13 @@ import { FC, FormEvent, useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { useSelector } from 'react-redux';
 import { addDoc, collection } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
+
+import { Loader } from 'components/ui/loader';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 import { fetchReviews } from 'store/features/reviews/reviews-action';
 import { selectAsyncReviews, selectAsyncStatus } from 'store/features/reviews/reviews-selectors';
 import { useAppDispatch } from 'store/hooks';
-import { v4 as uuidv4 } from 'uuid';
-
-import { Loader } from 'components/ui/loader';
 
 import { db } from '../../firebase';
 

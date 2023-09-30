@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+
+import { Title } from 'components/ui/title';
 import { createPassword } from 'helpers/create-password';
 import { onFocus } from 'helpers/form-helpers';
 import type { IUser } from 'hooks/types';
 import { fetchExcursions } from 'store/features/excursions/excursions-action';
 import { fetchStudents } from 'store/features/students/students-action';
 import { useAppDispatch } from 'store/hooks';
-
-import { Title } from 'components/ui/title';
 
 import { db } from '../../../firebase';
 import { useLoadStudents } from '../hooks/use-load-students-group';

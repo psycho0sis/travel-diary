@@ -1,6 +1,6 @@
 import { Title } from 'components/ui/title';
-import { VirtualExcursions } from 'components/virtual-excursions';
-import { excursions } from 'components/virtual-excursions/config';
+import { VirtualExcursions } from 'pages/virtual-excursions';
+import { excursions } from 'pages/virtual-excursions/config';
 
 export const Virtual = () => (
   <>

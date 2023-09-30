@@ -1,13 +1,13 @@
 import { type FC, useEffect, useState } from 'react';
-import type { IExcursion } from 'hooks/types';
-import { useDates } from 'hooks/use-dates';
-import { useFilteredExcursions } from 'hooks/use-filtered-excursions';
-import { useGetCurrentUser } from 'hooks/use-get-current-user';
 
 import { DatePicker } from 'components/date-picker';
 import { ExportToExcelButton } from 'components/export-to-excel-button';
 import { SortableTable } from 'components/table';
 import { Title } from 'components/ui/title';
+import type { IExcursion } from 'hooks/types';
+import { useDates } from 'hooks/use-dates';
+import { useFilteredExcursions } from 'hooks/use-filtered-excursions';
+import { useGetCurrentUser } from 'hooks/use-get-current-user';
 
 interface IStudentsExcursions {
   name: string;

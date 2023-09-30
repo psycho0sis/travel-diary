@@ -12,6 +12,7 @@ export interface IUser {
   photo: string;
   excursions?: IExcursion[];
   role: 'student' | 'teacher';
+  showAvatarBlock?: boolean;
 }
 
 export interface IReview {

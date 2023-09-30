@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Alert } from 'react-bootstrap';
-import type { IUser } from 'hooks/types';
 
 import { Title } from 'components/ui/title';
+import type { IUser } from 'hooks/types';
 
 interface IStudentsMapper {
   students: IUser[];

@@ -1,9 +1,11 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/esm/Form';
 
-import { IItem } from '../types';
+import { IQuizItem } from '../types';
 
-export const Item: FC<IItem> = ({
+import styles from '../styles.module.scss';
+
+export const Item: FC<IQuizItem> = ({
   id,
   disabled,
   question,
@@ -27,11 +29,11 @@ export const Item: FC<IItem> = ({
   }, [selectedAnswer]);
 
   return (
-    <div className='question__item' key={id}>
-      <p className='quiz__question'>{question}</p>
+    <div key={id} className={styles.quizItem}>
+      <p className={styles.quizQuestion}>{question}</p>
 
       {answers.map((answer) => (
-        <div className='quiz__variants' key={answer}>
+        <div key={answer} className={styles.QuizItemAnswers}>
           <Form.Check
             disabled={disabled}
             type='radio'

@@ -1,21 +1,20 @@
 import { FC, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
 
+import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
 
 import { Item } from './item';
 import { IQuiz, TQuestions } from './types';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const Quiz: FC<IQuiz> = ({ data }) => {
-  const [count, setCount] = useState(0);
+  const [amountOfCorrectAnswers, setAmountOfCorrectAnswers] = useState(0);
   const [questions, setQuestions] = useState<TQuestions>({});
-  const [isResult, setIsResult] = useState(false);
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const navigate = useNavigate();
 
   const handleClick = () => {
     if (Object.values(questions).length === data.length) {
@@ -23,24 +22,20 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
         ({ correctAnswer }) => correctAnswer
       ).length;
 
-      setCount(amountOfCorrectAnswers);
-      setIsResult(true);
+      setAmountOfCorrectAnswers(amountOfCorrectAnswers);
+      setIsQuizFinished(true);
       setIsDisabled(true);
     }
   };
 
   return (
-    <div className='quiz'>
-      <div className='excursion__back-btn-wrapper'>
-        <div className='excursion__back-btn' onClick={() => navigate(-1)}>
-          Назад
-        </div>
-      </div>
+    <div className={styles.quiz}>
+      <BackButton text='Назад' />
       <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
       <Form>
         {data.map((item) => (
           <Item
-            disabled={isResult}
+            disabled={isQuizFinished}
             key={item.id}
             setQuestions={setQuestions}
             questions={questions}
@@ -49,15 +44,15 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
         ))}
       </Form>
 
-      <Button disabled={isDisabled} variant='dark' onClick={handleClick}>
+      <Button className='mt-4' disabled={isDisabled} variant='dark' onClick={handleClick}>
         Показать результаты
       </Button>
 
-      {isResult && (
-        <div className='quiz__congratulations-wrapper'>
-          <p className='quiz__congratulations'>Поздравляем!</p>
-          <p className='quiz__correct-answers'>Правильных ответов: </p>
-          <p className='quiz__correct-answers-number'>{count}</p>
+      {isQuizFinished && (
+        <div className={styles.congratulationsWrapper}>
+          <p className={styles.congratulations}>Поздравляем!</p>
+          <p className={styles.correctAnswers}>Правильных ответов: </p>
+          <p className={styles.correctAnswersNumber}>{amountOfCorrectAnswers}</p>
         </div>
       )}
     </div>

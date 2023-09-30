@@ -1,11 +1,12 @@
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+
+import { Input } from 'components/ui/input';
+import { Title } from 'components/ui/title';
 import { onFocus } from 'helpers/form-helpers';
 import { useAuth } from 'hooks/use-auth';
 
-import { Title } from 'components/ui/title';
-
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const AuthForm = () => {
   const {
@@ -16,16 +17,14 @@ export const AuthForm = () => {
     password,
     onSubmit,
     onBlur,
-    setEmail,
-    setEmailError,
-    setPassword,
-    setPasswordError,
+    handleChangeEmail,
+    handleChangeError,
   } = useAuth();
 
   if (error) {
     return (
       <Alert className='mt-3' variant='danger'>
-        Извините, что-то пошло не так/ Возможно такого пользователя не существует.
+        Извините, что-то пошло не так... Возможно такого пользователя не существует.
       </Alert>
     );
   }
@@ -33,37 +32,27 @@ export const AuthForm = () => {
   return (
     <>
       <Title fontSize={28}>Войдите в свой аккаунт</Title>
-      <form className='form'>
-        <label className='form__label'>Email</label>
-        <input
-          autoComplete='email'
+      <form className={styles.form}>
+        <Input
+          labelText='Email'
           value={email}
           onFocus={onFocus}
           onBlur={onBlur}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setEmailError(false);
-          }}
+          onChange={handleChangeEmail}
           type='email'
           placeholder='Электронная почта'
-          className={emailError ? 'form__input form__input--error' : 'form__input'}
+          error={emailError}
         />
-        {emailError && <span className='form__error-text'>Введите значение</span>}
-        <label className='form__label'>Пароль</label>
-        <input
-          type='password'
-          autoComplete='new-password'
+        <Input
+          labelText='Пароль'
           value={password}
-          onBlur={onBlur}
           onFocus={onFocus}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setPasswordError(false);
-          }}
+          onBlur={onBlur}
+          onChange={handleChangeError}
+          type='password'
           placeholder='Пароль'
-          className={passwordError ? 'form__input form__input--error' : 'form__input'}
+          error={passwordError}
         />
-        {passwordError && <span className='form__error-text'>Введите значение</span>}
         <div className='d-grid mt-3'>
           <Button variant={'dark'} size='lg' onClick={onSubmit}>
             Войти

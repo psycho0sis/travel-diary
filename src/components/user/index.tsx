@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { useNavigate } from 'react-router-dom';
-import { useLoadUserData } from 'hooks/use-load-user-data';
-import { fetchExcursions } from 'store/features/excursions/excursions-action';
-import { useAppDispatch } from 'store/hooks';
 
 import { GoogleMaps } from 'components/google-map';
 import { StudentExcursionsTable } from 'components/student-info/student-excursions';
 import { Loader } from 'components/ui/loader';
 import { Title } from 'components/ui/title';
+import { useLoadUserData } from 'hooks/use-load-user-data';
+import { fetchExcursions } from 'store/features/excursions/excursions-action';
+import { useAppDispatch } from 'store/hooks';
 
 import { endSession } from '../../session';
 
@@ -19,7 +19,7 @@ import { ExcursionForm } from './excursion-form';
 import { TeacherBlock } from './teacher-block';
 import { UserData } from './user-data';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const User = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +54,7 @@ export const User = () => {
   }
 
   return (
-    <div className='user'>
+    <div className={styles.user}>
       {loading ? (
         <Loader />
       ) : (

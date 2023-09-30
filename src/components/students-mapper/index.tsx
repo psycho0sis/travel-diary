@@ -2,11 +2,11 @@ import { Fragment } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
-import { userUniversalLoader } from 'hooks/use-universal-loader';
 
+import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
 import { Loader } from 'components/ui/loader';
 import { Title } from 'components/ui/title';
+import { userUniversalLoader } from 'hooks/use-universal-loader';
 
 import './styles.scss';
 

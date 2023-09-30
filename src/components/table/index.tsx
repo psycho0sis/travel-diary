@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
 import { Column, useSortBy, useTable } from 'react-table';
+
 import type { IExcursion } from 'hooks/types';
 
 import { ISortableTable } from './types';
