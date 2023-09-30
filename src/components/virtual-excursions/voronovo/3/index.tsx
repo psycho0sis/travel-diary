@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import panorama from 'assets/panorama2.png';
 import { PanoramaVoronovo } from 'components/panoramas/panorama-voronovo';
 import { ReviewForm } from 'components/review-form';
 import { Title } from 'components/ui/title';
@@ -14,7 +13,7 @@ export const ThirdGrave = () => {
         </Link>
       </div>
       <div className='excursion__map-wrapper'>
-        <PanoramaVoronovo panorama={panorama} />
+        <PanoramaVoronovo panorama='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-07.jpg?alt=media&token=8d180026-ad72-48dd-974b-22782862dd43' />
       </div>
       <Title fontSize={36} margin='25x 0'>
         Братская могина мирных граждан

@@ -14,9 +14,10 @@ export interface IUser {
   role: 'student' | 'teacher';
 }
 
-export interface IReview {
+export type TReview = {
   id: number;
+  date: string;
   excursion: string;
   email: string;
   review: string;
-}
+};

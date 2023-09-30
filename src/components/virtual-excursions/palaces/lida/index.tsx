@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import image1 from 'assets/lida1.jpg';
-import image2 from 'assets/lida2.jpg';
-import image3 from 'assets/lida3.jpg';
-import image4 from 'assets/lida4.jpg';
 import { VoronovoLidaRoute } from 'components/custom-google-maps/voronovo-lida';
 import { GoogleMaps } from 'components/google-map';
 import { ReviewForm } from 'components/review-form';
@@ -108,10 +104,22 @@ export const LidaPalace = () => {
             className='excursion__photo'
             src='https://www.hata.by/images/uploaded/articles/articles-69384-8891c40747db16cbe19f_ch_.jpg'
           />
-          <img className='excursion__photo' src={image1} />
-          <img className='excursion__photo' src={image2} />
-          <img className='excursion__photo' src={image3} />
-          <img className='excursion__photo' src={image4} />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/lida1.jpg?alt=media&token=deddb109-627a-4773-91bc-12981d710adc'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/lida2.jpg?alt=media&token=6f811b86-12fc-4d9c-a4aa-5a67701450a9'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/lida3.jpg?alt=media&token=c409a238-7801-4617-b229-e210637f3abe'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/lida4.jpg?alt=media&token=9953c5a7-f96d-41fa-8948-866bc89a00cb'
+          />
         </div>
         <ReviewForm excursion='Вороново-Лида' />
       </div>

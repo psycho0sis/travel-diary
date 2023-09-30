@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import museumPhoto1 from 'assets/museum1.jpg';
-import museumPhoto2 from 'assets/museum2.jpg';
-import museumPhoto3 from 'assets/museum3.jpg';
-import museumPhoto4 from 'assets/museum4.jpg';
 import { VoronovoMirRoute } from 'components/custom-google-maps/voronovo-mir';
 import { GoogleMaps } from 'components/google-map';
 import { ReviewForm } from 'components/review-form';
@@ -124,10 +120,22 @@ export const MirPalace = () => {
             className='excursion__photo'
             src='https://static.bntu.by/bntu/new/news/image_10773_8516389fa3cea4718d4caa8c7be68d73.jpg%7CresizeToWidth=1400'
           />
-          <img className='excursion__photo' src={museumPhoto1} />
-          <img className='excursion__photo' src={museumPhoto2} />
-          <img className='excursion__photo' src={museumPhoto3} />
-          <img className='excursion__photo' src={museumPhoto4} />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/museum1.jpg?alt=media&token=894dda21-9cbb-42f7-a197-a424e9cd3590'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/museum2.jpg?alt=media&token=2053d39f-664b-42e5-83d6-995530805129'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/museum3.jpg?alt=media&token=c10d7617-7f72-4a7e-bb90-69ef9b7fca63'
+          />
+          <img
+            className='excursion__photo'
+            src='https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/museum4.jpg?alt=media&token=6183a1bb-88fb-4c8e-a986-cc11db33340e'
+          />
         </div>
         <ReviewForm excursion='Вороново-Мир' />
       </div>
