@@ -15,7 +15,7 @@ module.exports = {
           {
             groups: [
               // Packages `react` related packages come first.
-              ['^react', '^@?\\w'],
+              ['^react|react-router-dom|date-fns', '^@?\\w'],
               // Internal packages.
               ['^(@|assets|components|hooks|pages|store|helpers|api)(/.*|$)'],
               // Side effect imports.

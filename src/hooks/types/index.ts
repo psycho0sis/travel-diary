@@ -15,9 +15,10 @@ export interface IUser {
   showAvatarBlock?: boolean;
 }
 
-export interface IReview {
+export type TReview = {
   id: number;
+  date: string;
   excursion: string;
   email: string;
   review: string;
-}
+};

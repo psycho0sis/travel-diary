@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import type { IReview } from 'hooks/types';
+import type { TReview } from 'hooks/types';
 import type { Status } from 'store/types';
 
 import { fetchReviews } from './reviews-action';
 
 export interface IAsyncReviewsSlice {
   status: Status;
-  asyncReviews: IReview[] | null;
+  asyncReviews: TReview[] | null;
 }
 
 const initialState: IAsyncReviewsSlice = {
