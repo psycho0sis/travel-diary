@@ -1,12 +1,12 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
 import { db } from '../firebase';
-import { IReview } from '../hooks/types';
+import { TReview } from '../hooks/types';
 
-type TGetReviewsFromDb = (excursion: string) => Promise<IReview[]>;
+type TGetReviewsFromDb = (excursion: string) => Promise<TReview[]>;
 
 export const getReviewsFromDB: TGetReviewsFromDb = async (excursion) => {
-  const reviews: IReview[] = [];
+  const reviews: TReview[] = [];
 
   try {
     const q = query(collection(db, 'reviews'), where('excursion', '==', excursion));
@@ -14,7 +14,7 @@ export const getReviewsFromDB: TGetReviewsFromDb = async (excursion) => {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      reviews.push(doc.data() as IReview);
+      reviews.push(doc.data() as TReview);
     });
 
     return reviews;

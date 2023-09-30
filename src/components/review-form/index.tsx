@@ -55,6 +55,7 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
       if (isLogged) {
         await addDoc(collection(db, 'reviews'), {
           id: uuidv4(),
+          date: new Date().toISOString(),
           excursion: excursion,
           review: review,
           email: user.email,
