@@ -3,21 +3,17 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from 'components/layout/layout';
 import { Quiz } from 'components/quiz';
 import { gravesQuizData, palacesQuizData } from 'components/quiz/config';
+import { grodnoConfig } from 'components/virtual-excursions/grodno/config';
+import { Excursion } from 'components/virtual-excursions/palaces/components/excursion';
+import { palacesConfig } from 'components/virtual-excursions/palaces/config';
+import { ExcursionVoronovo } from 'components/virtual-excursions/voronovo/components/excursion';
+import { gravesConfig } from 'components/virtual-excursions/voronovo/config';
 import {
-  AvgustovskiyKanal,
   CertainStudentExcursions,
   ErrorPage,
-  FirstGrave,
   Home,
-  LidaPalace,
   Login,
-  MirPalace,
-  NunhartPalace,
-  ParkBolteniki,
-  ParkZhilibera,
-  SecondGrave,
   Students,
-  ThirdGrave,
   User,
   Virtual,
   VirtualExcursionGrodno,
@@ -48,28 +44,28 @@ export const router = createBrowserRouter([
         element: <VirtualExcursionGrodno />,
       },
       {
+        path: '/virtual/grodno/avgustovskiy-kanal',
+        element: <Excursion data={grodnoConfig[0]} />,
+      },
+      {
         path: '/virtual/grodno/park-zhilibera',
-        element: <ParkZhilibera />,
+        element: <Excursion data={grodnoConfig[1]} />,
       },
       {
         path: '/virtual/grodno/park-bolteniki',
-        element: <ParkBolteniki />,
-      },
-      {
-        path: '/virtual/grodno/avgustovskiy-kanal',
-        element: <AvgustovskiyKanal />,
+        element: <Excursion data={grodnoConfig[2]} />,
       },
       {
         path: '/virtual/voronovo/first-grave',
-        element: <FirstGrave />,
+        element: <ExcursionVoronovo data={gravesConfig[0]} />,
       },
       {
         path: '/virtual/voronovo/second-grave',
-        element: <SecondGrave />,
+        element: <ExcursionVoronovo data={gravesConfig[1]} />,
       },
       {
         path: '/virtual/voronovo/third-grave',
-        element: <ThirdGrave />,
+        element: <ExcursionVoronovo data={gravesConfig[2]} />,
       },
       {
         path: '/virtual/palaces',
@@ -77,15 +73,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/virtual/palaces/mir',
-        element: <MirPalace />,
+        element: <Excursion data={palacesConfig[0]} />,
       },
       {
         path: '/virtual/palaces/lida',
-        element: <LidaPalace />,
+        element: <Excursion data={palacesConfig[1]} />,
       },
       {
         path: '/virtual/palaces/nunhart',
-        element: <NunhartPalace />,
+        element: <Excursion data={palacesConfig[2]} />,
       },
       {
         path: '/virtual/palaces/quiz',

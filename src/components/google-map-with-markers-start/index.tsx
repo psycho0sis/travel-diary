@@ -5,7 +5,7 @@ import { Loader } from 'components/ui/loader';
 
 import { ICoordinates, IMapProps } from './types';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) => {
   const [selectedMarker, setSelectedMarker] = useState<ICoordinates | null>(null);
@@ -22,7 +22,7 @@ export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) 
     );
 
   return (
-    <GoogleMap center={center} zoom={zoom} mapContainerClassName='map-container'>
+    <GoogleMap center={center} zoom={zoom} mapContainerClassName={styles.mapContainer}>
       {markers.map(({ id, description, name, position }) => (
         <MarkerF
           key={id}

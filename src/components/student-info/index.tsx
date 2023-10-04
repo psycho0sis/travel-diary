@@ -1,11 +1,11 @@
 import { type FC } from 'react';
-import Alert from 'react-bootstrap/Alert';
 
+import { CustomAlert } from 'components/ui/alert';
 import { Loader } from 'components/ui/loader';
 import { UserData } from 'components/user/user-data';
 import { useGetCurrentUser } from 'hooks/use-get-current-user';
 
-import { StudentExcursionsTable } from './student-excursions';
+import { StudentExcursionsTable } from './components/student-excursions';
 
 import styles from './styles.module.scss';
 
@@ -17,28 +17,16 @@ interface IStudentsExcursions {
 export const StudentInfo: FC<IStudentsExcursions> = ({ name, surname }) => {
   const { currentUser, error, loading } = useGetCurrentUser(name, surname);
 
-  if (error) {
-    return (
-      <Alert className='mt-3' variant='danger'>
-        Извините, что-то пошло не так. Возможно такого пользователя не существует.
-      </Alert>
-    );
-  }
-
   return (
-    <div className={styles.user}>
-      {!loading ? (
-        <>
-          {currentUser && (
-            <>
-              <UserData {...currentUser} />
-              <StudentExcursionsTable name={currentUser.name} surname={currentUser.surname} />
-            </>
-          )}
-        </>
-      ) : (
-        <Loader />
+    <>
+      {loading && <Loader />}
+      {currentUser && (
+        <div className={styles.user}>
+          <UserData {...currentUser} />
+          <StudentExcursionsTable name={currentUser.name} surname={currentUser.surname} />
+        </div>
       )}
-    </div>
+      <CustomAlert isShown={error} text='Возможно такого пользователя не существует.' />
+    </>
   );
 };

@@ -1,34 +1,37 @@
-import { type FocusEvent,FormEvent, useState } from 'react';
+import { type FocusEvent, FormEvent, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
+import { CustomAlert } from 'components/ui/alert';
 import { Title } from 'components/ui/title';
 import { createPassword } from 'helpers/create-password';
 import { onFocus } from 'helpers/form-helpers';
 import type { IUser } from 'hooks/types';
-import { fetchExcursions } from 'store/features/excursions/excursions-action';
+import { useLoadStudents } from 'hooks/use-load-students-group';
 import { fetchStudents } from 'store/features/students/students-action';
 import { useAppDispatch } from 'store/hooks';
 
 import { db } from '../../../firebase';
-import { useLoadStudents } from '../hooks/use-load-students-group';
 
 import { StudentsMapper } from './students-mapper.tsx';
 
+const DEFAULT_USER: IUser = {
+  name: '',
+  surname: '',
+  role: 'student',
+  email: '',
+  password: '',
+  photo: '',
+};
+
 export const TeacherBlock = () => {
-  const [student, setStudent] = useState<IUser>({
-    name: '',
-    surname: '',
-    role: 'student',
-    email: '',
-    password: '',
-    photo: '',
-  });
+  const [student, setStudent] = useState<IUser>(DEFAULT_USER);
   const [isStudentAdded, setIsStudentAdded] = useState(false);
   const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState('');
   const { students, asyncStatus: status } = useLoadStudents();
   const dispatch = useAppDispatch();
 
@@ -53,53 +56,39 @@ export const TeacherBlock = () => {
     event.preventDefault();
 
     if (!checkIfStudentDataReady(student)) {
+      setError(true);
+      setErrorText('Нужно заполнить поля');
       return;
     }
 
-    try {
-      if (checkIfStudentDataReady(student)) {
-        await setDoc(doc(db, 'children', student.email), {
-          name: student.name,
-          surname: student.surname,
-          role: 'student',
-          email: student.email,
-          password: createPassword(student.name, student.surname),
-          photo: '',
-        });
+    await setDoc(doc(db, 'children', student.email), {
+      name: student.name,
+      surname: student.surname,
+      role: 'student',
+      email: student.email,
+      password: createPassword(student.name, student.surname),
+      photo: '',
+    });
 
-        const auth = getAuth();
+    const auth = getAuth();
 
-        createUserWithEmailAndPassword(
-          auth,
-          student.email,
-          createPassword(student.name, student.surname)
-        )
-          .then(() => {
-            setIsStudentAdded(true);
-
-            setStudent({
-              name: '',
-              surname: '',
-              role: 'student',
-              email: '',
-              password: '',
-              photo: '',
-            });
-            dispatch(fetchStudents(''));
-            dispatch(fetchExcursions({ name: student.name, surname: student.surname }));
-          })
-          .catch((error) => {
-            if (error.code === 'auth/email-already-in-use') {
-              setError(true);
-              setIsStudentAdded(false);
-            }
-          });
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
-    }
+    createUserWithEmailAndPassword(
+      auth,
+      student.email,
+      createPassword(student.name, student.surname)
+    )
+      .then(() => {
+        setIsStudentAdded(true);
+        setStudent(DEFAULT_USER);
+        dispatch(fetchStudents(''));
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          setError(true);
+          setErrorText('Такой email уже используется!');
+          setIsStudentAdded(false);
+        }
+      });
   };
 
   return (
@@ -147,9 +136,11 @@ export const TeacherBlock = () => {
           Добавьте нового ученика
         </Button>
 
-        {error && <Alert variant='danger'>Такой email уже используется!</Alert>}
+        <CustomAlert isShown={error} text={errorText} />
         {!error && isStudentAdded && (
-          <Alert variant='success'>Новый ученик успешно добавлен в группу!</Alert>
+          <Alert dismissible variant='success'>
+            Новый ученик успешно добавлен в группу!
+          </Alert>
         )}
       </Form>
     </>

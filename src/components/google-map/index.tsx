@@ -1,7 +1,6 @@
-import Alert from 'react-bootstrap/Alert';
-
 import { Map } from 'components/google-map-with-markers-start';
 import { IMarker } from 'components/google-map-with-markers-start/types';
+import { CustomAlert } from 'components/ui/alert';
 
 export const GoogleMaps = ({
   center,
@@ -14,14 +13,12 @@ export const GoogleMaps = ({
 }) => {
   const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-  console.log(googleMapsApiKey);
-
   if (googleMapsApiKey === undefined) {
-    return (
-      <Alert className='mt-3' variant='danger'>
-        Ой..что-то случилось с картой.
-      </Alert>
-    );
+    return <CustomAlert isShown={googleMapsApiKey === undefined} text='API-ключ не найден' />;
   }
-  return <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />;
+  return (
+    <>
+      <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />
+    </>
+  );
 };

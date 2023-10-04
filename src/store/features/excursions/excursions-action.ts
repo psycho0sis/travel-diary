@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getStudentsExcursionsDataFromDB } from 'api/get-students-excursions-data-from-db';
+import { getStudentByCredentialsFromDB } from 'api/get-students-excursions-data-from-db';
 import type { IExcursion } from 'hooks/types';
 
 import { IAsyncExcursionsSlice } from './excursions-slice';
@@ -14,7 +14,7 @@ export const fetchExcursions = createAsyncThunk<
 >(
   'excursions/fetchExcursions',
   async ({ name, surname }: { name: string; surname: string }) => {
-    const data = (await getStudentsExcursionsDataFromDB(name, surname)).excursions as IExcursion[];
+    const data = (await getStudentByCredentialsFromDB(name, surname)).excursions as IExcursion[];
 
     return data;
   },

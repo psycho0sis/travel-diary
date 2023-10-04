@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
 
-import { Item } from './item';
+import { Item } from './components/item';
 import { IQuiz, TQuestions } from './types';
 
 import styles from './styles.module.scss';
@@ -31,7 +31,9 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
   return (
     <div className={styles.quiz}>
       <BackButton text='Назад' />
+
       <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
+
       <Form>
         {data.map((item) => (
           <Item

@@ -17,7 +17,7 @@ module.exports = {
               // Packages `react` related packages come first.
               ['^react|react-router-dom|date-fns', '^@?\\w'],
               // Internal packages.
-              ['^(@|assets|components|hooks|pages|store|helpers|api)(/.*|$)'],
+              ['^(@|assets|components|constants|hooks|pages|store|helpers|api)(/.*|$)'],
               // Side effect imports.
               ['^\\u0000'],
               // Parent imports. Put `..` last.

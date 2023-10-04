@@ -6,6 +6,7 @@ export const getUserDataFromDB = async (email: string) => {
   try {
     const q = query(collection(db, 'children'), where('email', '==', email));
 
+    // throw new Error();
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs[0].data();

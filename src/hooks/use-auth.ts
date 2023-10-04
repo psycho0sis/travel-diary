@@ -7,8 +7,8 @@ import { isLoggedIn, startSession } from '../session';
 export const useAuth = () => {
   const navigate = useNavigate();
 
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,20 +22,13 @@ export const useAuth = () => {
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (!email) {
-      setEmailError(true);
+    if (!email && !password) {
+      setError(true);
+      setEmailError('Заполните поле емейла');
+      setPasswordError('Заполните поле пароля');
 
       return;
     }
-
-    if (!password) {
-      setPasswordError(true);
-
-      return;
-    }
-
-    setEmailError(false);
-    setPasswordError(false);
 
     try {
       const loginResponse = await signInUser(email, password);
@@ -44,31 +37,25 @@ export const useAuth = () => {
       navigate('/user');
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(error.message);
-
+        if (error.message.includes('auth/wrong-password')) {
+          console.error(error.message);
+          setError(true);
+          setEmailError('Email не валиден');
+          setPasswordError('Неверный пароль');
+        }
         setError(true);
       }
     }
   };
 
-  const onBlur = (event: FocusEvent<HTMLInputElement>) => {
-    if (!event.target.value && event.target.type === 'email') {
-      setEmailError(true);
-    } else if (!event.target.value && event.target.type === 'password') {
-      setPasswordError(true);
-    }
-
-    return;
-  };
-
   const handleChangeEmail = (event: FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-    setEmailError(false);
+    setEmailError('');
   };
 
-  const handleChangeError = (event: FocusEvent<HTMLInputElement>) => {
+  const handleChangePassword = (event: FocusEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    setPasswordError(false);
+    setPasswordError('');
   };
 
   return {
@@ -78,8 +65,7 @@ export const useAuth = () => {
     email,
     password,
     onSubmit,
-    onBlur,
     handleChangeEmail,
-    handleChangeError,
+    handleChangePassword,
   };
 };

@@ -1,4 +1,5 @@
-import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -32,19 +33,22 @@ export const Header = () => {
             <div className={styles.menuButtonLine}></div>
           </div>
 
-          <nav className={classNames(styles.navigation, { [styles.open]: isBurgerMenuOpen })}>
+          <Navbar
+            className={classNames(styles.navigation, {
+              [styles.open]: isBurgerMenuOpen,
+            })}
+            role='navigation'
+          >
             {navigation.map(({ id, route, title }) => (
-              <Button
+              <Nav.Link
                 key={id}
-                variant={pathname === route ? 'warning' : 'link'}
-                size='sm'
                 href={route}
-                className='text-dark'
+                className={classNames({ [styles.active]: pathname === route })}
               >
                 {title}
-              </Button>
+              </Nav.Link>
             ))}
-          </nav>
+          </Navbar>
         </div>
       </div>
     </>

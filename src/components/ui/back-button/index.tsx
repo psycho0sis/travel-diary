@@ -11,17 +11,17 @@ interface IBackButton {
 export const BackButton: FC<IBackButton> = ({ text, route }) => {
   const navigate = useNavigate();
 
-  return (
-    <div className={styles.backBtnWrapper}>
-      {route ? (
-        <Link className={styles.backBtn} to={route}>
-          {text}
-        </Link>
-      ) : (
-        <div className={styles.backBtn} onClick={() => navigate(-1)}>
-          {text}
-        </div>
-      )}
+  const linkButton = route && (
+    <Link className={styles.backBtn} to={route}>
+      {text}
+    </Link>
+  );
+
+  const divButton = (
+    <div className={styles.backBtn} onClick={() => navigate(-1)}>
+      {text}
     </div>
   );
+
+  return <div className={styles.backBtnWrapper}>{linkButton || divButton}</div>;
 };

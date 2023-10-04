@@ -1,9 +1,8 @@
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-import { Input } from 'components/ui/input';
+import { CustomAlert } from 'components/ui/alert';
 import { Title } from 'components/ui/title';
-import { onFocus } from 'helpers/form-helpers';
 import { useAuth } from 'hooks/use-auth';
 
 import styles from './styles.module.scss';
@@ -16,49 +15,43 @@ export const AuthForm = () => {
     email,
     password,
     onSubmit,
-    onBlur,
     handleChangeEmail,
-    handleChangeError,
+    handleChangePassword,
   } = useAuth();
 
-  if (error) {
-    return (
-      <Alert className='mt-3' variant='danger'>
-        Извините, что-то пошло не так... Возможно такого пользователя не существует.
-      </Alert>
-    );
-  }
-
   return (
-    <>
+    <Form onSubmit={onSubmit} className={styles.form}>
       <Title fontSize={28}>Войдите в свой аккаунт</Title>
-      <form className={styles.form}>
-        <Input
-          labelText='Email'
-          value={email}
-          onFocus={onFocus}
-          onBlur={onBlur}
+      <Form.Group controlId='Email'>
+        <Form.Label className={styles.label}>Email</Form.Label>
+        <Form.Control
+          isInvalid={error}
           onChange={handleChangeEmail}
           type='email'
           placeholder='Электронная почта'
-          error={emailError}
+          size='lg'
+          value={email}
         />
-        <Input
-          labelText='Пароль'
-          value={password}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onChange={handleChangeError}
+      </Form.Group>
+      <Form.Group controlId='Пароль'>
+        <Form.Label className={styles.label}>Пароль</Form.Label>
+        <Form.Control
+          isInvalid={error}
+          onChange={handleChangePassword}
           type='password'
           placeholder='Пароль'
-          error={passwordError}
+          size='lg'
+          value={password}
         />
-        <div className='d-grid mt-3'>
-          <Button variant={'dark'} size='lg' onClick={onSubmit}>
-            Войти
-          </Button>
-        </div>
-      </form>
-    </>
+      </Form.Group>
+
+      <Button className='d-grid mt-3 mb-3' variant={'dark'} size='lg' type='submit'>
+        Войти
+      </Button>
+      <CustomAlert
+        isShown={error}
+        text={emailError || passwordError || 'Возможно такого пользователя не существует.'}
+      />
+    </Form>
   );
 };

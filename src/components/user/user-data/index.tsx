@@ -5,8 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Title } from 'components/ui/title';
 import { onFocus } from 'helpers/form-helpers';
 import { IUser } from 'hooks/types';
-
-import { useUploadUserPhoto } from '../hooks/use-upload-user-photo';
+import { useUploadUserPhoto } from 'hooks/use-upload-user-photo';
 
 import styles from './styles.module.scss';
 
@@ -16,6 +15,7 @@ export const UserData: FC<IUser> = ({ email, name, surname, role, showAvatarBloc
   return (
     <div className={styles.header}>
       <img className={styles.userImage} src={currentUserPhoto} />
+
       <div className={styles.userData}>
         <Title fontSize={24}>Ваши данные: </Title>
         <div className={styles.userDataGroup}>
@@ -30,12 +30,14 @@ export const UserData: FC<IUser> = ({ email, name, surname, role, showAvatarBloc
           <p className={styles.userDataSubtitle}>Электронная почта:</p>
           <span className={styles.userDataItem}>{email}</span>
         </div>
+
         {role === 'teacher' && (
           <div className={styles.userDataGroup}>
             <p className={styles.userDataSubtitle}>Роль:</p>
             <span className={styles.userDataItem}>Руководитель проекта</span>
           </div>
         )}
+
         {showAvatarBlock && (
           <Form className='mt-3' onSubmit={onSubmit}>
             <Form.Group controlId='formFileMultiple' className='mb-3'>

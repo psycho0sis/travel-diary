@@ -1,9 +1,9 @@
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const Loader = () => (
   <svg
     version='1.1'
-    className='svg-loader'
+    className={styles.svgLoader}
     xmlns='http://www.w3.org/2000/svg'
     xmlnsXlink='http://www.w3.org/1999/xlink'
     x='0px'

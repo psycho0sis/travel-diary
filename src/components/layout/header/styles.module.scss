@@ -18,13 +18,12 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    font-size: 18px !important;
   }
 
   & .navigation .active {
-    background-color: #e1a509;
-    padding: 10px;
-    border-radius: 4px;
-    color: #fffbf0;
+    font-weight: 500;
+    border-bottom: 2px solid #000;
   }
 }
 
