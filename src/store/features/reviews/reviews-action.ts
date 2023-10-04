@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { getReviewsFromDB } from 'api/get-reviews-from-db';
 import { sortArrayByDate } from 'helpers/sort-array-by-date';
 import type { TReview } from 'hooks/types';

@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyC6L7xOOcYmBk9qjMWHYnAmnA0e1zFRc0A',
+  apiKey: 'AIzaSyADzIT4DkKyedM4oBGXkLPJdhnop3Ma9Tk',
   authDomain: 'travel-diary-3bb0c.firebaseapp.com',
   projectId: 'travel-diary-3bb0c',
   storageBucket: 'travel-diary-3bb0c.appspot.com',

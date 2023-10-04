@@ -4,10 +4,9 @@ export interface ICoordinates {
 }
 
 export interface IMarker {
-  id: number;
-  img?: string;
+  id?: number;
   description: string;
-  name: string;
+  name?: string;
   position: ICoordinates;
 }
 

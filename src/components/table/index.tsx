@@ -1,11 +1,12 @@
 import type { FC } from 'react';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
 import { Column, useSortBy, useTable } from 'react-table';
+
 import type { IExcursion } from 'hooks/types';
 
 import { ISortableTable } from './types';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   {
@@ -27,7 +28,7 @@ export const SortableTable: FC<ISortableTable> = ({ excursions }) => {
   );
 
   return (
-    <div className='table__wrapper'>
+    <div className={styles.tableWrapper}>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -53,6 +54,7 @@ export const SortableTable: FC<ISortableTable> = ({ excursions }) => {
             </tr>
           ))}
         </thead>
+
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
             prepareRow(row);

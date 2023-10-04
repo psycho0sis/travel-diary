@@ -1,0 +1,13 @@
+.mapWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 24px;
+
+  & .map-container {
+    max-width: 570px;
+    width: 100%;
+  }
+}

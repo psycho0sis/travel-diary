@@ -1,9 +1,11 @@
 import type { FC, ReactNode } from 'react';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 interface IProps {
   children: ReactNode;
 }
 
-export const Container: FC<IProps> = ({ children }) => <div className='container'>{children}</div>;
+export const Container: FC<IProps> = ({ children }) => (
+  <div className={styles.container}>{children}</div>
+);

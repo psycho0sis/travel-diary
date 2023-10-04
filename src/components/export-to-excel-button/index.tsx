@@ -1,7 +1,8 @@
 import { Button } from 'react-bootstrap';
-import * as FileSaver from 'file-saver';
+
+import { prepareExcelData } from 'helpers/prepare-excel-data';
 import type { IExcursion } from 'hooks/types';
-import { utils, write } from 'sheetjs-style';
+import { useExportToExcel } from 'hooks/use-export-to-excel';
 
 export const ExportToExcelButton = ({
   excelData,
@@ -10,24 +11,7 @@ export const ExportToExcelButton = ({
   excelData: IExcursion[];
   fileName: string;
 }) => {
-  const fileType =
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-  const fileExtension = '.xlsx';
-
-  const prepareExcelData = (excelData: IExcursion[]) =>
-    excelData.map((excursion) => ({
-      Дата: excursion.date,
-      Маршрут: excursion.excursion,
-    }));
-
-  const exportToExcel = () => {
-    const ws = utils.json_to_sheet(prepareExcelData(excelData));
-    const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
-    const excelBuffer = write(wb, { bookType: 'xlsx', type: 'array' });
-    const data = new Blob([excelBuffer], { type: fileType });
-
-    FileSaver.saveAs(data, fileName + fileExtension);
-  };
+  const exportToExcel = useExportToExcel(prepareExcelData(excelData), fileName);
 
   return (
     <Button className='mt-3' onClick={exportToExcel} variant='dark'>

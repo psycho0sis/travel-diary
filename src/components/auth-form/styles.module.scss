@@ -1,0 +1,19 @@
+.form {
+  font-family: Roboto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  padding: 42px;
+  margin: 45px auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 40%);
+  box-shadow: 8px 4px 44px -4px rgb(88 98 105 / 7%);
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+}

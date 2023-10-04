@@ -1,5 +1,6 @@
 import { Map } from 'components/google-map-with-markers-start';
 import { IMarker } from 'components/google-map-with-markers-start/types';
+import { CustomAlert } from 'components/ui/alert';
 
 export const GoogleMaps = ({
   center,
@@ -13,7 +14,11 @@ export const GoogleMaps = ({
   const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   if (googleMapsApiKey === undefined) {
-    return <div>Error</div>;
+    return <CustomAlert isShown={googleMapsApiKey === undefined} text='API-ключ не найден' />;
   }
-  return <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />;
+  return (
+    <>
+      <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />
+    </>
+  );
 };

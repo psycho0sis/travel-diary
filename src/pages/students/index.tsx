@@ -1,5 +1,3 @@
 import { StudentsMapper } from 'components/students-mapper';
 
-export const Students = () => {
-  return <StudentsMapper />;
-};
+export const Students = () => <StudentsMapper />;

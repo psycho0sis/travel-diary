@@ -1,11 +1,11 @@
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import { onFocus } from 'helpers/form-helpers';
+import Form from 'react-bootstrap/Form';
+
+import { CustomAlert } from 'components/ui/alert';
+import { Title } from 'components/ui/title';
 import { useAuth } from 'hooks/use-auth';
 
-import { Title } from 'components/ui/title';
-
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const AuthForm = () => {
   const {
@@ -15,61 +15,43 @@ export const AuthForm = () => {
     email,
     password,
     onSubmit,
-    onBlur,
-    setEmail,
-    setEmailError,
-    setPassword,
-    setPasswordError,
+    handleChangeEmail,
+    handleChangePassword,
   } = useAuth();
 
-  if (error) {
-    return (
-      <Alert className='mt-3' variant='danger'>
-        Извините, что-то пошло не так/ Возможно такого пользователя не существует.
-      </Alert>
-    );
-  }
-
   return (
-    <>
+    <Form onSubmit={onSubmit} className={styles.form}>
       <Title fontSize={28}>Войдите в свой аккаунт</Title>
-      <form className='form'>
-        <label className='form__label'>Email</label>
-        <input
-          autoComplete='email'
-          value={email}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setEmailError(false);
-          }}
+      <Form.Group controlId='Email'>
+        <Form.Label className={styles.label}>Email</Form.Label>
+        <Form.Control
+          isInvalid={error}
+          onChange={handleChangeEmail}
           type='email'
           placeholder='Электронная почта'
-          className={emailError ? 'form__input form__input--error' : 'form__input'}
+          size='lg'
+          value={email}
         />
-        {emailError && <span className='form__error-text'>Введите значение</span>}
-        <label className='form__label'>Пароль</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId='Пароль'>
+        <Form.Label className={styles.label}>Пароль</Form.Label>
+        <Form.Control
+          isInvalid={error}
+          onChange={handleChangePassword}
           type='password'
-          autoComplete='new-password'
-          value={password}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setPasswordError(false);
-          }}
           placeholder='Пароль'
-          className={passwordError ? 'form__input form__input--error' : 'form__input'}
+          size='lg'
+          value={password}
         />
-        {passwordError && <span className='form__error-text'>Введите значение</span>}
-        <div className='d-grid mt-3'>
-          <Button variant={'dark'} size='lg' onClick={onSubmit}>
-            Войти
-          </Button>
-        </div>
-      </form>
-    </>
+      </Form.Group>
+
+      <Button className='d-grid mt-3 mb-3' variant={'dark'} size='lg' type='submit'>
+        Войти
+      </Button>
+      <CustomAlert
+        isShown={error}
+        text={emailError || passwordError || 'Возможно такого пользователя не существует.'}
+      />
+    </Form>
   );
 };

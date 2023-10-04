@@ -1,32 +1,31 @@
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { useNavigate } from 'react-router-dom';
+
+import { GoogleMaps } from 'components/google-map';
+import { StudentExcursionsTable } from 'components/student-info/components/student-excursions';
+import { CustomAlert } from 'components/ui/alert';
+import { Loader } from 'components/ui/loader';
+import { Title } from 'components/ui/title';
+import { useLoadMarkers } from 'hooks/use-load-markers';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 import { fetchExcursions } from 'store/features/excursions/excursions-action';
 import { useAppDispatch } from 'store/hooks';
 
-import { GoogleMaps } from 'components/google-map';
-import { StudentExcursionsTable } from 'components/student-info/student-excursions';
-import { Loader } from 'components/ui/loader';
-import { Title } from 'components/ui/title';
-
 import { endSession } from '../../session';
 
-import { useLoadMarkers } from './hooks/use-load-markers';
 import { ExcursionForm } from './excursion-form';
 import { TeacherBlock } from './teacher-block';
 import { UserData } from './user-data';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const User = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
   const { user, loading, error, isTeacher } = useLoadUserData();
   const { currentMarkers } = useLoadMarkers(user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onLogout = () => {
     endSession();
@@ -36,38 +35,22 @@ export const User = () => {
   const addMarkerToTheMap = (name: string, surname: string) =>
     dispatch(fetchExcursions({ name, surname }));
 
-  const handleOnclick = () => {
-    onLogout();
-  };
-
-  if (error) {
-    return (
-      <div className='mb-3'>
-        <Alert variant='warning'>
-          Извините, что-то пошло не так и мы не можем загрузить данные пользователя
-        </Alert>
-        <Button onClick={handleOnclick} variant='dark'>
-          Попробовать войти еще раз
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <div className='user'>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
+    <>
+      {loading && <Loader />}
+      {user.email && (
+        <div className={styles.user}>
           <Tabs defaultActiveKey='userdata' id='uncontrolled-tab-example' className='mb-3'>
             <Tab eventKey='userdata' title='Данные пользователя'>
               <UserData {...user} />
             </Tab>
+
             {isTeacher && (
               <Tab eventKey='teacherBlock' title='Группа и управление'>
                 <TeacherBlock />
               </Tab>
             )}
+
             <Tab eventKey='excursions' title='Посещенные экскурсии'>
               <Title fontSize={22}>Посещенные объекты:</Title>
               <GoogleMaps
@@ -86,8 +69,16 @@ export const User = () => {
           <Button as='a' className='mt-5' variant='dark' onClick={onLogout}>
             Выйти из аккаунта
           </Button>
+        </div>
+      )}
+      {error && (
+        <>
+          <CustomAlert isShown={error} text='Mы не можем загрузить данные пользователя' />
+          <Button onClick={onLogout} variant='dark'>
+            Попробовать войти еще раз
+          </Button>
         </>
       )}
-    </div>
+    </>
   );
 };

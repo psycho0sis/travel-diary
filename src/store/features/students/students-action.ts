@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
 import type { IUser } from 'hooks/types';
 

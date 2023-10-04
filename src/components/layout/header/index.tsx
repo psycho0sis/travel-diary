@@ -1,81 +1,54 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
 import logo from 'assets/logo.png';
+import { useToggleMenu } from 'hooks/use-toggle-menu';
 
-import './styles.scss';
+import { navigation } from './config';
 
-export const navigation = [
-  {
-    id: 0,
-    route: '/',
-    title: 'Главная',
-  },
-  {
-    id: 1,
-    route: '/virtual',
-    title: 'Виртуальные экскурсии',
-  },
-  {
-    id: 2,
-    route: '/students',
-    title: 'Ученики',
-  },
-  {
-    id: 3,
-    route: '/user',
-    title: 'Личный кабинет',
-  },
-];
+import styles from './styles.module.scss';
 
 export const Header = () => {
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const { pathname } = useLocation();
-
+  const { toggleMenu, isBurgerMenuOpen, pathname } = useToggleMenu();
   const navigate = useNavigate();
-
-  const toggleMenu = (e: React.MouseEvent<Element, MouseEvent>) => {
-    const overlay = document.querySelector('.overlay');
-
-    setIsBurgerMenuOpen((prev) => !prev);
-    if (!isBurgerMenuOpen) {
-      (e.currentTarget as HTMLElement).classList.add('close');
-      overlay?.classList.add('active');
-      setIsBurgerMenuOpen(true);
-    } else {
-      (e.currentTarget as HTMLElement).classList.remove('close');
-      overlay?.classList.remove('active');
-      setIsBurgerMenuOpen(false);
-    }
-  };
 
   return (
     <>
-      <div className='overlay' onClick={toggleMenu} />
-      <div className='header'>
-        <div className='header__content'>
-          <img className='header__logo' src={logo} onClick={() => navigate('/')} />
+      <div
+        className={classNames(styles.overlay, { [styles.active]: isBurgerMenuOpen })}
+        onClick={toggleMenu}
+      />
+      <div className={styles.header}>
+        <div className={styles.content}>
+          <img className={styles.logo} src={logo} onClick={() => navigate('/')} />
 
-          <div className='menu-button' onClick={toggleMenu}>
-            <div className='menu-button-line'></div>
-            <div className='menu-button-line'></div>
-            <div className='menu-button-line'></div>
+          <div
+            className={classNames(styles.menuButton, { [styles.close]: isBurgerMenuOpen })}
+            onClick={toggleMenu}
+          >
+            <div className={styles.menuButtonLine}></div>
+            <div className={styles.menuButtonLine}></div>
+            <div className={styles.menuButtonLine}></div>
           </div>
 
-          <nav className={isBurgerMenuOpen ? 'header__navigation open' : 'header__navigation'}>
+          <Navbar
+            className={classNames(styles.navigation, {
+              [styles.open]: isBurgerMenuOpen,
+            })}
+            role='navigation'
+          >
             {navigation.map(({ id, route, title }) => (
-              <Button
+              <Nav.Link
                 key={id}
-                variant={pathname === route ? 'warning' : 'link'}
-                size='sm'
                 href={route}
-                className='text-dark'
+                className={classNames({ [styles.active]: pathname === route })}
               >
                 {title}
-              </Button>
+              </Nav.Link>
             ))}
-          </nav>
+          </Navbar>
         </div>
       </div>
     </>

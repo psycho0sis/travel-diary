@@ -3,20 +3,20 @@ import Button from 'react-bootstrap/Button';
 
 import { IVirtualExcursions } from './types';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const VirtualExcursions: FC<IVirtualExcursions> = ({ excursions }) => {
   return (
-    <div className='excursions'>
-      {excursions.map(({ id, description, title, img, route }) => (
-        <div key={id} className='excursions__wrapper'>
-          <div className='item__header'>
-            <h3 className='item__title'>{title}</h3>
+    <div className={styles.excursions}>
+      {excursions.map(({ id, description, title, previewImg, route }) => (
+        <div key={id} className={styles.wrapper}>
+          <div className={styles.header}>
+            <h3 className={styles.title}>{title}</h3>
           </div>
-          <div className='item__content'>
-            <p className='item__description'>{description}</p>
-            <div className='item__image'>
-              <img src={img} alt={title} />
+          <div className={styles.content}>
+            <p className={styles.description}>{description}</p>
+            <div className={styles.image}>
+              <img src={previewImg} alt={title} />
             </div>
           </div>
 

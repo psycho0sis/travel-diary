@@ -1,4 +1,4 @@
-export interface IQuizItem {
+export interface IQuizData {
   id: string;
   question: string;
   correctAnswer: string;
@@ -6,17 +6,13 @@ export interface IQuizItem {
 }
 
 export interface IQuiz {
-  data: IQuizItem[];
+  data: IQuizData[];
 }
 
 export type TQuestions = Record<string, { selectedAnswer: string; correctAnswer: boolean }>;
 
-export interface IItem {
-  id: string;
+export interface IQuizItem extends IQuizData {
   disabled: boolean;
-  question: string;
   questions: TQuestions;
-  answers: string[];
-  correctAnswer: string;
   setQuestions: React.Dispatch<React.SetStateAction<TQuestions>>;
 }

@@ -1,30 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-
 import { StudentInfo } from 'components/student-info';
+import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
+import { useStudentsCredentials } from 'hooks/use-students-credentials';
 
-export const Excursions = () => {
-  const { id } = useParams();
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (id) {
-      setName(id.split('-')[0]);
-      setSurname(id.split('-')[1]);
-    }
-  }, []);
+export const CertainStudentExcursions = () => {
+  const { name, surname } = useStudentsCredentials();
 
   return (
     <>
-      <div className='excursion__back-btn-wrapper'>
-        <div className='excursion__back-btn' onClick={() => navigate(-1)}>
-          Назад
-        </div>
-      </div>
+      <BackButton text='Назад' />
       <Title>Экскурсии, в которых участвовал ученик</Title>
       <StudentInfo name={name} surname={surname} />
     </>

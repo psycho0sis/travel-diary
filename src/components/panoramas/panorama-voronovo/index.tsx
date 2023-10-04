@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 export const PanoramaVoronovo = ({ panorama }: { panorama: string }) => {
   const photoSphereRef = useRef<HTMLDivElement>();
@@ -20,19 +20,17 @@ export const PanoramaVoronovo = ({ panorama }: { panorama: string }) => {
   }, [photoSphereRef]);
 
   return (
-    <>
-      <div className='panoramas'>
-        <ReactPhotoSphereViewer
-          ref={photoSphereRef}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          container='div'
-          src={panorama}
-          width='640'
-          height='240'
-          defaultZoomLvl={10}
-        />
-      </div>
-    </>
+    <div className={styles.panorama}>
+      <ReactPhotoSphereViewer
+        ref={photoSphereRef}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        container='div'
+        src={panorama}
+        width='640'
+        height='240'
+        defaultZoomLvl={10}
+      />
+    </div>
   );
 };
