@@ -1,0 +1,15 @@
+.likeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+  gap: 0 6px;
+  width: 86px;
+  border-radius: 30px;
+  background-color: #71866773;
+  align-self: flex-end;
+
+  & svg {
+    cursor: pointer;
+  }
+}
