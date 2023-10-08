@@ -15,10 +15,27 @@ export interface IUser {
   showAvatarBlock?: boolean;
 }
 
-export type TReview = {
-  id: number;
+export type TReviewLikes = {
+  userEmails: string[];
+  likes: number;
+};
+
+export type TReviewDate = {
+  id: string;
   date: string;
   excursion: string;
   email: string;
   review: string;
+  reviewLikes: TReviewLikes;
 };
+
+export type TReview = {
+  id: string;
+  data: TReviewDate;
+};
+
+export interface ILikes {
+  likes: TReviewLikes;
+  reviewsDocumentId: string;
+  reviewsCollectionId: string;
+}

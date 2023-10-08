@@ -14,7 +14,7 @@ export const getReviewsFromDB: TGetReviewsFromDb = async (excursion) => {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      reviews.push(doc.data() as TReview);
+      reviews.push({ id: doc.id, data: doc.data() } as TReview);
     });
 
     return reviews;

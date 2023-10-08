@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getReviewsFromDB } from 'api/get-reviews-from-db';
 import { sortArrayByDate } from 'helpers/sort-array-by-date';
-import type { TReview } from 'hooks/types';
+import type { TReview,TReviewDate } from 'hooks/types';
 
 import { IAsyncReviewsSlice } from './reviews-slice';
 
@@ -15,7 +15,7 @@ export const fetchReviews = createAsyncThunk<
   async (excursion: string) => {
     const data = (await getReviewsFromDB(excursion)) as TReview[];
 
-    return sortArrayByDate<TReview>(data);
+    return sortArrayByDate<TReviewDate, TReview>(data);
   },
   {
     condition: (_, { getState }) => {
