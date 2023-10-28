@@ -1,12 +1,15 @@
-import type { FC } from 'react';
+import { useRef, type FC } from 'react';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import { Column, useSortBy, useTable } from 'react-table';
 
 import type { IExcursion } from 'hooks/types';
+import { useDownloadToExcel } from 'hooks/use-download-to-ecxel';
 
 import { ISortableTable } from './types';
 
 import styles from './styles.module.scss';
+import { ExportToExcelButton } from 'components/export-to-excel-button';
 
 export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   {
@@ -21,15 +24,19 @@ export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   },
 ];
 
-export const SortableTable: FC<ISortableTable> = ({ excursions }) => {
+export const SortableTable: FC<ISortableTable> = ({ excursions, userName }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
     { columns, data: excursions },
     useSortBy
   );
 
+  console.log(userName);
+
+  const { tableRef, onDownload } = useDownloadToExcel(userName);
+
   return (
     <div className={styles.tableWrapper}>
-      <table {...getTableProps()}>
+      <table ref={tableRef} {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -69,6 +76,8 @@ export const SortableTable: FC<ISortableTable> = ({ excursions }) => {
           })}
         </tbody>
       </table>
+
+      <ExportToExcelButton onClick={onDownload} />
     </div>
   );
 };

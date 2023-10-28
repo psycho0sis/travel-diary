@@ -16,6 +16,7 @@ interface IStudentsExcursions {
 
 export const StudentExcursionsTable: FC<IStudentsExcursions> = ({ name, surname }) => {
   const [excursions, setExcursions] = useState<IExcursion[]>([]);
+  const userName = `${name} ${surname}`;
 
   const { currentUser } = useGetCurrentUser(name, surname);
   const { handleStartDate, handleEndDate, startDate, endDate } = useDates();
@@ -41,8 +42,7 @@ export const StudentExcursionsTable: FC<IStudentsExcursions> = ({ name, surname 
 
       {excursions && (
         <>
-          <SortableTable excursions={filteredExcursions} />
-          <ExportToExcelButton fileName='filename' excelData={filteredExcursions} />
+          <SortableTable excursions={filteredExcursions} userName={userName} />
         </>
       )}
     </>
