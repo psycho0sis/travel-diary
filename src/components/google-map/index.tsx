@@ -11,7 +11,7 @@ export const GoogleMaps = ({
   markers: IMarker[];
   zoom?: number;
 }) => {
-  const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+  const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
 
   if (googleMapsApiKey === undefined) {
     return <CustomAlert isShown={googleMapsApiKey === undefined} text='API-ключ не найден' />;

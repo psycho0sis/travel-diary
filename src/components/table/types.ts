@@ -35,4 +35,5 @@ declare module 'react-table' {
 
 export interface ISortableTable {
   excursions: IExcursion[];
+  userName: string;
 }
