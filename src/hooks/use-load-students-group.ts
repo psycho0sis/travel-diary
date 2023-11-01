@@ -13,7 +13,7 @@ export const useLoadStudents = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchStudents(''));
+    dispatch(fetchStudents());
   }, []);
 
   useEffect(() => {

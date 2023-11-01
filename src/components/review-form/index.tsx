@@ -1,5 +1,6 @@
 import { type FC } from 'react';
 
+import ErrorBoundary from 'components/ui/error-boundary';
 import { DEFAULT_AVATAR } from 'constants/index';
 import { useIsUserLogged } from 'hooks/use-is-user-logged';
 
@@ -23,7 +24,9 @@ export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
         </div>
         <Form excursion={excursion} />
       </div>
-      <Reviews excursion={excursion} />
+      <ErrorBoundary>
+        <Reviews excursion={excursion} />
+      </ErrorBoundary>
     </div>
   );
 };

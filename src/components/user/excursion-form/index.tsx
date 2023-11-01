@@ -21,7 +21,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
   const [date, setDate] = useState('');
   const [route, setRoute] = useState('');
   const [isRouteAdded, setIsRouteAdded] = useState(false);
-  const { data: students, error, loading } = userUniversalLoader(getStudentsDataFromDB);
+  const { data: students } = userUniversalLoader(getStudentsDataFromDB);
 
   const currentUser = students.find(
     (student) => student.name === name && student.surname === surname
