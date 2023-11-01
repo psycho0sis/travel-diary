@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC,Fragment } from 'react';
 import cn from 'classnames';
 
 import { GoogleMaps } from 'components/google-map';
@@ -39,7 +39,7 @@ export const Excursion: FC<IExcursion> = ({ data }) => {
 
       <div className={styles.excursionContent}>
         {textContent?.map(({ title, paragraph, image }, index) => (
-          <>
+          <Fragment key={index}>
             {title && <h3 className={styles.excursionTitle}>{title}</h3>}
             <p className={styles.excursionText}>{paragraph}</p>
             {image && (
@@ -53,12 +53,14 @@ export const Excursion: FC<IExcursion> = ({ data }) => {
                 src={image}
               />
             )}
-          </>
+          </Fragment>
         ))}
 
         <p className={styles.excursionText}>Всем рекомендуем посетить это чудесное место!</p>
         <div className={styles.photos}>
-          {images?.map((image) => <img className={styles.photo} loading='lazy' src={image} />)}
+          {images?.map((image) => (
+            <img key={image} className={styles.photo} loading='lazy' src={image} />
+          ))}
         </div>
         <ReviewForm excursion={excursion || ''} />
       </div>

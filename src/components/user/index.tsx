@@ -42,7 +42,7 @@ export const User = () => {
         <div className={styles.user}>
           <Tabs defaultActiveKey='userdata' id='uncontrolled-tab-example' className='mb-3'>
             <Tab eventKey='userdata' title='Данные пользователя'>
-              <UserData {...user} />
+              <UserData {...user} showAvatarBlock />
             </Tab>
 
             {isTeacher && (

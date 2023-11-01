@@ -1,15 +1,14 @@
-import { useRef, type FC } from 'react';
+import { type FC } from 'react';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import { Column, useSortBy, useTable } from 'react-table';
 
+import { ExportToExcelButton } from 'components/export-to-excel-button';
 import type { IExcursion } from 'hooks/types';
 import { useDownloadToExcel } from 'hooks/use-download-to-ecxel';
 
 import { ISortableTable } from './types';
 
 import styles from './styles.module.scss';
-import { ExportToExcelButton } from 'components/export-to-excel-button';
 
 export const columns: Column<Omit<IExcursion, 'id'>>[] = [
   {

@@ -53,7 +53,7 @@ export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
         'reviewLikes.userEmails': arrayUnion(email),
       });
 
-      dispatch(fetchReview({ excursion, review }));
+      dispatch(fetchReview({ excursion }));
     }
     setIsLoggedError('Реакции доступны только авторизированным пользователям');
   };
@@ -68,7 +68,7 @@ export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
         'reviewLikes.userEmails': arrayRemove(email),
       });
 
-      dispatch(fetchReview({ excursion, review }));
+      dispatch(fetchReview({ excursion }));
     }
     setIsLoggedError('Реакции доступны только авторизированным пользователям');
   };

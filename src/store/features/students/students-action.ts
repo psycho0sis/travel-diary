@@ -7,7 +7,7 @@ import { IAsyncStudentsSlice } from './students-slice';
 
 export const fetchStudents = createAsyncThunk<
   IUser[],
-  string,
+  string | undefined,
   {
     state: { asyncStudents: IAsyncStudentsSlice };
   }
