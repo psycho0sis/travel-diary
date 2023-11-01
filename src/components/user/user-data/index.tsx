@@ -2,6 +2,7 @@ import { type FC } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import defaultAvatar from 'assets/default-avatar.png';
 import { Title } from 'components/ui/title';
 import { onFocus } from 'helpers/form-helpers';
 import { IUser } from 'hooks/types';
@@ -14,17 +15,17 @@ export const UserData: FC<IUser> = ({ email, name, surname, role, showAvatarBloc
 
   return (
     <div className={styles.header}>
-      <img className={styles.userImage} src={currentUserPhoto} />
+      <img className={styles.userImage} src={currentUserPhoto || defaultAvatar} />
 
       <div className={styles.userData}>
         <Title fontSize={24}>Ваши данные: </Title>
         <div className={styles.userDataGroup}>
           <p className={styles.userDataSubtitle}>Имя:</p>
-          <span className={styles.userDataItem}>{name}</span>
+          <span className={styles.userDataItem}>{name || 'Unknown'}</span>
         </div>
         <div className={styles.userDataGroup}>
           <p className={styles.userDataSubtitle}>Фамилия:</p>
-          <span className={styles.userDataItem}>{surname}</span>
+          <span className={styles.userDataItem}>{surname || 'Unknown'}</span>
         </div>
         <div className={styles.userDataGroup}>
           <p className={styles.userDataSubtitle}>Электронная почта:</p>

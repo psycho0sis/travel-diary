@@ -7,12 +7,12 @@ import { IAsyncReviewSlice } from './review-slice';
 
 export const fetchReview = createAsyncThunk<
   TReview,
-  { excursion: string; review: string },
+  { excursion: string },
   { state: { asyncReview: IAsyncReviewSlice } }
 >(
   'review/fetchReview',
-  async ({ excursion, review }) => {
-    const data = (await getReviewFromDB(excursion, review)) as TReview;
+  async ({ excursion }) => {
+    const data = (await getReviewFromDB(excursion)) as TReview;
 
     return data;
   },

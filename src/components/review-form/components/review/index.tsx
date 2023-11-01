@@ -19,7 +19,7 @@ export const Review: FC<TReview> = ({ id, data }) => {
   const { user } = useIsUserLogged();
   const [isUserAlreadyLiked, setIsUserAlreadyLiked] = useState(false);
 
-  const formattedDate = date && formatDate(date);
+  const formattedDate = date ? formatDate(date) : 'Дата добавление неизвестна';
 
   useEffect(() => {
     if (reviewLikes.userEmails.includes(user.email)) {
