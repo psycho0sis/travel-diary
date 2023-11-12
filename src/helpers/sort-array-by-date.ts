@@ -1,6 +1,6 @@
 export const sortArrayByDate = <
-  K extends Record<string, string | Record<string, string[] | number>>,
-  T extends Record<string, K | string>
+  K extends Record<string, string | Record<string, string[] | number> | string[]>,
+  T extends Record<string, K | string>,
 >(
   arr: T[]
 ) => {

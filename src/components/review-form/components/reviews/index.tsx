@@ -9,7 +9,7 @@ import { useAppDispatch } from 'store/hooks';
 
 import { Review } from '../review';
 
-import styles from '../../styles.module.scss';
+import styles from './styles.module.scss';
 
 interface IReviews {
   excursion: string;

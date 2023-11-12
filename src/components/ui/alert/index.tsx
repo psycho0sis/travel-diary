@@ -7,6 +7,8 @@ interface ICustomAlert {
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | 'light';
 }
 
+import styles from './styles.module.scss';
+
 export const CustomAlert: FC<ICustomAlert> = ({ isShown, text, variant = 'danger' }) => {
   const [show, setShow] = useState(isShown);
 
@@ -15,7 +17,13 @@ export const CustomAlert: FC<ICustomAlert> = ({ isShown, text, variant = 'danger
   }, [isShown]);
 
   return (
-    <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+    <Alert
+      className={styles.alert}
+      variant={variant}
+      show={show}
+      onClose={() => setShow(false)}
+      dismissible
+    >
       <Alert.Heading>Извините, что-то пошло не так.</Alert.Heading>
       <p>{text}</p>
     </Alert>

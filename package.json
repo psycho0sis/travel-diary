@@ -41,7 +41,8 @@
     "vite": "^4.4.11",
     "vite-plugin-svgr": "^4.1.0",
     "vite-tsconfig-paths": "^4.2.1",
-    "xlsx-style-vite": "^0.0.2"
+    "xlsx-style-vite": "^0.0.2",
+    "yet-another-react-lightbox": "^3.15.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
