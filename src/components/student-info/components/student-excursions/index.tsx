@@ -1,7 +1,6 @@
 import { type FC, useEffect, useState } from 'react';
 
 import { DatePicker } from 'components/date-picker';
-import { ExportToExcelButton } from 'components/export-to-excel-button';
 import { SortableTable } from 'components/table';
 import { Title } from 'components/ui/title';
 import type { IExcursion } from 'hooks/types';

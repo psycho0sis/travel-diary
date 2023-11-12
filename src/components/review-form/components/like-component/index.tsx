@@ -24,7 +24,6 @@ export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
   isUserAlreadyLiked,
   setIsUserAlreadyLiked,
   excursion,
-  review,
   reviewsDocumentId,
 }) => {
   const [amountOfLikes, setAmountOfLikes] = useState(0);

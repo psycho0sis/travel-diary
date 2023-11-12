@@ -2,7 +2,8 @@
   "plugins": ["stylelint-order"],
   "rules": {
     "order/order": ["custom-properties", "declarations"],
-    "order/properties-order": ["width", "height"]
+    "order/properties-order": ["width", "height"],
+    "selector-class-pattern": null
   },
   "extends": ["stylelint-config-standard-scss"]
 }

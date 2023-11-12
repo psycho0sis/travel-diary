@@ -159,7 +159,8 @@ export const grodnoConfig = [
       {
         paragraph:
           'Деревня Больтеники расположена в Вороновском районе Гродненщины, недалеко от международного пункта пропуска с Литвой, Бенякони. Самым известным местом здесь, имеющим историческую и культурную ценность, является поместье Путткамеров в деревне Больтеники, которое уже более века присутствует на карте региона и привлекает множество туристов своей уникальной архитектурой. Стоит отметить, что живописный парк, в котором до сих пор можно встретить редкие породы деревьев в местных местах, функционирует прекрасно. В то время парк был украшен массивными деревянными скамейками и многочисленными цветочными насаждениями.',
-        image: 'https://openborder.brsu.by/wp-content/uploads/2023/03/20201011_132841-2.webp',
+        image:
+          'https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/036eccc5c822e86f999385fba643cccd-orig.jpg',
       },
       {
         paragraph:
@@ -173,7 +174,7 @@ export const grodnoConfig = [
       },
     ],
     images: [
-      'https://openborder.brsu.by/wp-content/uploads/2023/03/10.jpg',
+      'https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/cc1a8c32ef2f1865668111adfd896d7e-orig.jpg',
       'https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/448328eca359e65af61779da78c0f85a-orig.jpg',
       'https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/9d6aa72a000fc8d1b70e6b3dccd16d7a-orig.jpg',
       'https://www.holiday.by/files/sights/thumbnails/sights_gallery_fullsize/46d19c6e5f02ca25c8eabfc209253ce8-orig.jpg',

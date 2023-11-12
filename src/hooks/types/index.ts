@@ -27,6 +27,7 @@ export type TReviewDate = {
   email: string;
   review: string;
   reviewLikes: TReviewLikes;
+  photos: string[];
 };
 
 export type TReview = {

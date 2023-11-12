@@ -1,4 +1,5 @@
 import { type FC, useEffect, useState } from 'react';
+import Lightbox, { SlideImage } from 'yet-another-react-lightbox';
 
 import { getReviewAuthorFromDB } from 'api/get-review-author-from-db';
 import { DEFAULT_AVATAR } from 'constants/index';
@@ -9,17 +10,27 @@ import { userUniversalLoader } from 'hooks/use-universal-loader';
 import { TReview } from '../../../../hooks/types';
 import { LikeInContextOfReview } from '../like-component';
 
-import styles from '../../styles.module.scss';
+import 'yet-another-react-lightbox/styles.css';
+import styles from './styles.module.scss';
 
 export const Review: FC<TReview> = ({ id, data }) => {
-  const { date, excursion, email, review, reviewLikes } = data;
+  const [slides, setSlides] = useState<SlideImage[]>([]);
+  const [open, setOpen] = useState(false);
+
+  const { date, excursion, email, review, reviewLikes, photos } = data;
   const {
     data: { photo, name, surname },
   } = userUniversalLoader(() => getReviewAuthorFromDB(email));
   const { user } = useIsUserLogged();
   const [isUserAlreadyLiked, setIsUserAlreadyLiked] = useState(false);
 
-  const formattedDate = date ? formatDate(date) : 'Дата добавление неизвестна';
+  useEffect(() => {
+    setSlides(
+      photos?.map((item) => ({
+        src: item,
+      }))
+    );
+  }, [photos]);
 
   useEffect(() => {
     if (reviewLikes.userEmails.includes(user.email)) {
@@ -38,9 +49,17 @@ export const Review: FC<TReview> = ({ id, data }) => {
             <p className={styles.name}>
               {name} {surname}
             </p>
-            <p className={styles.date}>добавлено {formattedDate}</p>
+            <p className={styles.date}>добавлено {formatDate(date)}</p>
           </div>
           {review}
+          <div className={styles.photosWrapper}>
+            {photos?.map((photo) => (
+              <div className={styles.photoWrapper} key={photo}>
+                <img src={photo} alt='' onClick={() => setOpen(true)} />
+              </div>
+            ))}
+          </div>
+          <Lightbox open={open} close={() => setOpen(false)} slides={slides} />
         </div>
       </div>
       <LikeInContextOfReview

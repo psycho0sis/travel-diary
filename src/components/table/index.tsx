@@ -29,8 +29,6 @@ export const SortableTable: FC<ISortableTable> = ({ excursions, userName }) => {
     useSortBy
   );
 
-  console.log(userName);
-
   const { tableRef, onDownload } = useDownloadToExcel(userName);
 
   return (
