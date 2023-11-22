@@ -3,10 +3,12 @@ import { type FC, useEffect, useState } from 'react';
 import { DatePicker } from 'components/date-picker';
 import { SortableTable } from 'components/table';
 import { Title } from 'components/ui/title';
-import type { IExcursion } from 'hooks/types';
 import { useDates } from 'hooks/use-dates';
 import { useFilteredExcursions } from 'hooks/use-filtered-excursions';
-import { useGetCurrentUser } from 'hooks/use-get-current-user';
+import { fetchExcursions } from 'store/features/excursions/excursions-action';
+import { useSelector } from 'react-redux';
+import { selectAsyncExcursions } from 'store/features/excursions/excursions-selectors';
+import { useAppDispatch } from 'store/hooks';
 
 interface IStudentsExcursions {
   name: string;
@@ -14,23 +16,23 @@ interface IStudentsExcursions {
 }
 
 export const StudentExcursionsTable: FC<IStudentsExcursions> = ({ name, surname }) => {
-  const [excursions, setExcursions] = useState<IExcursion[]>([]);
+  const asyncExcursions = useSelector(selectAsyncExcursions);
   const userName = `${name} ${surname}`;
+  const dispatch = useAppDispatch();
 
-  const { currentUser } = useGetCurrentUser(name, surname);
   const { handleStartDate, handleEndDate, startDate, endDate } = useDates();
 
   useEffect(() => {
-    if (currentUser?.excursions) {
-      setExcursions(currentUser.excursions);
-    }
-  }, [currentUser]);
+    dispatch(fetchExcursions({ name, surname }));
+  }, [name, surname]);
 
-  const { filteredExcursions } = useFilteredExcursions(excursions, startDate, endDate);
+  const { filteredExcursions } = useFilteredExcursions(asyncExcursions || [], startDate, endDate);
 
   return (
     <>
-      <Title fontSize={22}>Посещенные экскурсии за выбранный период времени:</Title>
+      <div className='mt-4'>
+        <Title fontSize={22}>Посещенные экскурсии за выбранный период времени:</Title>
+      </div>
 
       <DatePicker
         labelText='Выберите начало периода: '
@@ -39,7 +41,7 @@ export const StudentExcursionsTable: FC<IStudentsExcursions> = ({ name, surname 
       />
       <DatePicker labelText='Выберите конец периода: ' onChange={handleEndDate} value={endDate} />
 
-      {excursions && (
+      {asyncExcursions && (
         <>
           <SortableTable excursions={filteredExcursions} userName={userName} />
         </>
