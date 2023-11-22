@@ -6,6 +6,7 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 
 import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
+import { routes } from 'components/google-map-with-markers-start/config';
 import { Title } from 'components/ui/title';
 import { userUniversalLoader } from 'hooks/use-universal-loader';
 
@@ -18,8 +19,7 @@ interface IExcursionForm {
 }
 
 export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, surname }) => {
-  const [date, setDate] = useState('');
-  const [route, setRoute] = useState('');
+  const [route, setRoute] = useState({ route: '', date: '' });
   const [isRouteAdded, setIsRouteAdded] = useState(false);
   const { data: students } = userUniversalLoader(getStudentsDataFromDB);
 
@@ -31,31 +31,24 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
     event.preventDefault();
 
     if (!route) {
-      setRoute('');
-      return;
-    }
-
-    if (!date) {
-      setDate('');
+      setRoute({ route: '', date: '' });
       return;
     }
 
     try {
-      if (route && date) {
+      if (Object.values(route).length) {
         const student = doc(db, 'children', currentUser!.email);
 
         await updateDoc(student, {
           excursions: arrayUnion({
             id: uuidv4(),
-            date: date,
-            excursion: route,
+            date: route.date,
+            excursion: route.route,
           }),
         });
 
         setIsRouteAdded(true);
-
-        setDate('');
-        setRoute('');
+        setRoute({ route: '', date: '' });
         addMarkerToTheMap(currentUser!.name, currentUser!.surname);
       }
     } catch (error: unknown) {
@@ -73,30 +66,36 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
       <Form onSubmit={onSubmit}>
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Маршрут: </Form.Label>
-          <Form.Control
+
+          <Form.Select
             onChange={(e) => {
-              setRoute(e.target.value);
+              setRoute((prev) => ({
+                ...prev,
+                route: e.target.value,
+                date: routes.find((elem) => elem.route === e.target.value)?.date || '',
+              }));
               setIsRouteAdded(false);
             }}
-            type='text'
-            placeholder='Введите название маршрута'
-            value={route}
-          />
-          <Form.Text className='text-muted'>
-            Название маршрута указывается в формате "Точка А - Точка Б"
-          </Form.Text>
+            value={route.route}
+            data-date={route.date}
+          >
+            <option>Выберите название маршрута</option>
+            {routes.map((route) => (
+              <option value={route.route}>{route.route}</option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Дата маршрута</Form.Label>
           <Form.Control
             onChange={(e) => {
-              setDate(e.target.value);
+              setRoute((prev) => ({ ...prev, date: e.target.value }));
               setIsRouteAdded(false);
             }}
             type='text'
             placeholder='Введите дату маршрута'
-            value={date}
+            value={route.date}
           />
         </Form.Group>
 
