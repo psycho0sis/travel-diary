@@ -1,4 +1,5 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { DatePicker } from 'components/date-picker';
 import { SortableTable } from 'components/table';
@@ -6,7 +7,6 @@ import { Title } from 'components/ui/title';
 import { useDates } from 'hooks/use-dates';
 import { useFilteredExcursions } from 'hooks/use-filtered-excursions';
 import { fetchExcursions } from 'store/features/excursions/excursions-action';
-import { useSelector } from 'react-redux';
 import { selectAsyncExcursions } from 'store/features/excursions/excursions-selectors';
 import { useAppDispatch } from 'store/hooks';
 
