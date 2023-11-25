@@ -13,11 +13,20 @@ type TGetTeachersFromDB = () => Promise<ITeacher[]>;
 
 export const getTeachersFromDB: TGetTeachersFromDB = async () => {
   const teachers: ITeacher[] = [];
-  const querySnapshot = await getDocs(collection(db, 'teachers'));
 
-  querySnapshot.forEach((doc) => {
-    teachers.push(doc.data() as ITeacher);
-  });
+  try {
+    const querySnapshot = await getDocs(collection(db, 'teachers'));
 
-  return teachers;
+    querySnapshot.forEach((doc) => {
+      teachers.push(doc.data() as ITeacher);
+    });
+
+    return teachers;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+
+    throw error;
+  }
 };

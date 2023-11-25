@@ -1,4 +1,4 @@
-import { type FC,Fragment } from 'react';
+import { type FC, Fragment } from 'react';
 import cn from 'classnames';
 
 import { GoogleMaps } from 'components/google-map';

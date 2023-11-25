@@ -10,6 +10,8 @@ interface IIframe {
 
 export const Iframe: FC<IIframe> = ({ src, width, height }) => (
   <div className={styles.mapWrapper}>
-    <iframe loading='lazy' src={src} width={width} height={height}></iframe>
+    <div>
+      <iframe className={styles.iframe} loading='lazy' src={src} width={width} height={height} />
+    </div>
   </div>
 );
