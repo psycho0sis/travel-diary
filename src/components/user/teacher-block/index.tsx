@@ -29,6 +29,7 @@ const DEFAULT_USER: IUser = {
 
 export const TeacherBlock = () => {
   const [student, setStudent] = useState<IUser>(DEFAULT_USER);
+  const { email, name, surname } = student;
   const [isStudentAdded, setIsStudentAdded] = useState(false);
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState('');
@@ -49,8 +50,7 @@ export const TeacherBlock = () => {
     });
   };
 
-  const checkIfStudentDataReady = (student: IUser) =>
-    student.name && student.surname && student.email;
+  const checkIfStudentDataReady = ({ email, name, surname }: IUser) => name && surname && email;
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -61,22 +61,18 @@ export const TeacherBlock = () => {
       return;
     }
 
-    await setDoc(doc(db, 'children', student.email), {
-      name: student.name,
-      surname: student.surname,
+    await setDoc(doc(db, 'children', email), {
+      name: name,
+      surname: surname,
       role: 'student',
-      email: student.email,
-      password: createPassword(student.name, student.surname),
+      email: email,
+      password: createPassword(name, surname),
       photo: '',
     });
 
     const auth = getAuth();
 
-    createUserWithEmailAndPassword(
-      auth,
-      student.email,
-      createPassword(student.name, student.surname)
-    )
+    createUserWithEmailAndPassword(auth, email, createPassword(name, surname))
       .then(() => {
         setIsStudentAdded(true);
         setStudent(DEFAULT_USER);
@@ -106,7 +102,7 @@ export const TeacherBlock = () => {
             placeholder='Иван'
             onFocus={onFocus}
             onChange={handleChange}
-            value={student.name}
+            value={name}
           />
         </Form.Group>
         <Form.Group className='mb-3' controlId='form.ControlInput3'>
@@ -117,7 +113,7 @@ export const TeacherBlock = () => {
             placeholder='Иванов'
             onFocus={onFocus}
             onChange={handleChange}
-            value={student.surname}
+            value={surname}
           />
         </Form.Group>
         <Form.Group className='mb-3' controlId='form.ControlInput2'>
@@ -128,7 +124,7 @@ export const TeacherBlock = () => {
             placeholder='email@mail.ru'
             onFocus={onFocus}
             onChange={handleChange}
-            value={student.email}
+            value={email}
           />
         </Form.Group>
 

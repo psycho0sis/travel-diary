@@ -8,6 +8,7 @@ import { StudentExcursionsTable } from 'components/student-info/components/stude
 import { CustomAlert } from 'components/ui/alert';
 import { Loader } from 'components/ui/loader';
 import { Title } from 'components/ui/title';
+import { DEFAULT_MAPS_POSITION } from 'constants/index';
 import { useLoadMarkers } from 'hooks/use-load-markers';
 import { useLoadUserData } from 'hooks/use-load-user-data';
 import { fetchExcursions } from 'store/features/excursions/excursions-action';
@@ -23,6 +24,7 @@ import styles from './styles.module.scss';
 
 export const User = () => {
   const { user, loading, error, isTeacher } = useLoadUserData();
+  const { email, name, surname } = user;
   const { currentMarkers } = useLoadMarkers(user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -38,9 +40,9 @@ export const User = () => {
   return (
     <>
       {loading && <Loader />}
-      {user.email && (
+      {email && (
         <div className={styles.user}>
-          <Tabs defaultActiveKey='userdata' id='uncontrolled-tab-example' className='mb-3'>
+          <Tabs defaultActiveKey='userdata' className='mb-3'>
             <Tab eventKey='userdata' title='Данные пользователя'>
               <UserData {...user} showAvatarBlock />
             </Tab>
@@ -53,16 +55,9 @@ export const User = () => {
 
             <Tab eventKey='excursions' title='Посещенные экскурсии'>
               <Title fontSize={22}>Посещенные объекты:</Title>
-              <GoogleMaps
-                center={{ lat: 54.15320407797462, lng: 25.319435879481013 }}
-                markers={currentMarkers}
-              />
-              <StudentExcursionsTable name={user.name} surname={user.surname} />
-              <ExcursionForm
-                addMarkerToTheMap={addMarkerToTheMap}
-                name={user.name}
-                surname={user.surname}
-              />
+              <GoogleMaps center={DEFAULT_MAPS_POSITION} markers={currentMarkers} />
+              <StudentExcursionsTable name={name} surname={surname} />
+              <ExcursionForm addMarkerToTheMap={addMarkerToTheMap} name={name} surname={surname} />
             </Tab>
           </Tabs>
 
