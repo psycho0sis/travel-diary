@@ -5,33 +5,6 @@ module.exports = {
     jest: true,
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
-  overrides: [
-    {
-      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/ban-ts-ignore': 'off',
-        'simple-import-sort/imports': [
-          'error',
-          {
-            groups: [
-              // Packages `react` related packages come first.
-              ['^react|react-router-dom|date-fns', '^@?\\w'],
-              // Internal packages.
-              ['^(@|assets|components|constants|hooks|pages|store|helpers|api)(/.*|$)'],
-              // Side effect imports.
-              ['^\\u0000'],
-              // Parent imports. Put `..` last.
-              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-              // Other relative imports. Put same-folder imports and `.` last.
-              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-              // Style imports.
-              ['^.+\\.?(css)$'],
-            ],
-          },
-        ],
-      },
-    },
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -64,5 +37,43 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'comma-dangle': [0],
+    '@typescript-eslint/no-floating-promises': 'off',
   },
+  overrides: [
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/ban-ts-ignore': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+        'simple-import-sort/imports': [
+          'error',
+          {
+            groups: [
+              // Packages `react` related packages come first.
+              ['^react|react-router-dom|date-fns', '^@?\\w'],
+              // Internal packages.
+              ['^(@|assets|components|constants|hooks|pages|store|helpers|api)(/.*|$)'],
+              // Side effect imports.
+              ['^\\u0000'],
+              // Parent imports. Put `..` last.
+              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+              // Style imports.
+              ['^.+\\.?(css)$'],
+            ],
+          },
+        ],
+      },
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+
+      parserOptions: {
+        project: ['./tsconfig.json'],
+      },
+    },
+  ],
 };

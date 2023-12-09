@@ -13,7 +13,7 @@ export const fetchReview = createAsyncThunk<
 >(
   'review/fetchReview',
   async ({ excursion }) => {
-    const data = (await getReviewFromDB(excursion)) as TReview;
+    const data = (await getReviewFromDB(excursion));
 
     return data;
   },

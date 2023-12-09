@@ -14,7 +14,7 @@ export const fetchReviews = createAsyncThunk<
 >(
   'reviews/fetchReviews',
   async (excursion: string) => {
-    const data = (await getReviewsFromDB(excursion)) as TReview[];
+    const data = (await getReviewsFromDB(excursion));
 
     return sortArrayByDate<TReviewDate, TReview>(data);
   },

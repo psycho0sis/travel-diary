@@ -13,7 +13,7 @@ export const fetchStudents = createAsyncThunk<
 >(
   'reviews/fetchReviews',
   async () => {
-    const data = (await getStudentsDataFromDB()) as IUser[];
+    const data = (await getStudentsDataFromDB());
 
     return data;
   },
