@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { TReview } from 'hooks/types';
 import type { Status } from 'store/types';
+
+import type { TReview } from '../../types';
 
 import { fetchReviews } from './reviews-action';
 

@@ -1,15 +1,35 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import cn from 'classnames';
 
 import { Container } from 'components/layout/container';
+import { FirstScreen } from 'components/layout/first-screen';
 import { Footer } from 'components/layout/footer';
 import { Header } from 'components/layout/header';
 
-export const Layout = () => (
-  <>
-    <Header />
-    <Container>
-      <Outlet />
-    </Container>
-    <Footer />
-  </>
-);
+import styles from './styles.module.scss';
+
+export const Layout = () => {
+  const [showOnlyNavigation, setShowOnlyNavigation] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      setShowOnlyNavigation(false);
+    } else {
+      setShowOnlyNavigation(true);
+    }
+  }, [pathname]);
+
+  return (
+    <div className={styles.layout}>
+      {showOnlyNavigation ? <Header /> : <FirstScreen />}
+      <div className={cn(styles.main, { [styles.mainFirstScreen]: !showOnlyNavigation })}>
+        <Container>
+          <Outlet />
+        </Container>
+        <Footer />
+      </div>
+    </div>
+  );
+};

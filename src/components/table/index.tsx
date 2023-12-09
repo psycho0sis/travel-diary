@@ -1,10 +1,10 @@
 import { type FC } from 'react';
+import { Button } from 'react-bootstrap';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
 import { Column, useSortBy, useTable } from 'react-table';
 
-import { ExportToExcelButton } from 'components/export-to-excel-button';
-import type { IExcursion } from 'hooks/types';
 import { useDownloadToExcel } from 'hooks/use-download-to-ecxel';
+import { IExcursion } from 'store/features/excursions/types';
 
 import { ISortableTable } from './types';
 
@@ -74,7 +74,9 @@ export const SortableTable: FC<ISortableTable> = ({ excursions, userName }) => {
         </tbody>
       </table>
 
-      <ExportToExcelButton onClick={onDownload} />
+      <Button className='mt-3' onClick={onDownload} variant='dark'>
+        Выгрузить в Excel
+      </Button>
     </div>
   );
 };

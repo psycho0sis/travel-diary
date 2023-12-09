@@ -11,6 +11,18 @@
   gap: 0 24px;
 }
 
+.form {
+  position: relative;
+  flex: 0 1 875px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  & textarea {
+    box-shadow: var(--box-shadow);
+  }
+}
+
 .avatar {
   & img {
     display: block;
@@ -25,4 +37,39 @@
     text-align: center;
     box-shadow: var(--box-shadow);
   }
+}
+
+.messages {
+  max-width: 800px;
+  width: 100%;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.contentWrapper {
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  flex: 0 1 165px;
+  font-size: 13px;
+  opacity: 0.7;
 }

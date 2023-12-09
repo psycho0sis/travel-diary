@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
-import type { IUser } from 'hooks/types';
 import { userUniversalLoader } from 'hooks/use-universal-loader';
+import type { IUser } from 'store/features/students/types';
 
 export const useGetCurrentUser = (name: string, surname: string) => {
   const [currentUser, setCurrentUser] = useState<IUser | undefined>({} as IUser);

@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getUserDataFromDB } from 'api/get-user-data-from-db';
+import type { IUser } from 'store/features/students/types';
 
 import { getSession, isLoggedIn } from '../session';
-
-import { IUser } from './types';
 
 export const useLoadUserData = () => {
   const [email, setEmail] = useState('');

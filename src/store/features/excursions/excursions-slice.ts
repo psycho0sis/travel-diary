@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { IExcursion } from 'hooks/types';
+import type { IExcursion } from 'store/features/excursions/types';
 import type { Status } from 'store/types';
 
 import { fetchExcursions } from './excursions-action';

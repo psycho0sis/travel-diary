@@ -1,14 +1,10 @@
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
+
+import { ITitle } from './types';
 
 import styles from './styles.module.scss';
 
-interface IProps {
-  children: ReactNode;
-  fontSize?: number;
-  margin?: string;
-}
-
-export const Title: FC<IProps> = ({ children, fontSize = 36, margin }) => (
+export const Title: FC<ITitle> = ({ children, fontSize = 36, margin }) => (
   <h3 className={styles.title} style={{ fontSize: fontSize, margin: margin }}>
     {children}
   </h3>

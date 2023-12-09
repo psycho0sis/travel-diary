@@ -1,0 +1,23 @@
+.bg {
+  background-image: url('../../../assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding-bottom: 12px;
+}

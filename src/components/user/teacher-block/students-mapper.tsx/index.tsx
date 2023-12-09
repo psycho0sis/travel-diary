@@ -1,12 +1,8 @@
 import type { FC } from 'react';
 
 import { CustomAlert } from 'components/ui/alert';
-import type { IUser } from 'hooks/types';
 
-interface IStudentsMapper {
-  students: IUser[];
-  status: string;
-}
+import { IStudentsMapper } from '../../types';
 
 export const StudentsMapper: FC<IStudentsMapper> = ({ students, status }) => (
   <>

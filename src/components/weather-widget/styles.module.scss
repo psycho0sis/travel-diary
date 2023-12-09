@@ -1,0 +1,56 @@
+.weatherInput {
+  border: none;
+  border-bottom: 2px solid #b3b3b3;
+  width: 195px;
+  margin-bottom: 10px;
+  margin-right: 13px;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.weatherWidget {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  .wrapper {
+    width: 220px;
+    height: 100%;
+    max-height: 280px;
+    background-color: rgb(29 40 55 / 80%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px;
+    border: 1px solid #b3b3b3;
+    border-radius: 16px;
+
+    & .content {
+      margin-bottom: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      & img {
+        width: 85px;
+        height: 85px;
+      }
+
+      & .description {
+        font-size: 14px;
+      }
+    }
+
+    & .widgetItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

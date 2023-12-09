@@ -48,7 +48,7 @@ export const useUploadUserPhoto = (email: string) => {
           updateDoc(student, {
             photo: downloadURL,
           });
-          dispatch(fetchStudents(''));
+          dispatch(fetchStudents());
           setIsChangeAvatarAvailable(true);
         });
       }

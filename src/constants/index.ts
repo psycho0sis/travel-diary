@@ -1,3 +1,5 @@
+export const API_KEY = '3e31f040903c0108980ead0ea3b6e6df';
+
 export const DEFAULT_AVATAR =
   'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=56';
 

@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getReviewFromDB } from 'api/get-review-from-db';
-import type { TReview } from 'hooks/types';
+
+import { TReview } from '../../types';
 
 import { IAsyncReviewSlice } from './review-slice';
 

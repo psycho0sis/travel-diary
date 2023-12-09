@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { customizeDate } from 'helpers/customize-date';
-import type { IExcursion } from 'hooks/types';
+import type { IExcursion } from 'store/features/excursions/types';
 
 export const useFilteredExcursions = (
   excursions: IExcursion[],

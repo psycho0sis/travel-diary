@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -21,20 +20,20 @@ export const Footer = () => (
 
       <div className={styles.address}>
         {footerAddressesItems.map(({ id, icon, text, linkHref, email }) => (
-          <Fragment key={id}>
+          <div className={styles.addressItem} key={id}>
             {linkHref ? (
               <a href={linkHref}>
                 <FontAwesomeIcon icon={icon} size='lg' style={{ color: '#bbbbb4' }} />
                 <span>{text}</span>
               </a>
             ) : (
-              <div className={styles.addressItem}>
+              <>
                 <FontAwesomeIcon icon={icon} size='lg' style={{ color: '#bbbbb4' }} />
                 {text && <p>{text}</p>}
                 {email && <a href='mailto:support@company.com'>{email}</a>}
-              </div>
+              </>
             )}
-          </Fragment>
+          </div>
         ))}
       </div>
     </div>
