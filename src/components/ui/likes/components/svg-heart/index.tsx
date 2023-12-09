@@ -1,9 +1,6 @@
 import { FC } from 'react';
 
-interface IHeartSvg {
-  isFilled: boolean;
-  onClick: () => void;
-}
+import { IHeartSvg } from '../../types';
 
 export const HeartSvg: FC<IHeartSvg> = ({ isFilled, onClick }) => (
   <div onClick={onClick}>

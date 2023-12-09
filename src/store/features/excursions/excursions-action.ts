@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getStudentByCredentialsFromDB } from 'api/get-students-excursions-data-from-db';
-import type { IExcursion } from 'hooks/types';
+import type { IExcursion } from 'store/features/excursions/types';
 
 import { IAsyncExcursionsSlice } from './excursions-slice';
 

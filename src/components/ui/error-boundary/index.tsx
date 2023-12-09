@@ -1,14 +1,8 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo } from 'react';
 
 import { CustomAlert } from '../alert';
 
-interface Props {
-  children?: ReactNode;
-}
-
-interface State {
-  hasError: boolean;
-}
+import { Props, State } from './types';
 
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {

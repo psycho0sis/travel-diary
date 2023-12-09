@@ -9,23 +9,15 @@ import { CustomAlert } from 'components/ui/alert';
 import { Title } from 'components/ui/title';
 import { createPassword } from 'helpers/create-password';
 import { onFocus } from 'helpers/form-helpers';
-import type { IUser } from 'hooks/types';
 import { useLoadStudents } from 'hooks/use-load-students-group';
 import { fetchStudents } from 'store/features/students/students-action';
+import type { IUser } from 'store/features/students/types';
 import { useAppDispatch } from 'store/hooks';
 
 import { db } from '../../../firebase';
+import { DEFAULT_USER } from '../config';
 
 import { StudentsMapper } from './students-mapper.tsx';
-
-const DEFAULT_USER: IUser = {
-  name: '',
-  surname: '',
-  role: 'student',
-  email: '',
-  password: '',
-  photo: '',
-};
 
 export const TeacherBlock = () => {
   const [student, setStudent] = useState<IUser>(DEFAULT_USER);
@@ -76,7 +68,7 @@ export const TeacherBlock = () => {
       .then(() => {
         setIsStudentAdded(true);
         setStudent(DEFAULT_USER);
-        dispatch(fetchStudents(''));
+        dispatch(fetchStudents());
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {

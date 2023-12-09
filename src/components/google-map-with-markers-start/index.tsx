@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { type FC, useState } from 'react';
 import { GoogleMap, InfoWindow, MarkerF, useLoadScript } from '@react-google-maps/api';
 
 import { Loader } from 'components/ui/loader';
 
-import { ICoordinates, IMapProps } from './types';
+import type { ICoordinates, IMapProps } from './types';
 
 import styles from './styles.module.scss';
 
-export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) => {
+export const Map: FC<IMapProps> = ({ googleMapsApiKey, markers, zoom = 7, center }) => {
   const [selectedMarker, setSelectedMarker] = useState<ICoordinates | null>(null);
 
   const { isLoaded } = useLoadScript({
@@ -23,9 +23,9 @@ export const Map = ({ googleMapsApiKey, markers, zoom = 7, center }: IMapProps) 
 
   return (
     <GoogleMap center={center} zoom={zoom} mapContainerClassName={styles.mapContainer}>
-      {markers.map(({ id, description, name, position }) => (
+      {markers.map(({ id, description, name, position }, index) => (
         <MarkerF
-          key={id}
+          key={id ? id : index}
           position={position}
           onClick={() => {
             setSelectedMarker(position);

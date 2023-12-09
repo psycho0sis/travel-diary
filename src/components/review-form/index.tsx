@@ -6,12 +6,9 @@ import { useIsUserLogged } from 'hooks/use-is-user-logged';
 
 import { FormComponent as Form } from './components/form';
 import { Reviews } from './components/reviews';
+import { IReviewForm } from './types';
 
 import styles from './styles.module.scss';
-
-export interface IReviewForm {
-  excursion: string;
-}
 
 export const ReviewForm: FC<IReviewForm> = ({ excursion }) => {
   const { user } = useIsUserLogged();

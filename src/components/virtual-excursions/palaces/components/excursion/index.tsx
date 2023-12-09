@@ -7,15 +7,11 @@ import { ReviewForm } from 'components/review-form';
 import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
 
-import { IExcursion as IDefaultExcursion } from '../../../types';
+import type { IDefaultExcursion } from '../../../types';
 
 import styles from '../../../styles.module.scss';
 
-interface IExcursion {
-  data: IDefaultExcursion;
-}
-
-export const Excursion: FC<IExcursion> = ({ data }) => {
+export const Excursion: FC<IDefaultExcursion> = ({ data }) => {
   const { excursion, images, maps, title, textContent, route } = data;
 
   return (
@@ -39,7 +35,7 @@ export const Excursion: FC<IExcursion> = ({ data }) => {
 
       <div className={styles.excursionContent}>
         {textContent?.map(({ title, paragraph, image }, index) => (
-          <Fragment key={index}>
+          <Fragment key={title ? title : index}>
             {title && <h3 className={styles.excursionTitle}>{title}</h3>}
             <p className={styles.excursionText}>{paragraph}</p>
             {image && (

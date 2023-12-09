@@ -25,7 +25,7 @@ export const StudentsMapper = () => {
           .map(({ email, name, surname, photo }) => (
             <Fragment key={email}>
               <Card bg='light' style={{ width: '18rem' }}>
-                <Card.Img variant='bottom' src={photo} />
+                <Card.Img className={styles.image} variant='bottom' src={photo} />
                 <Card.Body>
                   <Card.Title>
                     {name} {surname}

@@ -1,12 +1,8 @@
 import type { FC } from 'react';
 
-import styles from './styles.module.scss';
+import { IIframe } from './types';
 
-interface IIframe {
-  height: string;
-  src: string;
-  width: string;
-}
+import styles from './styles.module.scss';
 
 export const Iframe: FC<IIframe> = ({ src, width, height }) => (
   <div className={styles.mapWrapper}>

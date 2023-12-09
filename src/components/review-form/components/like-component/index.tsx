@@ -1,23 +1,14 @@
-import { type FC, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 import { CustomAlert } from 'components/ui/alert';
 import { Like } from 'components/ui/likes/components/like';
-import type { TReviewLikes } from 'hooks/types';
 import { useIsUserLogged } from 'hooks/use-is-user-logged';
 import { fetchReview } from 'store/features/review/review-action';
 import { useAppDispatch } from 'store/hooks';
 
 import { db } from '../../../../firebase';
-
-interface ILikeInContextOfReview {
-  likes: TReviewLikes;
-  isUserAlreadyLiked: boolean;
-  setIsUserAlreadyLiked: Dispatch<SetStateAction<boolean>>;
-  review: string;
-  excursion: string;
-  reviewsDocumentId: string;
-}
+import { ILikeInContextOfReview } from '../../types';
 
 export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
   likes,

@@ -1,16 +1,11 @@
+import type { FC } from 'react';
+
 import { Map } from 'components/google-map-with-markers-start';
-import { IMarker } from 'components/google-map-with-markers-start/types';
 import { CustomAlert } from 'components/ui/alert';
 
-export const GoogleMaps = ({
-  center,
-  markers,
-  zoom,
-}: {
-  center: { lat: number; lng: number };
-  markers: IMarker[];
-  zoom?: number;
-}) => {
+import type { IGoogleMaps } from './types';
+
+export const GoogleMaps: FC<IGoogleMaps> = ({ center, markers, zoom }) => {
   const googleMapsApiKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
 
   if (googleMapsApiKey === undefined) {

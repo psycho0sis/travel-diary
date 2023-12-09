@@ -1,7 +1,7 @@
 import { type FC, FormEvent, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { faCircleXmark,faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addDoc, collection } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,13 +13,11 @@ import { useUploadPicture } from 'hooks/use-upload-picture';
 import { fetchReviews } from 'store/features/reviews/reviews-action';
 import { useAppDispatch } from 'store/hooks';
 
+import { IFormComponent } from '../../types';
+
 import { db } from './../../../../firebase';
 
 import styles from './styles.module.scss';
-
-interface IFormComponent {
-  excursion: string;
-}
 
 export const FormComponent: FC<IFormComponent> = ({ excursion }) => {
   const [review, setReview] = useState('');

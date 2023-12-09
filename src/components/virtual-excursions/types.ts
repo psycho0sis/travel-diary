@@ -29,3 +29,7 @@ export interface IExcursion {
 export interface IVirtualExcursions {
   excursions: IExcursion[];
 }
+
+export interface IDefaultExcursion {
+  data: IExcursion;
+}

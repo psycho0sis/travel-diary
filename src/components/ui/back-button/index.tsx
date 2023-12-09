@@ -1,12 +1,9 @@
 import { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import styles from './styles.module.scss';
+import { IBackButton } from './types';
 
-interface IBackButton {
-  text: string;
-  route?: string;
-}
+import styles from './styles.module.scss';
 
 export const BackButton: FC<IBackButton> = ({ text, route }) => {
   const navigate = useNavigate();

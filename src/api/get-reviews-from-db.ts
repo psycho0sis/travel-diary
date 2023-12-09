@@ -1,7 +1,8 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
+import { TReview } from 'store/types';
+
 import { db } from '../firebase';
-import { TReview } from '../hooks/types';
 
 type TGetReviewsFromDb = (excursion: string) => Promise<TReview[]>;
 

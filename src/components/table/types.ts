@@ -6,7 +6,7 @@ import type {
   UseGroupByColumnOptions,
   UseSortByColumnOptions,
 } from 'react-table';
-import { IExcursion } from 'hooks/types';
+import { IExcursion } from 'store/features/excursions/types';
 
 declare module 'react-table' {
   export interface ColumnInterface<D extends object = {}>

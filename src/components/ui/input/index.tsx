@@ -1,14 +1,9 @@
-import { type FC, type FocusEvent, InputHTMLAttributes, useId } from 'react';
+import { type FC, useId } from 'react';
 import Form from 'react-bootstrap/Form';
 
-import styles from './styles.module.scss';
+import { IInput } from './types';
 
-interface IInput extends InputHTMLAttributes<HTMLInputElement> {
-  error: boolean;
-  labelText: string;
-  value: string;
-  onChange: (event: FocusEvent<HTMLInputElement>) => void;
-}
+import styles from './styles.module.scss';
 
 export const Input: FC<IInput> = ({ error, labelText, value, onChange, size, ...props }) => {
   const id = labelText + useId();

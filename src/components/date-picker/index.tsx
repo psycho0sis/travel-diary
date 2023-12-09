@@ -1,13 +1,9 @@
-import type { ChangeEvent, FC } from 'react';
+import type { FC } from 'react';
 import Form from 'react-bootstrap/Form';
 
-import styles from './styles.module.scss';
+import type { IDatePicker } from './types';
 
-interface IDatePicker {
-  labelText: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-}
+import styles from './styles.module.scss';
 
 export const DatePicker: FC<IDatePicker> = ({ labelText, onChange, value }) => (
   <div className={styles.datePicker}>

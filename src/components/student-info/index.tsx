@@ -6,13 +6,9 @@ import { UserData } from 'components/user/user-data';
 import { useGetCurrentUser } from 'hooks/use-get-current-user';
 
 import { StudentExcursionsTable } from './components/student-excursions';
+import { IStudentsExcursions } from './types';
 
 import styles from './styles.module.scss';
-
-interface IStudentsExcursions {
-  name: string;
-  surname: string;
-}
 
 export const StudentInfo: FC<IStudentsExcursions> = ({ name, surname }) => {
   const { currentUser, error, loading } = useGetCurrentUser(name, surname);

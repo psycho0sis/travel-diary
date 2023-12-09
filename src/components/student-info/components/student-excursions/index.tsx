@@ -10,10 +10,7 @@ import { fetchExcursions } from 'store/features/excursions/excursions-action';
 import { selectAsyncExcursions } from 'store/features/excursions/excursions-selectors';
 import { useAppDispatch } from 'store/hooks';
 
-interface IStudentsExcursions {
-  name: string;
-  surname: string;
-}
+import { IStudentsExcursions } from '../../types';
 
 export const StudentExcursionsTable: FC<IStudentsExcursions> = ({ name, surname }) => {
   const asyncExcursions = useSelector(selectAsyncExcursions);

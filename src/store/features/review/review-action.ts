@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getReviewFromDB } from 'api/get-review-from-db';
-import type { TReview } from 'hooks/types';
+
+import { TReview } from '../../types';
 
 import { IAsyncReviewSlice } from './review-slice';
 
@@ -12,7 +13,7 @@ export const fetchReview = createAsyncThunk<
 >(
   'review/fetchReview',
   async ({ excursion }) => {
-    const data = (await getReviewFromDB(excursion)) as TReview;
+    const data = (await getReviewFromDB(excursion));
 
     return data;
   },

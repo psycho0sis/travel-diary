@@ -12,12 +12,7 @@ import { Title } from 'components/ui/title';
 import { userUniversalLoader } from 'hooks/use-universal-loader';
 
 import { db } from '../../../firebase';
-
-interface IExcursionForm {
-  addMarkerToTheMap: (name: string, surname: string) => void;
-  name: string;
-  surname: string;
-}
+import { IExcursionForm } from '../types';
 
 export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, surname }) => {
   const [route, setRoute] = useState({ route: '', date: '' });

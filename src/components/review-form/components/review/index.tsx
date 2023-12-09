@@ -6,8 +6,8 @@ import { DEFAULT_AVATAR } from 'constants/index';
 import { formatDate } from 'helpers/format-date';
 import { useIsUserLogged } from 'hooks/use-is-user-logged';
 import { userUniversalLoader } from 'hooks/use-universal-loader';
+import { TReview } from 'store/types';
 
-import { TReview } from '../../../../hooks/types';
 import { LikeInContextOfReview } from '../like-component';
 
 import 'yet-another-react-lightbox/styles.css';

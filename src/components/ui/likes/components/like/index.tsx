@@ -1,15 +1,9 @@
 import type { FC } from 'react';
 
+import { ILike } from '../../types';
 import { HeartSvg } from '../svg-heart';
 
 import styles from '../../styles.module.scss';
-
-interface ILike {
-  amountOfLikes: number;
-  isUserAlreadyLiked: boolean;
-  decreaseAmountOfLikes: () => void;
-  increaseAmountOfLikes: () => void;
-}
 
 export const Like: FC<ILike> = ({
   amountOfLikes,

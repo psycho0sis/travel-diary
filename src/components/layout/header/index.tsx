@@ -22,7 +22,13 @@ export const Header = () => {
       />
       <div className={styles.header}>
         <div className={styles.content}>
-          <img className={styles.logo} src={logo} onClick={() => navigate('/')} />
+          <div className={styles.logo} onClick={() => navigate('/')}>
+            <img src={logo} alt='Дневник путешественника' />
+            <div className={styles.logoText}>
+              <h1>Дневник</h1>
+              <h1>путешественника</h1>
+            </div>
+          </div>
 
           <div
             className={classNames(styles.menuButton, { [styles.close]: isBurgerMenuOpen })}

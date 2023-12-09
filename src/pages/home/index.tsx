@@ -1,4 +1,3 @@
-import map from 'assets/map.png';
 import { TeachersMapper } from 'components/teachers';
 import { Title } from 'components/ui/title';
 
@@ -6,14 +5,10 @@ import styles from './styles.module.scss';
 
 export const Home = () => (
   <div>
-    <div className={styles.titleWrapper}>
-      <Title>Дневник путешественника</Title>
-    </div>
-    <img className={styles.img} src={map} />
+    <div className={styles.titleWrapper}></div>
     <div className={styles.content}>
       <Title fontSize={22}> Руководители проекта</Title>
       <TeachersMapper />
-
       <Title fontSize={22}>Цель дневника путешествия</Title>
       <p className={styles.text}>
         Традиция делать дневниковые записи в путешествиях является достаточно древней. Сейчас, когда

@@ -1,14 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { IUser } from 'hooks/types';
-import type { Status } from 'store/types';
-
 import { fetchStudents } from './students-action';
-
-export interface IAsyncStudentsSlice {
-  status: Status;
-  asyncStudents: IUser[] | null;
-}
+import { IAsyncStudentsSlice } from './types';
 
 const initialState: IAsyncStudentsSlice = {
   status: 'idle',

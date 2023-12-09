@@ -11,7 +11,7 @@ export interface IMarker {
 }
 
 export interface IMapProps {
-  center: { lat: number; lng: number };
+  center: ICoordinates;
   googleMapsApiKey: string;
   markers: IMarker[];
   zoom?: number;

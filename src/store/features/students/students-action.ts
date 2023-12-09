@@ -1,20 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
-import type { IUser } from 'hooks/types';
 
-import { IAsyncStudentsSlice } from './students-slice';
+import type { IAsyncStudentsSlice, IUser } from './types';
 
 export const fetchStudents = createAsyncThunk<
   IUser[],
-  string | undefined,
+  undefined,
   {
     state: { asyncStudents: IAsyncStudentsSlice };
   }
 >(
   'reviews/fetchReviews',
   async () => {
-    const data = (await getStudentsDataFromDB()) as IUser[];
+    const data = (await getStudentsDataFromDB());
 
     return data;
   },

@@ -5,15 +5,11 @@ import { ReviewForm } from 'components/review-form';
 import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
 
-import { IExcursion as IDefaultExcursion } from '../../../types';
+import type { IDefaultExcursion } from '../../../types';
 
 import styles from '../../../styles.module.scss';
 
-interface IExcursion {
-  data: IDefaultExcursion;
-}
-
-export const ExcursionVoronovo: FC<IExcursion> = ({ data }) => {
+export const ExcursionVoronovo: FC<IDefaultExcursion> = ({ data }) => {
   const { title, images, textContent, panorama } = data;
 
   return (

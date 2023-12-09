@@ -1,7 +1,8 @@
 import { collection, getDocs } from 'firebase/firestore';
 
+import type { IUser } from 'store/features/students/types';
+
 import { db } from '../firebase';
-import { IUser } from '../hooks/types';
 
 type TGetTeachersFromDB = () => Promise<IUser[]>;
 

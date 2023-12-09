@@ -1,11 +1,7 @@
 import { type FC, useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 
-interface ICustomAlert {
-  isShown: boolean;
-  text: string;
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | 'light';
-}
+import { ICustomAlert } from './types';
 
 import styles from './styles.module.scss';
 

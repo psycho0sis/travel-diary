@@ -7,13 +7,10 @@ import { fetchReviews } from 'store/features/reviews/reviews-action';
 import { selectAsyncReviews, selectAsyncStatus } from 'store/features/reviews/reviews-selectors';
 import { useAppDispatch } from 'store/hooks';
 
+import { IReviews } from '../../types';
 import { Review } from '../review';
 
 import styles from './styles.module.scss';
-
-interface IReviews {
-  excursion: string;
-}
 
 export const Reviews: FC<IReviews> = ({ excursion }) => {
   const dispatch = useAppDispatch();

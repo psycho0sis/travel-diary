@@ -1,4 +1,4 @@
-import { IExcursion } from 'hooks/types';
+import { IExcursion } from 'store/features/excursions/types';
 
 export const prepareExcelData = <T extends IExcursion>(excelData: T[]) =>
   excelData.map((excursion) => ({

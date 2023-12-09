@@ -3,10 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import defaultAvatar from 'assets/default-avatar.png';
-import { Title } from 'components/ui/title';
 import { onFocus } from 'helpers/form-helpers';
-import { IUser } from 'hooks/types';
 import { useUploadUserPhoto } from 'hooks/use-upload-user-photo';
+import type { IUser } from 'store/features/students/types';
 
 import styles from './styles.module.scss';
 
@@ -18,7 +17,7 @@ export const UserData: FC<IUser> = ({ email, name, surname, role, showAvatarBloc
       <img className={styles.userImage} src={currentUserPhoto || defaultAvatar} />
 
       <div className={styles.userData}>
-        <Title fontSize={24}>Ваши данные: </Title>
+        <h3 className='mb-4'>Ваши данные: </h3>
         <div className={styles.userDataGroup}>
           <p className={styles.userDataSubtitle}>Имя:</p>
           <span className={styles.userDataItem}>{name || 'Unknown'}</span>
