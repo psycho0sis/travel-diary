@@ -64,10 +64,10 @@
   .footer {
     padding-bottom: 40px;
 
-    &__content {
-      flex-direction: column;
+    & .content {
       align-items: start;
-      gap: 24px 0;
+      flex-wrap: wrap;
+      gap: 40px 0;
     }
   }
 }

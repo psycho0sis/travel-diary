@@ -48,6 +48,10 @@
 
 @media screen and (width <= 1078px) {
   .header {
+    & .content {
+      padding: 0;
+    }
+
     & .navigation {
       max-width: 350px;
       overflow: hidden;
@@ -152,6 +156,14 @@
 
     100% {
       width: 45px;
+    }
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .header {
+    .logoText {
+      display: none;
     }
   }
 }

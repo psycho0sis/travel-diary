@@ -21,3 +21,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 590px) {
+  .logo {
+    & h1:first-child {
+      padding-top: 30%;
+    }
+  }
+}
