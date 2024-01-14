@@ -1,0 +1,25 @@
+.backBtn {
+  cursor: pointer;
+  display: none;
+  border-radius: 50%;
+  background-color: rgba(239, 249, 249, 0.8);
+  color: #000;
+  position: fixed;
+  padding: 8px;
+  width: 48px;
+  height: 48px;
+  bottom: 10px;
+  right: 20px;
+  max-width: max-content;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+
+  & img {
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: rgba(176, 170, 173, 0.8);
+  }
+}

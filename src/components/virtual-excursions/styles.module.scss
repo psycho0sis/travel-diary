@@ -67,14 +67,11 @@
 
 .excursionText {
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 18px;
 }
 
-.excursionText::first-letter {
-  margin-left: 12px;
-  font-size: 36px;
-  font-family: 'Times New Roman', Times, serif;
-  color: red;
+.excursionTitle {
+  margin-top: 18px;
 }
 
 .excursionMapWrapper {
