@@ -29,6 +29,7 @@ export const AuthForm = () => {
           onChange={handleChangeEmail}
           type='email'
           placeholder='Электронная почта'
+          required
           size='lg'
           value={email}
         />
@@ -42,6 +43,7 @@ export const AuthForm = () => {
           placeholder='Пароль'
           size='lg'
           value={password}
+          required
         />
       </Form.Group>
 

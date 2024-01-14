@@ -21,18 +21,13 @@ body {
 body {
   margin: 0;
   font-family: 'Roboto';
+  background-image: url('./assets/polina-kuzovkova-a86L1wcDqRU-unsplash.jpg');
   color: var(--primary-color);
 }
 
 #root {
   overflow: auto;
   height: 100vh;
-}
-
-@media only screen and (max-width: 767px) {
-  body {
-    background-image: url('./assets/polina-kuzovkova-a86L1wcDqRU-unsplash.jpg');
-  }
 }
 
 :root {
