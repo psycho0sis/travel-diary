@@ -1,5 +1,5 @@
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -16,10 +16,6 @@ export const Header = () => {
 
   return (
     <>
-      <div
-        className={classNames(styles.overlay, { [styles.active]: isBurgerMenuOpen })}
-        onClick={toggleMenu}
-      />
       <div className={styles.header}>
         <div className={styles.content}>
           <div className={styles.logo} onClick={() => navigate('/')}>
@@ -39,22 +35,26 @@ export const Header = () => {
             <div className={styles.menuButtonLine}></div>
           </div>
 
-          <Navbar
-            className={classNames(styles.navigation, {
-              [styles.open]: isBurgerMenuOpen,
-            })}
-            role='navigation'
-          >
-            {navigation.map(({ id, route, title }) => (
-              <Nav.Link
-                key={id}
-                href={route}
-                className={classNames({ [styles.active]: pathname === route })}
-              >
-                {title}
-              </Nav.Link>
-            ))}
-          </Navbar>
+          <Offcanvas show={isBurgerMenuOpen} onHide={toggleMenu} placement='end'>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title />
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <nav className={styles.navigation}>
+                {navigation.map(({ id, route, title }) => (
+                  <div>
+                    <Nav.Link
+                      key={id}
+                      href={route}
+                      className={classNames({ [styles.active]: pathname === route })}
+                    >
+                      {title}
+                    </Nav.Link>
+                  </div>
+                ))}
+              </nav>
+            </Offcanvas.Body>
+          </Offcanvas>
         </div>
       </div>
     </>

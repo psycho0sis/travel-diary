@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import cn from 'classnames';
 
 import { Container } from 'components/layout/container';
 import { FirstScreen } from 'components/layout/first-screen';
 import { Footer } from 'components/layout/footer';
 import { Header } from 'components/layout/header';
+import { BackToTopButton } from 'components/ui/back-to-top-button';
 
 import styles from './styles.module.scss';
 
@@ -24,12 +24,13 @@ export const Layout = () => {
   return (
     <div className={styles.layout}>
       {showOnlyNavigation ? <Header /> : <FirstScreen />}
-      <div className={cn(styles.main, { [styles.mainFirstScreen]: !showOnlyNavigation })}>
+      <div className={styles.main}>
         <Container>
           <Outlet />
         </Container>
         <Footer />
       </div>
+      <BackToTopButton />
     </div>
   );
 };
