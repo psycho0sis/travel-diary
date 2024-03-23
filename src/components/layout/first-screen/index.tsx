@@ -12,8 +12,6 @@ export const FirstScreen = () => (
         <Header />
         <div className={styles.main}>
           <Logo />
-        </div>
-        <div className={styles.footer}>
           <WeatherWidget />
         </div>
       </div>

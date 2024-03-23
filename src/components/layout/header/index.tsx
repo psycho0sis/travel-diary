@@ -14,6 +14,22 @@ export const Header = () => {
   const { toggleMenu, isBurgerMenuOpen, pathname } = useToggleMenu();
   const navigate = useNavigate();
 
+  const navigationBlock = (
+    <>
+      {navigation.map(({ id, route, title }) => (
+        <div>
+          <Nav.Link
+            key={id}
+            href={route}
+            className={classNames({ [styles.active]: pathname === route }, styles.hovered)}
+          >
+            {title}
+          </Nav.Link>
+        </div>
+      ))}
+    </>
+  );
+
   return (
     <>
       <div className={styles.header}>
@@ -26,10 +42,13 @@ export const Header = () => {
             </div>
           </div>
 
-          <div
-            className={classNames(styles.menuButton, { [styles.close]: isBurgerMenuOpen })}
-            onClick={toggleMenu}
+          <nav
+            className={classNames(styles.navigation, styles.horizontal, styles.navigationVisible)}
           >
+            {navigationBlock}
+          </nav>
+
+          <div className={classNames(styles.menuButton)} onClick={toggleMenu}>
             <div className={styles.menuButtonLine}></div>
             <div className={styles.menuButtonLine}></div>
             <div className={styles.menuButtonLine}></div>
@@ -40,19 +59,7 @@ export const Header = () => {
               <Offcanvas.Title />
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <nav className={styles.navigation}>
-                {navigation.map(({ id, route, title }) => (
-                  <div>
-                    <Nav.Link
-                      key={id}
-                      href={route}
-                      className={classNames({ [styles.active]: pathname === route })}
-                    >
-                      {title}
-                    </Nav.Link>
-                  </div>
-                ))}
-              </nav>
+              <nav className={styles.navigation}>{navigationBlock}</nav>
             </Offcanvas.Body>
           </Offcanvas>
         </div>
