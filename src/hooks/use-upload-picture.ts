@@ -23,8 +23,8 @@ export const useUploadPicture = () => {
               break;
           }
         },
-        (error) => {
-          console.error(error.message);
+        ({ message }) => {
+          console.error(message);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {

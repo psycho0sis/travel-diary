@@ -17,15 +17,13 @@ export const Header = () => {
   const navigationBlock = (
     <>
       {navigation.map(({ id, route, title }) => (
-        <div>
-          <Nav.Link
-            key={id}
-            href={route}
-            className={classNames({ [styles.active]: pathname === route }, styles.hovered)}
-          >
-            {title}
-          </Nav.Link>
-        </div>
+        <Nav.Link
+          key={id}
+          href={route}
+          className={classNames({ [styles.active]: pathname === route }, styles.hovered)}
+        >
+          {title}
+        </Nav.Link>
       ))}
     </>
   );

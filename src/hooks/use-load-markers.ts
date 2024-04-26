@@ -9,17 +9,15 @@ import { selectAsyncExcursions } from 'store/features/excursions/excursions-sele
 import type { IUser } from 'store/features/students/types';
 import { useAppDispatch } from 'store/hooks';
 
-export const useLoadMarkers = (user: IUser) => {
+export const useLoadMarkers = ({ name, surname }: IUser) => {
   const [currentMarkers, setMarkers] = useState<IMarker[]>([]);
   const asyncExcursions = useSelector(selectAsyncExcursions);
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const { name, surname } = user;
-
     dispatch(fetchExcursions({ name, surname }));
-  }, [user.name, user.surname, pathname]);
+  }, [name, surname, pathname]);
 
   useEffect(() => {
     if (asyncExcursions?.length) {

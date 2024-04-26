@@ -6,6 +6,8 @@ import type { IUser } from 'store/features/students/types';
 
 import { getSession, isLoggedIn } from '../session';
 
+const TEACHERS_EMAILS = ['kosko_galina@mail.ru'];
+
 export const useLoadUserData = () => {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<IUser>({} as IUser);
@@ -26,7 +28,7 @@ export const useLoadUserData = () => {
   }, [navigate]);
 
   useEffect(() => {
-    if (email === 'kosko_galina@mail.ru') {
+    if (TEACHERS_EMAILS.includes(email)) {
       setIsTeacher(true);
     }
 

@@ -14,26 +14,45 @@ import { userUniversalLoader } from 'hooks/use-universal-loader';
 import { db } from '../../../firebase';
 import { IExcursionForm } from '../types';
 
+interface IAlertMessage {
+  [key: string]: React.ReactNode;
+}
+
+const alerts: IAlertMessage = {
+  isRouteAdded: <Alert variant='success'>Новый маршрут успешно добавлен на карту!</Alert>,
+  isAlertVisible: <Alert variant='warning'>Сперва выберите название и дату маршрута.</Alert>,
+  isCurrentRouteExist: <Alert variant='warning'>Такой маршрут уже существует.</Alert>,
+};
+
 export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, surname }) => {
   const [route, setRoute] = useState({ route: '', date: '' });
-  const [isRouteAdded, setIsRouteAdded] = useState(false);
   const { data: students } = userUniversalLoader(getStudentsDataFromDB);
   const { data: routes, error } = userUniversalLoader(getRoutesFromDB);
+  const [alertError, setAlertError] = useState('');
 
   const currentUser = students.find(
     (student) => student.name === name && student.surname === surname
   );
 
+  const isCurrentRouteExist = currentUser?.excursions?.find(
+    ({ excursion }) => excursion === route.route
+  );
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setRoute((prev) => ({ ...prev, date: e.target.value }));
+    setAlertError('');
+  };
+
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (!route) {
-      setRoute({ route: '', date: '' });
+    if (!route.route) {
+      setAlertError('isAlertVisible');
       return;
     }
 
     try {
-      if (Object.values(route).length) {
+      if (!isCurrentRouteExist) {
         const student = doc(db, 'children', currentUser!.email);
 
         await updateDoc(student, {
@@ -44,9 +63,11 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
           }),
         });
 
-        setIsRouteAdded(true);
+        setAlertError('isRouteAdded');
         setRoute({ route: '', date: '' });
         addMarkerToTheMap(currentUser!.name, currentUser!.surname);
+      } else {
+        setAlertError('isCurrentRouteExist');
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -61,7 +82,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
       route: event.target.value,
       date: routes.find((elem) => elem.route === event.target.value)?.date || '',
     }));
-    setIsRouteAdded(false);
+    setAlertError('');
   };
 
   return (
@@ -76,8 +97,10 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
 
             <Form.Select onChange={selectRoute} value={route.route} data-date={route.date}>
               <option>Выберите название маршрута</option>
-              {routes.map((route) => (
-                <option value={route.route}>{route.route}</option>
+              {routes.map(({ id, route }) => (
+                <option key={id} value={route}>
+                  {route}
+                </option>
               ))}
             </Form.Select>
           </Form.Group>
@@ -85,10 +108,7 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
           <Form.Group className='mb-3' controlId='formBasicPassword'>
             <Form.Label>Дата маршрута</Form.Label>
             <Form.Control
-              onChange={(e) => {
-                setRoute((prev) => ({ ...prev, date: e.target.value }));
-                setIsRouteAdded(false);
-              }}
+              onChange={handleChange}
               type='text'
               placeholder='Дата маршрута'
               value={route.date}
@@ -100,18 +120,14 @@ export const ExcursionForm: FC<IExcursionForm> = ({ addMarkerToTheMap, name, sur
             Добавить маршрут на карту
           </Button>
 
-          {isRouteAdded && (
-            <Alert variant='success'>Новый маршрут успешно добавлен на карту!</Alert>
-          )}
+          {alertError && alerts[alertError]}
         </Form>
       )}
       {error && (
-        <>
-          <CustomAlert
-            isShown={error}
-            text='Упс..что-то пошло не так и мы не можем загрузить данные для добавления маршрута'
-          />
-        </>
+        <CustomAlert
+          isShown={error}
+          text='Упс..что-то пошло не так и мы не можем загрузить данные для добавления маршрута'
+        />
       )}
     </>
   );

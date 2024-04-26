@@ -12,7 +12,7 @@ export const Footer = () => (
     <div className={styles.content}>
       <div className={styles.navigation}>
         {navigation.map(({ id, route, title }) => (
-          <NavLink key={id} to={route}>
+          <NavLink key={id} to={route} onClick={() => window.scrollTo(0, 0)}>
             {title}
           </NavLink>
         ))}

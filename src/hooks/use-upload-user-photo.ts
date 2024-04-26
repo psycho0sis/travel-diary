@@ -36,8 +36,8 @@ export const useUploadUserPhoto = (email: string) => {
             break;
         }
       },
-      (error) => {
-        console.error(error.message);
+      ({ message }) => {
+        console.error(message);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -65,7 +65,7 @@ export const useUploadUserPhoto = (email: string) => {
     }
   };
 
-  const onSubmit = async (event: FormEvent) => {
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     addImage(userPhoto);

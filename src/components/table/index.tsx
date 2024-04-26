@@ -39,7 +39,7 @@ export const SortableTable: FC<ISortableTable> = ({ excursions, userName }) => {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((col) => (
                 <th {...col.getHeaderProps(col.getSortByToggleProps())}>
-                  {col.render('Header')}{' '}
+                  {col.render('Header')}
                   {col.canSort && (
                     <span>
                       {col.isSorted ? (

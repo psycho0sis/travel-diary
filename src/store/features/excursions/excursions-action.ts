@@ -14,7 +14,7 @@ export const fetchExcursions = createAsyncThunk<
 >(
   'excursions/fetchExcursions',
   async ({ name, surname }: { name: string; surname: string }) => {
-    const data = (await getStudentByCredentialsFromDB(name, surname)).excursions as IExcursion[];
+    const data = (await getStudentByCredentialsFromDB(name, surname))?.excursions as IExcursion[];
 
     return data;
   },

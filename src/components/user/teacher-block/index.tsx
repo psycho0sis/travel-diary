@@ -70,8 +70,8 @@ export const TeacherBlock = () => {
         setStudent(DEFAULT_USER);
         dispatch(fetchStudents());
       })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
+      .catch(({ code }) => {
+        if (code === 'auth/email-already-in-use') {
           setError(true);
           setErrorText('Такой email уже используется!');
           setIsStudentAdded(false);

@@ -1,5 +1,5 @@
 import { type FC, useState } from 'react';
-import { GoogleMap, InfoWindow, MarkerF, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, InfoWindow, Marker, useLoadScript } from '@react-google-maps/api';
 
 import { Loader } from 'components/ui/loader';
 
@@ -23,9 +23,9 @@ export const Map: FC<IMapProps> = ({ googleMapsApiKey, markers, zoom = 7, center
 
   return (
     <GoogleMap center={center} zoom={zoom} mapContainerClassName={styles.mapContainer}>
-      {markers.map(({ id, description, name, position }, index) => (
-        <MarkerF
-          key={id ? id : index}
+      {markers.map(({ description, name, position }) => (
+        <Marker
+          key={name}
           position={position}
           onClick={() => {
             setSelectedMarker(position);
@@ -46,7 +46,7 @@ export const Map: FC<IMapProps> = ({ googleMapsApiKey, markers, zoom = 7, center
               </div>
             </InfoWindow>
           )}
-        </MarkerF>
+        </Marker>
       ))}
     </GoogleMap>
   );

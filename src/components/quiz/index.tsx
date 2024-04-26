@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import { CustomAlert } from 'components/ui/alert';
 import { BackButton } from 'components/ui/back-button';
 import { Title } from 'components/ui/title';
 
@@ -15,6 +16,7 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
   const [questions, setQuestions] = useState<TQuestions>({});
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
 
   const handleClick = () => {
     if (Object.values(questions).length === data.length) {
@@ -25,6 +27,8 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
       setAmountOfCorrectAnswers(amountOfCorrectAnswers);
       setIsQuizFinished(true);
       setIsDisabled(true);
+    } else {
+      setIsAlertVisible(true);
     }
   };
 
@@ -46,9 +50,15 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
         ))}
       </Form>
 
-      <Button className='mt-4' disabled={isDisabled} variant='dark' onClick={handleClick}>
+      <Button className='mt-4 mb-4' disabled={isDisabled} variant='dark' onClick={handleClick}>
         Показать результаты
       </Button>
+
+      <CustomAlert
+        variant='info'
+        isShown={isAlertVisible}
+        text={'Для получения результатов необходимо пройти викторину. '}
+      />
 
       {isQuizFinished && (
         <div className={styles.congratulationsWrapper}>

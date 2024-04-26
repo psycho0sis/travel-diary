@@ -35,7 +35,7 @@ export const Excursion: FC<IDefaultExcursion> = ({ data }) => {
 
       <div className={styles.excursionContent}>
         {textContent?.map(({ title, paragraph, image }, index) => (
-          <Fragment key={title ? title : index}>
+          <Fragment key={index}>
             {title && <h3 className={styles.excursionTitle}>{title}</h3>}
             <p className={styles.excursionText}>{paragraph}</p>
             {image && (
