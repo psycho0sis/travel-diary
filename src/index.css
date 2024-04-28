@@ -21,7 +21,7 @@ body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto';
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo-1508615070457-7baeba4003ab.avif?alt=media&token=679df32f-97e4-4e5a-bf49-0a1db9392fb5');
+  background-image: url('../src/assets/bg-blur.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

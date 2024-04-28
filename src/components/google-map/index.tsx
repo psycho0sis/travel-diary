@@ -11,9 +11,6 @@ export const GoogleMaps: FC<IGoogleMaps> = ({ center, markers, zoom }) => {
   if (googleMapsApiKey === undefined) {
     return <CustomAlert isShown={googleMapsApiKey === undefined} text='API-ключ не найден' />;
   }
-  return (
-    <>
-      <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />
-    </>
-  );
+
+  return <Map center={center} googleMapsApiKey={googleMapsApiKey} markers={markers} zoom={zoom} />;
 };

@@ -23,7 +23,13 @@ export const Layout = () => {
 
   return (
     <div className={styles.layout}>
-      {showOnlyNavigation ? <Header /> : <FirstScreen />}
+      {showOnlyNavigation ? (
+        <Container>
+          <Header />
+        </Container>
+      ) : (
+        <FirstScreen />
+      )}
       <div className={styles.main}>
         <Container>
           <Outlet />
