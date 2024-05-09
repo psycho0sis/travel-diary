@@ -35,39 +35,53 @@ export const SortableTable: FC<ISortableTable> = ({ excursions, userName }) => {
     <div className={styles.tableWrapper}>
       <table ref={tableRef} {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((col) => (
-                <th {...col.getHeaderProps(col.getSortByToggleProps())}>
-                  {col.render('Header')}
-                  {col.canSort && (
-                    <span>
-                      {col.isSorted ? (
-                        col.isSortedDesc ? (
-                          <BiSortUp />
-                        ) : (
-                          <BiSortDown />
-                        )
-                      ) : (
-                        <BiSortAlt2 />
+          {headerGroups.map((headerGroup) => {
+            const { key, ...rest } = headerGroup.getHeaderGroupProps();
+            return (
+              <tr key={key} {...rest}>
+                {headerGroup.headers.map((col) => {
+                  const { key, ...rest } = col.getHeaderProps(col.getSortByToggleProps());
+                  return (
+                    <th key={key} {...rest}>
+                      {col.render('Header')}
+                      {col.canSort && (
+                        <span>
+                          {col.isSorted ? (
+                            col.isSortedDesc ? (
+                              <BiSortUp />
+                            ) : (
+                              <BiSortDown />
+                            )
+                          ) : (
+                            <BiSortAlt2 />
+                          )}
+                        </span>
                       )}
-                    </span>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </thead>
 
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
             prepareRow(row);
 
+            const { key, role } = row.getRowProps();
+
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                ))}
+              <tr key={key} role={role}>
+                {row.cells.map((cell) => {
+                  const { key, role } = cell.getCellProps();
+
+                  return (
+                    <td key={key} role={role}>
+                      {cell.render('Cell')}
+                    </td>
+                  );
+                })}
               </tr>
             );
           })}
