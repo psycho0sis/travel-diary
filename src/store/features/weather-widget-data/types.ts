@@ -21,3 +21,8 @@ export interface IWeatherWidgetDataSlice {
   status: Status;
   asyncWeatherWidgetData: IWeatherWidgetDataWithTimeZone | null;
 }
+
+export interface IPosition {
+  lat: number;
+  lon: number;
+}

@@ -22,9 +22,9 @@ export const PanoramaVoronovo = ({ panorama }: { panorama: string }) => {
   return (
     <div className={styles.panorama}>
       <ReactPhotoSphereViewer
-        ref={photoSphereRef}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        ref={photoSphereRef}
         container='div'
         src={panorama}
         width='640'

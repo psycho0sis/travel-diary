@@ -1,103 +1,110 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchWeatherWidgetData } from 'store/features/weather-widget-data/weather-widget-data-action';
 import {
   selectAsyncStatus,
-  selectAsyncWeatherWidgetData
+  selectAsyncWeatherWidgetData,
 } from 'store/features/weather-widget-data/weather-widget-data-selectors';
 import { useAppDispatch } from 'store/hooks';
 
 import { WeatherSkeleton } from './components/skeleton';
-import { usePreparedData } from './hooks/use-prepared-data';
+import { usePosition } from './hooks/use-position';
+import { NoDataRoute } from './routes/no-data';
+import { SuccessResponseRoute } from './routes/success-response';
+import { WaitingForCityRoute } from './routes/waiting-for-city';
+import { IFormFields, IWeatherWidget } from './types';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 import styles from './styles.module.scss';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IWeatherWidget {}
-
 export const WeatherWidget: FC<IWeatherWidget> = () => {
-  const [city, setCity] = useState('Вороново');
+  const [city, setCity] = useState('');
   const [value, setValue] = useState('');
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  const { position, navigatorError, navigatorPrompt, isPosition, cityFromLS } = usePosition();
 
   const dispatch = useAppDispatch();
-
   const asyncWeatherWidgetData = useSelector(selectAsyncWeatherWidgetData);
   const status = useSelector(selectAsyncStatus);
 
-  const {
-    city: cityFromApi,
-    description,
-    humidity,
-    img,
-    speed,
-    temp,
-    time,
-  } = usePreparedData(asyncWeatherWidgetData);
-
   useEffect(() => {
-    dispatch(
-      fetchWeatherWidgetData({
-        city: city,
-      })
-    );
-  }, [city]);
+    if (cityFromLS) {
+      setIsFirstRender(false);
+      dispatch(fetchWeatherWidgetData({ position, city: cityFromLS }));
+    }
 
-  if (status === 'loading') {
+    if (!cityFromLS && isPosition) {
+      dispatch(fetchWeatherWidgetData({ position, city }));
+    }
+  }, [position, city]);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement & IFormFields> = (event) => {
+    event.preventDefault();
+
+    const { city } = event.currentTarget;
+    const cityValue = city.value;
+
+    if (cityFromLS) {
+      setIsFirstRender(false);
+    }
+
+    if (cityValue) {
+      localStorage.setItem('city', cityValue);
+      dispatch(fetchWeatherWidgetData({ position, city: cityValue }));
+      setIsFirstRender(false);
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+
+  const handleFocus = (e: ChangeEvent<HTMLInputElement>) => (e.target.placeholder = '');
+
+  const handleBlur = () => {
+    value && setCity(value);
+    setIsFirstRender(false);
+  };
+
+  /**
+   * Показываем лоадер:
+   * - когда идет запрос
+   * - когда браузер запрашивает разрешение на определение геолокации
+   * - когда статус idle и нет гео ошибки
+   * */
+  const isLoaderShown =
+    status === 'loading' || navigatorPrompt || (status === 'idle' && !navigatorError);
+
+  if (isLoaderShown) {
     return <WeatherSkeleton />;
   }
 
   return (
     <div className={styles.weatherWidget}>
-      <input
-        className={styles.weatherInput}
-        type='text'
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={() => value && setCity(value)}
-        value={value}
-        placeholder='Введите город'
-        onFocus={(e) => (e.target.placeholder = '')}
-      />
-      <div className={styles.wrapper}>
-        {asyncWeatherWidgetData && asyncWeatherWidgetData?.cod === '404' && (
-          <div>
-            <div>{asyncWeatherWidgetData.name}</div>
-            <div>У нас нет данных по такому городу. Пожалуйста, проверьте данные еще раз</div>
-          </div>
-        )}
-        {asyncWeatherWidgetData && asyncWeatherWidgetData?.cod === '400' && (
-          <div>
-            <div>Ведите какой-нибудь город...</div>
-          </div>
-        )}
-        {asyncWeatherWidgetData && asyncWeatherWidgetData?.cod === 200 && (
-          <>
-            <div className={styles.widgetItem}>
-              <div>{cityFromApi}</div>
-              <div>{time}</div>
-            </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          name='city'
+          className={styles.weatherInput}
+          type='text'
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={value}
+          placeholder='Введите город'
+          onFocus={handleFocus}
+        />
+        <button type='submit' className={styles.searchIcon}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </form>
 
-            <div className={styles.content}>
-              <img src={img} />
-              <p className={styles.description}>{description}</p>
-            </div>
+      {navigatorError && <WaitingForCityRoute />}
 
-            <div className={styles.widgetItem}>
-              <div>Влажность</div>
-              <div>{humidity}%</div>
-            </div>
-            <div className={styles.widgetItem}>
-              <div>Температура</div>
-              <div>{temp}°</div>
-            </div>
-            <div className={styles.widgetItem}>
-              <div>Ветер</div>
-              <div>{speed} км/ч</div>
-            </div>
-          </>
-        )}
-      </div>
+      {asyncWeatherWidgetData?.cod === '404' && <NoDataRoute name={asyncWeatherWidgetData.name} />}
+
+      {asyncWeatherWidgetData?.cod === 200 && (
+        <SuccessResponseRoute data={asyncWeatherWidgetData} isFirstRender={isFirstRender} />
+      )}
     </div>
   );
 };
