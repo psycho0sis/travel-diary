@@ -27,6 +27,7 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
       setAmountOfCorrectAnswers(amountOfCorrectAnswers);
       setIsQuizFinished(true);
       setIsDisabled(true);
+      setIsAlertVisible(false);
     } else {
       setIsAlertVisible(true);
     }

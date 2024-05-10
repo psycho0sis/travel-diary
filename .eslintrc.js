@@ -29,7 +29,7 @@ module.exports = {
       },
     ],
     'eol-last': 0,
-    'max-len': ['warn', { code: 300 }],
+    'max-len': 'off',
     'no-console': 'off',
     'react/react-in-jsx-scope': 'off',
     'spaced-comment': 'error',

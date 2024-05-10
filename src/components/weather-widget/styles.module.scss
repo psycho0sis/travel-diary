@@ -3,12 +3,17 @@
   border-bottom: 2px solid #b3b3b3;
   width: 195px;
   margin-bottom: 10px;
-  margin-right: 13px;
   background: transparent;
 
   &:focus {
     outline: none;
   }
+}
+
+.searchIcon {
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .weatherWidget {
@@ -24,7 +29,6 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 18px;
     border: 1px solid #b3b3b3;
     border-radius: 16px;
@@ -44,6 +48,10 @@
       & .description {
         font-size: 14px;
       }
+    }
+
+    & .geo {
+      font-size: 10px;
     }
 
     & .widgetItem {
