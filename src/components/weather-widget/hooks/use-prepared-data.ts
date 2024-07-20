@@ -22,7 +22,7 @@ export const usePreparedData = (weatherData: IWeatherWidgetDataWithTimeZone | nu
       const typeOfWeather = weatherData.weather[0]?.main || '';
       const descriptionOfWeather = weatherData?.weather[0]?.description || '';
 
-      setImg(weatherImagesConfig[typeOfWeather as keyof typeof weatherImagesConfig]);
+      setImg(weatherImagesConfig[typeOfWeather ]);
       setDescription(descriptionOfWeather);
     }
 

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchWeatherWidgetData } from 'store/features/weather-widget-data/weather-widget-data-action';
 import {
   selectAsyncStatus,
-  selectAsyncWeatherWidgetData,
+  selectAsyncWeatherWidgetData
 } from 'store/features/weather-widget-data/weather-widget-data-selectors';
 import { useAppDispatch } from 'store/hooks';
 

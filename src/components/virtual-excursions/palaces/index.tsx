@@ -1,7 +1,6 @@
-import Button from 'react-bootstrap/Button';
-
 import { GoogleMaps } from 'components/google-map';
 import { BackButton } from 'components/ui/back-button';
+import { ButtonLink } from 'components/ui/button-link';
 import { Title } from 'components/ui/title';
 import { DEFAULT_MAPS_POSITION } from 'constants/index';
 
@@ -16,9 +15,12 @@ export const VirtualExcursionsPalaces = () => (
     <Title>Экскурсии по замкам Гродненской области</Title>
     <GoogleMaps center={DEFAULT_MAPS_POSITION} markers={markers} />
     <div className='d-flex justify-content-center'>
-      <Button className='mt-3' variant='warning' href='/virtual/palaces/quiz'>
-        Пройти викторину
-      </Button>
+      <ButtonLink
+        className='mt-3'
+        variant='dark'
+        href='/virtual/palaces/quiz'
+        text='Пройти викторину'
+      />
     </div>
     <VirtualExcursions excursions={palacesConfig} />
   </>

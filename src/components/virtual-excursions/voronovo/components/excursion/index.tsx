@@ -12,6 +12,8 @@ import styles from '../../../styles.module.scss';
 export const ExcursionVoronovo: FC<IDefaultExcursion> = ({ data }) => {
   const { title, images, textContent, panorama } = data;
 
+  console.log({ textContent });
+
   return (
     <div className={styles.excursion}>
       <BackButton text='Назад к списку экскурсий по могилам' route='/virtual/voronovo' />
@@ -24,14 +26,16 @@ export const ExcursionVoronovo: FC<IDefaultExcursion> = ({ data }) => {
       </Title>
 
       <div className={styles.excursionContent}>
-        {textContent?.map((content) => (
-          <p className={styles.excursionText} style={{ whiteSpace: 'pre-line' }}>
-            {content.paragraph}
+        {textContent?.map(({ paragraph }, index) => (
+          <p key={index} className={styles.excursionText} style={{ whiteSpace: 'pre-line' }}>
+            {paragraph}
           </p>
         ))}
 
         <div className={styles.photos}>
-          {images?.map((image) => <img className={styles.photo} loading='lazy' src={image} />)}
+          {images?.map((image) => (
+            <img key={image} className={styles.photo} loading='lazy' src={image} />
+          ))}
         </div>
         <ReviewForm excursion='Братские могилы' />
       </div>

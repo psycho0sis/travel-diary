@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import { getStudentsDataFromDB } from 'api/get-students-data-from-db';
 import { CustomAlert } from 'components/ui/alert';
+import { ButtonLink } from 'components/ui/button-link';
 import { Loader } from 'components/ui/loader';
 import { Title } from 'components/ui/title';
 import { userUniversalLoader } from 'hooks/use-universal-loader';
@@ -30,9 +30,11 @@ export const StudentsMapper = () => {
                   <Card.Title>
                     {name} {surname}
                   </Card.Title>
-                  <Button variant='dark' href={`/students/${name}-${surname}`}>
-                    Перейти к пройденным экскурсиям
-                  </Button>
+                  <ButtonLink
+                    variant='dark'
+                    href={`/students/${name}-${surname}`}
+                    text='Перейти к пройденным экскурсиям'
+                  />
                 </Card.Body>
               </Card>
             </Fragment>

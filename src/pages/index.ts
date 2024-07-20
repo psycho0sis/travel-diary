@@ -1,5 +1,6 @@
 export * from '../components/virtual-excursions/grodno';
 export * from '../components/virtual-excursions/palaces';
+export * from '../components/virtual-excursions/voronovo';
 export * from './error';
 export * from './excursions';
 export * from './home';
@@ -7,4 +8,3 @@ export * from './login';
 export * from './students';
 export * from './user';
 export * from './virtual';
-export * from 'components/virtual-excursions/voronovo';

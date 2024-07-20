@@ -28,7 +28,6 @@ export const gravesConfig = [
     description:
       'На юго-западной окраине г.п.Вороново, слева от дороги Вороново-Лида, захоронены 1834 жителя, расстрелянные немецко-фашистскими захватчиками...',
     images: [
-      'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/20230702_124619.jpg?alt=media&token=5ea55515-0965-4df1-a1b7-bd9dc88e5eaf',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image2.jpg?alt=media&token=09cab37c-9ee6-42bc-a400-679e5f7b2dff',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image3.jpg?alt=media&token=9991d5b2-5b16-4811-85da-f119ec6de8e4',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image4.jpeg?alt=media&token=a0572fc0-1c58-49ae-845b-396e53ce57a0',
