@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import { BiSortAlt2, BiSortDown, BiSortUp } from 'react-icons/bi';
 import { Column, useSortBy, useTable } from 'react-table';
 

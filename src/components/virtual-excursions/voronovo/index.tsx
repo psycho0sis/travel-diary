@@ -1,7 +1,6 @@
-import Button from 'react-bootstrap/Button';
-
 import { Iframe } from 'components/iframe';
 import { BackButton } from 'components/ui/back-button';
+import { ButtonLink } from 'components/ui/button-link';
 import { Title } from 'components/ui/title';
 
 import { VirtualExcursions } from '..';
@@ -20,9 +19,12 @@ export const VirtualExcursionVoronovo = () => {
         width='1040'
       />
       <div className='d-flex justify-content-center'>
-        <Button className='mt-3' variant='warning' href='/virtual/voronovo/quiz'>
-          Пройти викторину
-        </Button>
+        <ButtonLink
+          className='mt-3'
+          variant='dark'
+          href='/virtual/voronovo/quiz'
+          text='Пройти викторину'
+        />
       </div>
       <VirtualExcursions excursions={gravesConfig} />
     </>

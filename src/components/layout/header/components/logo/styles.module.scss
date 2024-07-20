@@ -1,0 +1,21 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0 8px;
+  width: 200px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.logoText {
+  & h1 {
+    font-size: 20px;
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .logoText {
+    display: none;
+  }
+}

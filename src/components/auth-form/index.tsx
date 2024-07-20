@@ -47,7 +47,7 @@ export const AuthForm = () => {
         />
       </Form.Group>
 
-      <Button className='d-grid mt-3 mb-3' variant={'dark'} size='lg' type='submit'>
+      <Button className='d-grid mt-3 mb-3' variant='dark' size='lg' type='submit'>
         Войти
       </Button>
       <CustomAlert
