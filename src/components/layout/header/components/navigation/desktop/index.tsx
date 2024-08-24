@@ -2,15 +2,14 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { useToggleMenu } from 'hooks/use-toggle-menu';
-
 import { navigation } from '../../../config';
+import { useNavigationContext } from '../navigation-provider/context';
 import { INavigation } from '../types';
 
 import styles from './styles.module.scss';
 
 export const NestedNavigation: FC<INavigation> = ({ navigation }) => {
-  const { pathname } = useToggleMenu();
+  const { pathname, toggleMenu } = useNavigationContext();
 
   return (
     <>
@@ -30,6 +29,7 @@ export const NestedNavigation: FC<INavigation> = ({ navigation }) => {
                     [styles.mainLinkActive]: isMainLinkActive,
                     [styles.secondLevelLinkActive]: isSecondPartActive,
                   })}
+                  onClick={toggleMenu}
                 >
                   {title}
                 </Link>
@@ -45,6 +45,7 @@ export const NestedNavigation: FC<INavigation> = ({ navigation }) => {
                   [styles.secondLevelLinkActive]: isSecondPartActive,
                   [styles.privatePageActive]: isPrivatePageActive,
                 })}
+                onClick={toggleMenu}
               >
                 {title}
               </Link>

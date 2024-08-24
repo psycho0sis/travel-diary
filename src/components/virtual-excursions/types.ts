@@ -8,12 +8,11 @@ export interface IExcursion {
   id: number;
   excursion?: string;
   images?: string[];
-  description: string;
+  description?: string;
   textContent?: ITextContent[];
   title: string;
   route: string;
   previewImg: string;
-  panorama?: string;
   maps?: {
     googleMapData: {
       markers: {

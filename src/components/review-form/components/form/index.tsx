@@ -13,13 +13,13 @@ import { useUploadPicture } from 'hooks/use-upload-picture';
 import { fetchReviews } from 'store/features/reviews/reviews-action';
 import { useAppDispatch } from 'store/hooks';
 
-import { IFormComponent } from '../../types';
+import { IReviewForm } from '../../types';
 
 import { db } from './../../../../firebase';
 
 import styles from './styles.module.scss';
 
-export const FormComponent: FC<IFormComponent> = ({ excursion }) => {
+export const FormComponent: FC<IReviewForm> = ({ excursion }) => {
   const [review, setReview] = useState('');
 
   const { isLogged, isLoggedError, setIsLoggedError, user } = useIsUserLogged();

@@ -23,9 +23,9 @@ export const Map: FC<IMapProps> = ({ googleMapsApiKey, markers, zoom = 7, center
 
   return (
     <GoogleMap center={center} zoom={zoom} mapContainerClassName={styles.mapContainer}>
-      {markers.map(({ description, name, position }) => (
+      {markers.map(({ description, name, position }, index) => (
         <Marker
-          key={name}
+          key={`${name}-${index}`}
           position={position}
           onClick={() => {
             setSelectedMarker(position);

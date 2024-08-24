@@ -7,12 +7,12 @@ import { fetchReviews } from 'store/features/reviews/reviews-action';
 import { selectAsyncReviews, selectAsyncStatus } from 'store/features/reviews/reviews-selectors';
 import { useAppDispatch } from 'store/hooks';
 
-import { IReviews } from '../../types';
+import { IReviewForm } from '../../types';
 import { Review } from '../review';
 
 import styles from './styles.module.scss';
 
-export const Reviews: FC<IReviews> = ({ excursion }) => {
+export const Reviews: FC<IReviewForm> = ({ excursion }) => {
   const dispatch = useAppDispatch();
 
   const asyncReviews = useSelector(selectAsyncReviews);
@@ -20,7 +20,7 @@ export const Reviews: FC<IReviews> = ({ excursion }) => {
 
   useEffect(() => {
     dispatch(fetchReviews(excursion));
-  }, []);
+  }, [excursion]);
 
   const amountOfReviews = `${asyncReviews?.length || 0} ${checkRightPostfix(
     asyncReviews?.length || 0

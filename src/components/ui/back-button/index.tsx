@@ -5,7 +5,7 @@ import { IBackButton } from './types';
 
 import styles from './styles.module.scss';
 
-export const BackButton: FC<IBackButton> = ({ text, route }) => {
+export const BackButton: FC<IBackButton> = ({ text, route, level }) => {
   const navigate = useNavigate();
 
   const linkButton = route && (
@@ -15,7 +15,7 @@ export const BackButton: FC<IBackButton> = ({ text, route }) => {
   );
 
   const divButton = (
-    <div className={styles.backBtn} onClick={() => navigate(-1)}>
+    <div className={styles.backBtn} onClick={() => navigate(level || -1)}>
       {text}
     </div>
   );

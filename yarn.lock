@@ -5311,11 +5311,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-photo-sphere-viewer-lensflare-plugin@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/photo-sphere-viewer-lensflare-plugin/-/photo-sphere-viewer-lensflare-plugin-2.1.2.tgz#b7cc5196b43bd7b407c0be0c13464c6715f02ebb"
-  integrity sha512-jS/cqms2pAlQbiqVT+KjpRgNaE/BE4a+YpZUJOwcHvTBxwAzF0ZZjSUwUB8FISloGHhUD8rOAHQ8arUH6qWMzg==
-
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
@@ -5567,14 +5562,13 @@ react-loading-skeleton@^3.3.1:
   resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-3.4.0.tgz#c71a3a17259d08e4064974aa0b07f150a09dfd57"
   integrity sha512-1oJEBc9+wn7BbkQQk7YodlYEIjgeR+GrRjD+QXkVjwZN7LGIcAFHrx4NhT7UHGBxNY1+zax3c+Fo6XQM4R7CgA==
 
-react-photo-sphere-viewer@^5.0.2-psv5.7.1:
-  version "5.0.2-psv5.7.1"
-  resolved "https://registry.yarnpkg.com/react-photo-sphere-viewer/-/react-photo-sphere-viewer-5.0.2-psv5.7.1.tgz#efc7891ca7a1335120473ed9b803217d781b9dce"
-  integrity sha512-n5S+CnIPnZiGm8C6GUNSDrfkFNwCpBI4KwmrBJQ5nHoxkoP3kZ85AkNYJUoL47+uJljDRuMPi+H16c37AvcLqQ==
+react-photo-sphere-viewer@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-photo-sphere-viewer/-/react-photo-sphere-viewer-6.0.0.tgz#3f03c7c2c2b26e00e3db2afabe87dd71ed0f0489"
+  integrity sha512-AazuvzUtymCIr49lHY4s+TA0SdEjf26e4Qw2w4zHtk3jQ39YOxAih5xClZ2tLEcOXGlrSfztOUCAt2y+7Uj1mA==
   dependencies:
     autoprefixer "^10.4.17"
     eventemitter3 "^5.0.1"
-    photo-sphere-viewer-lensflare-plugin "^2.1.2"
 
 react-redux@^9.1.1:
   version "9.1.1"

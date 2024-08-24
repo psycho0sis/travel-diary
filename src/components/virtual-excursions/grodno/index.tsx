@@ -8,7 +8,7 @@ import { grodnoConfig, markers } from './config';
 
 export const VirtualExcursionGrodno = () => (
   <>
-    <BackButton text='Назад к списку экскурсий' route='/virtual/' />
+    <BackButton text='Назад к списку экскурсий' route='/virtual/' level={-1} />
 
     <Title>Экскурсии по Гродненской области</Title>
     <div className='excursion__map-wrapper'>

@@ -51,6 +51,7 @@
 
   & a {
     color: #14213d;
+    margin-top: 8px;
   }
 }
 
@@ -64,7 +65,7 @@
 .submenu .navigation {
   flex-direction: column;
   align-items: flex-start;
-  gap: 0px;
+  gap: 0;
 }
 
 .submenu .link .submenu {
@@ -91,10 +92,6 @@
   transform-origin: top left;
   transform: rotateX(20deg);
   transition: 0.3s linear;
-}
-
-.submenu a {
-  margin-top: 8px;
 }
 
 .navigation .privatePageActive,

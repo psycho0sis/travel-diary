@@ -9,6 +9,16 @@ import { BackToTopButton } from 'components/ui/back-to-top-button';
 
 import styles from './styles.module.scss';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 export const Layout = () => {
   const [showOnlyNavigation, setShowOnlyNavigation] = useState(false);
   const { pathname } = useLocation();
@@ -25,6 +35,7 @@ export const Layout = () => {
     <div className={styles.layout}>
       {showOnlyNavigation ? (
         <Container>
+          <ScrollToTop />
           <Header />
         </Container>
       ) : (

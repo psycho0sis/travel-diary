@@ -11,9 +11,9 @@ export const fetchStudents = createAsyncThunk<
     state: { asyncStudents: IAsyncStudentsSlice };
   }
 >(
-  'reviews/fetchReviews',
+  'reviews/fetchStudents',
   async () => {
-    const data = (await getStudentsDataFromDB());
+    const data = await getStudentsDataFromDB();
 
     return data;
   },

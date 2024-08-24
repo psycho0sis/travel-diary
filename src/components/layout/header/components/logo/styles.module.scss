@@ -14,7 +14,7 @@
   }
 }
 
-@media only screen and (max-width: 590px) {
+@media only screen and (width <= 590px) {
   .logoText {
     display: none;
   }

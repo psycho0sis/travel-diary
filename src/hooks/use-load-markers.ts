@@ -24,6 +24,8 @@ export const useLoadMarkers = ({ name, surname }: IUser) => {
       const markers = createMarkers(asyncExcursions);
 
       setMarkers(markers);
+    } else {
+      setMarkers([]);
     }
   }, [asyncExcursions]);
 
