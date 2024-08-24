@@ -5,7 +5,7 @@ import { excursions } from 'components/virtual-excursions/config';
 
 export const Virtual = () => (
   <>
-    <BackButton text='Назад' />
+    <BackButton text='Назад' route='/' />
     <Title>Виртуальные экскурсии</Title>
     <VirtualExcursions excursions={excursions} />
   </>

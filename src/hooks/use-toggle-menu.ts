@@ -10,7 +10,7 @@ export const useToggleMenu = () => {
 
     setIsBurgerMenuOpen((prev) => !prev);
 
-    (e.currentTarget as HTMLElement).classList.toggle('close');
+    (e?.currentTarget as HTMLElement)?.classList.toggle('close');
 
     overlay?.classList.toggle('active');
   };

@@ -35,7 +35,7 @@ export const Quiz: FC<IQuiz> = ({ data }) => {
 
   return (
     <div className={styles.quiz}>
-      <BackButton text='Назад' />
+      <BackButton text='Назад' level={-1} />
 
       <Title fontSize={36}>Ответьте на следующие вопросы:</Title>
 

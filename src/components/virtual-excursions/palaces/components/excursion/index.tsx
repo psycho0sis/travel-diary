@@ -16,13 +16,10 @@ export const Excursion: FC<IDefaultExcursion> = ({ data }) => {
 
   return (
     <div className={styles.excursion}>
-      <BackButton
-        text='Назад к списку экскурсий по замкам'
-        route={`/virtual/${route.split('/')[0]}`}
-      />
+      <BackButton text='Назад к списку экскурсий' route={`/virtual/${route.split('/')[0]}`} />
 
       <div className={styles.excursionMapWrapper}>
-        <Iframe height='359' src={maps?.iframeLink || ''} width='570' />
+        <Iframe height='359' src={maps?.iframeLink || ''} width='644' />
         <GoogleMaps
           center={maps?.googleMapData.position || { lat: 0, lng: 0 }}
           markers={maps?.googleMapData.markers || []}

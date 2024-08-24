@@ -1,3 +1,9 @@
 .datePicker {
-  max-width: 30%;
+  max-width: 50%;
+}
+
+@media screen and (width <= 768px) {
+  .datePicker {
+    max-width: 100%;
+  }
 }

@@ -2,7 +2,7 @@
   cursor: pointer;
   display: none;
   border-radius: 50%;
-  background-color: rgba(239, 249, 249, 0.8);
+  background-color: rgb(239 249 249 / 80%);
   color: #000;
   position: fixed;
   padding: 8px;
@@ -20,6 +20,6 @@
   }
 
   &:hover {
-    background-color: rgba(176, 170, 173, 0.8);
+    background-color: rgb(176 170 173 / 80%);
   }
 }

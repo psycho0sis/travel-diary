@@ -44,8 +44,9 @@ export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
       });
 
       dispatch(fetchReview({ excursion }));
+    } else {
+      setIsLoggedError('Реакции доступны только авторизированным пользователям');
     }
-    setIsLoggedError('Реакции доступны только авторизированным пользователям');
   };
 
   const decreaseAmountOfLikes = async () => {
@@ -59,8 +60,9 @@ export const LikeInContextOfReview: FC<ILikeInContextOfReview> = ({
       });
 
       dispatch(fetchReview({ excursion }));
+    } else {
+      setIsLoggedError('Реакции доступны только авторизированным пользователям');
     }
-    setIsLoggedError('Реакции доступны только авторизированным пользователям');
   };
 
   return (

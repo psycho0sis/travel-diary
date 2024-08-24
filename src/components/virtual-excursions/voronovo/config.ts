@@ -1,4 +1,6 @@
-export const gravesConfig = [
+import { IExcursion } from '../types';
+
+export const gravesConfig: IExcursion[] = [
   {
     id: 0,
     description:
@@ -9,8 +11,6 @@ export const gravesConfig = [
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-09-04_23-24-56.jpg?alt=media&token=739ec376-0a99-4dcd-aa3a-86fb51df6a65',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-09-04_23-24-59.jpg?alt=media&token=c2595773-f01a-4261-9433-3dac703b24e6',
     ],
-    panorama:
-      'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-17.jpg?alt=media&token=49c95f58-749b-4269-bc4c-a247ab7daf21',
     route: 'voronovo/first-grave',
     previewImg:
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-10.jpg?alt=media&token=3e5bffb6-a5a4-4be3-9977-eb617c43ba31',
@@ -33,8 +33,6 @@ export const gravesConfig = [
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image4.jpeg?alt=media&token=a0572fc0-1c58-49ae-845b-396e53ce57a0',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/grave2-image5.jpeg?alt=media&token=16b08db7-6484-4395-9b16-a5d88dbcab51',
     ],
-    panorama:
-      'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-55-58.jpg?alt=media&token=fda7d915-3b53-4f1c-8abe-a698450494cb',
     route: 'voronovo/second-grave',
     previewImg:
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/image2.jpg?alt=media&token=15723345-ad46-4c1a-b25a-34a21522fa86',
@@ -57,9 +55,6 @@ export const gravesConfig = [
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/IMG-edc59e9980275979bebd7efbc068327e-V.jpg?alt=media&token=2945fb52-6514-4da0-bca5-78a73d2df0c6',
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/IMG-5ac7cac94edab54638babbc456234a7f-V.jpg?alt=media&token=ed8f6d72-3ba6-4d8c-99c6-a3cfb53ec55f',
     ],
-    panorama:
-      'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/photo_2023-07-02_13-56-07.jpg?alt=media&token=8d180026-ad72-48dd-974b-22782862dd43',
-    route: 'voronovo/third-grave',
     previewImg:
       'https://firebasestorage.googleapis.com/v0/b/travel-diary-3bb0c.appspot.com/o/image3.jpg?alt=media&token=1aa3e1b6-ee7c-411f-9f47-c04139739806',
     textContent: [
@@ -68,6 +63,7 @@ export const gravesConfig = [
           'Здесь похоронены 800 мирных граждан, расстрелянных фашистскими захватчиками 14 ноября 1941 года. \n\nВ числе захороненных:\n- Художник Трегер Тубияш\n- Профессор Цеммель Натан\n- Профессор Обербах\n- Профессор Идельсон\n- Доктор Гершунь\n\n   Имена остальных не установлены.',
       },
     ],
+    route: 'voronovo/third-grave',
     title: 'Братская могила мирных граждан',
     excursion: 'Братские могилы',
   },

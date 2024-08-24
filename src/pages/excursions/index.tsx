@@ -8,7 +8,7 @@ export const CertainStudentExcursions = () => {
 
   return (
     <>
-      <BackButton text='Назад' />
+      <BackButton text='Назад' route='/' />
       <Title>Экскурсии, в которых участвовал ученик</Title>
       <StudentInfo name={name} surname={surname} />
     </>

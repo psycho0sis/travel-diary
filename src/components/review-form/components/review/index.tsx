@@ -40,19 +40,21 @@ export const Review: FC<TReview> = ({ id, data }) => {
 
   return (
     <div className={styles.reviewWrapper}>
-      <div className={styles.review}>
+      <div className={styles.userInfo}>
         <div className={styles.avatar}>
           <img src={photo ? photo : DEFAULT_AVATAR} alt='Avatar' />
         </div>
-        <div className={styles.contentWrapper}>
-          <div className={styles.content}>
-            <p className={styles.name}>
-              {name} {surname}
-            </p>
-            <p className={styles.date}>добавлено {formatDate(date)}</p>
-          </div>
-          {review}
-          <div className={styles.photosWrapper}>
+        <div className={styles.userInfoDetails}>
+          <p className={styles.name}>
+            {name} {surname}
+          </p>
+          <p className={styles.date}>добавлено {formatDate(date)}</p>
+        </div>
+      </div>
+      <div className={styles.review}>
+        {review}
+        <div className={styles.photosWrapper}>
+          <div className={styles.photos}>
             {photos?.map((photo) => (
               <div className={styles.photoWrapper} key={photo}>
                 <img src={photo} alt='' onClick={() => setOpen(true)} />

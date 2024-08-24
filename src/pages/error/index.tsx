@@ -18,8 +18,9 @@ export const ErrorPage = () => {
 
   return (
     <div id='error-page' className={styles.errorPage}>
-      <h1>Упс</h1>
-      <p>Такой страницы не существует. Но вы можете вернуться назад</p>
+      <h1 className='mt-5 mb-5'>Упс</h1>
+      <p>Такой страницы не существует.</p>
+      <p className='mb-4'>Но вы можете вернуться назад</p>
       <BackButton text='Вернуться назад' />
       <div>
         <img

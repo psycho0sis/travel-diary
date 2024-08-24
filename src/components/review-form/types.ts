@@ -6,19 +6,10 @@ export interface IReviewForm {
   excursion: string;
 }
 
-export interface IFormComponent {
-  excursion: string;
-}
-
-export interface ILikeInContextOfReview {
+export interface ILikeInContextOfReview extends IReviewForm {
   likes: TReviewLikes;
   isUserAlreadyLiked: boolean;
   setIsUserAlreadyLiked: Dispatch<SetStateAction<boolean>>;
   review: string;
-  excursion: string;
   reviewsDocumentId: string;
-}
-
-export interface IReviews {
-  excursion: string;
 }
